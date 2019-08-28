@@ -67,6 +67,7 @@ mix
 		jquery: [ '$', 'window.jQuery' ],
 	} )
 	.js( `${ assetsDir }/js/main.js`, `${ outputDir }/js/main.js` )
+	.js( `${ assetsDir }/js/admin-acf.js`, `${ outputDir }/js/admin-acf.js` )
 	.polyfill( {
 		enabled: true,
 		useBuiltIns: 'usage',

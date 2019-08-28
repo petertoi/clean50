@@ -107,7 +107,8 @@ add_action( 'wp_enqueue_scripts', function () {
  * Critical CSS
  */
 add_action( 'wp_head', function () {
-    $classes = get_body_class();
+    $classes  = get_body_class();
+    $fallback = true;
     /**
      * Check for template specific Critical CSS
      */
@@ -117,18 +118,38 @@ add_action( 'wp_head', function () {
                 '<style>%s</style>',
                 file_get_contents( Assets\get_path( "css/critical/{$class}_critical.min.css" ) )
             );
+            $fallback = false;
+            break;
         }
-
-        return true;
     }
 
     /**
      * Fallback: Load Home Critical CSS
      */
-    if ( file_exists( Assets\get_path( "css/critical/home_critical.min.css" ) ) ) {
+    if ( $fallback && file_exists( Assets\get_path( "css/critical/home_critical.min.css" ) ) ) {
         printf(
             '<style>%s</style>',
             file_get_contents( Assets\get_path( "css/critical/home_critical.min.css" ) )
         );
     }
 }, 7 );
+
+/**
+ * Admin Scripts
+ */
+add_action( 'admin_enqueue_scripts', function () {
+    wp_enqueue_script( 'toibox/manifest', Assets\get_url( 'js/manifest.js' ), [], false, true );
+    wp_enqueue_script( 'toibox/vendor', Assets\get_url( 'js/vendor.js' ), [], false, true );
+} );
+
+/**
+ * ACF Admin Scripts
+ */
+add_action( 'acf/input/admin_enqueue_scripts', function () {
+    wp_register_script( 'toibox/admin-acf', Assets\get_url( 'js/admin-acf.js' ), [ 'toibox/manifest', 'toibox/vendor' ], false, true );
+    wp_localize_script( 'toibox/admin-acf', 'Clean50', [
+        'honouree_types' => get_terms( [ 'taxonomy' => 'honouree-type', 'hide_empty' => false ] )
+    ] );
+    wp_enqueue_script( 'toibox/admin-acf' );
+
+} );
