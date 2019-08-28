@@ -1,5 +1,5 @@
 {
-  "devUrl": "https://dev.test/",
+  "devUrl": "https://clean50.test/",
   "watch": [
     "app/**/*.php",
     "public/**/*",
@@ -12,16 +12,8 @@
   "criticalCss": {
     "urls": [
       {
-        "url": "hello-world",
-        "template": "single"
-      },
-      {
-        "url": "hello-world",
-        "template": "single"
-      },
-      {
-        "url": "hello-world",
-        "template": "single"
+        "url": "",
+        "template": "home"
       }
     ]
   }
