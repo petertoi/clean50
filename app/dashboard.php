@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Dashboard;
+
 /**
  * Enable/Disable Core Dashboard Meta Boxes.
  */

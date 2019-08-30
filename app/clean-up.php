@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Clean_Up;
+
 /**
  * Clean up wp_head()
  *

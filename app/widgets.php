@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Widgets;
+
 add_action( 'widgets_init', function () {
     unregister_widget( 'WP_Widget_Pages' );
     unregister_widget( 'WP_Widget_Calendar' );

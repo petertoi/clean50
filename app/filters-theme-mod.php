@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Filters_Theme_Mod;
+
 add_action( 'wp_head', function () {
     $scripts = get_theme_mod( '_toibox_header_scripts' );
     if ( ! empty( $scripts ) ) {

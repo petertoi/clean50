@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Shortcodes;
+
 use Toi\ToiBox\Snippets;
 
 add_shortcode( 'year_from_to', function ( $atts ) {

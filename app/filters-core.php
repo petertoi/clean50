@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Filters_Core;
+
 use Toi\ToiBox\Templates;
 
 add_filter( 'body_class', function ( $classes ) {

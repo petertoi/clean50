@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Taxonomies;
+
 add_action( 'init', function () {
     /**
      * @see https://github.com/johnbillion/extended-cpts

@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Customizer;
+
 include __DIR__ . '/customizer/panels.php';
 include __DIR__ . '/customizer/sections.php';
 include __DIR__ . '/customizer/settings.php';
@@ -15,7 +17,7 @@ include __DIR__ . '/customizer/settings.php';
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
-     * @var WP_Customize_Manager $wp_customize
+     * @var \WP_Customize_Manager $wp_customize
      */
 
     $wp_customize->remove_control( 'custom_css' );

@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Post_Types;
+
 add_action( 'init', function () {
     /**
      * @see https://github.com/johnbillion/extended-cpts
@@ -13,17 +15,40 @@ add_action( 'init', function () {
     register_extended_post_type(
         'honouree',
         [
-            'menu_icon'      => 'dashicons-businessperson',
+            'menu_icon'      => 'dashicons-awards',
             'show_in_rest'   => true,
             'featured_image' => 'Headshot',
             'admin_cols'     => [
-                'featured_image' => [
+                'featured-image' => [
                     'title'          => 'Headshot',
-                    'featured_image' => 'thumbnail'
+                    'featured_image' => 'thumbnail',
+                    'width'          => 80,
+                    'height'         => 80,
                 ],
                 'honouree-type'  => [
                     'title'    => 'Type',
                     'taxonomy' => 'honouree-type',
+                ],
+                'related'        => [
+                    'title'    => 'Related',
+                    'function' => function () {
+                        global $post;
+                        $type = get_field( 'type', $post );
+                        $term = get_term( $type );
+                        if ( 'team-member' === $term->slug ) {
+                            $related_team = get_field( 'related_team', $post );
+                            if ( ! empty( $related_team ) ) {
+                                printf( '<a href="%s">%s</a>', get_edit_post_link( $related_team ), get_the_title( $related_team ) );
+                            }
+                        } else if ( 'team' === $term->slug ) {
+                            $related_team_members = get_field( 'related_team_members', $post );
+                            if ( ! empty( $related_team_members ) ) {
+                                foreach ( $related_team_members as $related_team_member ) {
+                                    printf( '<a href="%s">%s</a><br>', get_edit_post_link( $related_team_member ), get_the_title( $related_team_member ) );
+                                }
+                            }
+                        }
+                    },
                 ],
                 'award'          => [
                     'title'    => 'Award',
@@ -38,14 +63,50 @@ add_action( 'init', function () {
                     'taxonomy' => 'award-category',
                 ],
             ],
+            'admin_filters'  => [
+                'honouree-type'  => [
+                    'title'    => 'All Types',
+                    'taxonomy' => 'honouree-type'
+                ],
+                'award'          => [
+                    'title'    => 'All Awards',
+                    'taxonomy' => 'award',
+                ],
+                'award-year'     => [
+                    'title'    => 'All Years',
+                    'taxonomy' => 'award-year',
+                ],
+                'award-category' => [
+                    'title'    => 'All Categories',
+                    'taxonomy' => 'award-category',
+                ],
+            ],
         ]
     );
 
     register_extended_post_type(
         'project',
         [
-            'menu_icon'      => 'dashicons-portfolio',
-            'show_in_rest'   => true,
+            'menu_icon'     => 'dashicons-portfolio',
+            'show_in_rest'  => true,
+            'admin_cols'    => [
+                'featured-image' => [
+                    'title'          => 'Featured Image',
+                    'featured_image' => 'thumbnail',
+                    'width'          => 80,
+                    'height'         => 80,
+                ],
+                'award-year'     => [
+                    'title'    => 'Year',
+                    'taxonomy' => 'award-year',
+                ],
+            ],
+            'admin_filters' => [
+                'award-year' => [
+                    'title'    => 'All Years',
+                    'taxonomy' => 'award-year',
+                ],
+            ],
         ]
     );
 
@@ -55,7 +116,7 @@ add_action( 'init', function () {
     register_extended_post_type(
         'sponsor',
         [
-            'menu_icon'      => 'dashicons-awards',
+            'menu_icon'      => 'dashicons-heart',
             'show_in_rest'   => true,
             'featured_image' => 'Sponsor Logo',
         ]
