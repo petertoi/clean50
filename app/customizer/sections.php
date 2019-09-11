@@ -27,6 +27,25 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
+ * Register the Social Profiles section
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $wp_customize->add_section(
+        '_toibox_social_profiles_section',
+        array(
+            'title'    => esc_html__( 'Social Profiles', '' ),
+            'priority' => 10,
+            'panel'    => 'site-options',
+        )
+    );
+
+} );
+
+/**
  * Register the Additional Scripts section
  */
 add_action( 'customize_register', function ( $wp_customize ) {

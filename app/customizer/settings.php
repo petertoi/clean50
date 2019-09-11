@@ -36,6 +36,56 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
+ * Register the Social section settings
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $social_networks = [
+        'facebook'  => [
+            'label'       => esc_html_x( 'Facebook URL', 'Field label for Facebook profile URL', '' ),
+            'description' => _x( 'Please paste full URL including <code>https://</code>', 'Instructions for pasting an URL', '' ),
+        ],
+        'instagram' => [
+            'label'       => esc_html_x( 'Instagram URL', 'Field label for Instagram profile URL', '' ),
+            'description' => _x( 'Please paste full URL including <code>https://</code>', 'Instructions for pasting an URL', '' ),
+        ],
+        'youtube'   => [
+            'label'       => esc_html_x( 'YouTube URL', 'Field label for YouTube profile URL', '' ),
+            'description' => _x( 'Please paste full URL including <code>https://</code>', 'Instructions for pasting an URL', '' ),
+        ],
+        'linkedin'  => [
+            'label'       => esc_html_x( 'LinkedIn URL', 'Field label for LinkedIn profile URL', '' ),
+            'description' => _x( 'Please paste full URL including <code>https://</code>', 'Instructions for pasting an URL', '' ),
+        ],
+    ];
+
+    foreach ( $social_networks as $key => $social_network ) {
+        // Register a setting.
+        $wp_customize->add_setting(
+            sprintf( '_toibox_%s_url', $key ),
+            array(
+                'default' => '',
+            )
+        );
+
+        // Create the setting field.
+        $wp_customize->add_control(
+            sprintf( '_toibox_%s_url', $key ),
+            array(
+                'label'       => $social_network['label'],
+                'description' => $social_network['description'],
+                'section'     => '_toibox_social_profiles_section',
+                'type'        => 'text',
+            )
+        );
+    }
+
+} );
+
+/**
  * Register the Additional scripts settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {

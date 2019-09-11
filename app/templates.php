@@ -61,7 +61,7 @@ class Template_Wrapper {
         $this->templates = [];
         foreach ( $templates as $template ) {
             $this->templates = [
-                "resources/views/$template",
+                "views/layouts/$template",
                 "views/$template",
                 $template
             ];

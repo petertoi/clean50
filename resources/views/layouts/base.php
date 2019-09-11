@@ -18,7 +18,7 @@ use Toi\ToiBox\Templates;
 do_action( 'get_header' );
 get_template_part( 'views/partials/header' );
 ?>
-<div class="container" role="document" tabindex="0">
+<div class="container" role="document">
   <div class="site-content row">
     <main class="main">
       <?php include Templates\get_main(); ?>

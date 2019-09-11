@@ -5,6 +5,9 @@
  * @package Toi\ToiBox
  * @author  Peter Toi <peter@petertoi.com>
  */
+
+use IndigoTree\BootstrapNavWalker\Four\WalkerNavMenu;
+
 ?>
 <header class="site-header" role="banner">
   <div class="container">
@@ -21,7 +24,7 @@
             'container'      => '',
             'theme_location' => 'primary',
             'menu_class'     => 'menu navbar-nav mr-auto',
-            'walker'         => new \IndigoTree\BootstrapNavWalker\Four\WalkerNavMenu(),
+            'walker'         => new WalkerNavMenu(),
           ] );
           ?>
         <?php endif; ?>
