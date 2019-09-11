@@ -62,6 +62,14 @@ add_action( 'init', function () {
                     'title'    => 'Category',
                     'taxonomy' => 'award-category',
                 ],
+                'meta_title' => [
+                    'title'    => 'Title',
+                    'meta_key' => 'title',
+                ],
+                'meta_organization' => [
+                    'title'    => 'Organization',
+                    'meta_key' => 'organization',
+                ],
             ],
             'admin_filters'  => [
                 'honouree-type'  => [
