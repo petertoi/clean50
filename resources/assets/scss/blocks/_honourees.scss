@@ -1,0 +1,37 @@
+.block-honourees {
+	.honouree-grid {
+		margin-left: -1.25%;
+		margin-right: -1.25%;
+		width: 100%;
+
+		.honouree-grid-item {
+			position: relative;
+			display: block;
+			flex: 0 0 7.5%;
+			width: 7.5%;
+			padding-bottom: 7.5%;
+			margin: 1.25%;
+			background-size: 100% auto;
+			background-repeat: no-repeat;
+			border-radius: 8px;
+		}
+	}
+
+	.honouree-grid--md {
+		.honouree-grid-item {
+			flex: 0 0 10%;
+			width: 10%;
+			padding-bottom: 10%;
+			margin: 1.25%;
+		}
+	}
+
+	.honouree-grid--lg {
+		.honouree-grid-item {
+			flex: 0 0 10%;
+			width: 10%;
+			padding-bottom: 10%;
+			margin: 1.25%;
+		}
+	}
+}

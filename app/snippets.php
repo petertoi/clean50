@@ -25,3 +25,32 @@ function year_from_to( $from, $separator = '&ndash;' ) {
 
     return $from_to;
 }
+
+
+function render_button( $button, $classes = [ 'btn', 'btn-primary' ], $echo = true ) {
+    if ( 'page' === $button['link']['type'] ) {
+        $target = sprintf( '#%s', $button['link']['target'] );
+    } elseif ( 'internal' === $button['link']['type'] ) {
+        if ( is_numeric( $button['link']['target'] ) ) {
+            //TODO ACF bug with cloned fields yields raw value in certain cases
+            $target = get_the_permalink( $button['link']['target'] );
+        } else {
+            $target = $button['link']['target'];
+        }
+    } else {
+        $target = $button['link']['target'];
+    }
+
+
+    $button = sprintf( '<a class="%s" href="%s">%s</a>',
+        esc_attr( implode( ' ', $classes ) ),
+        esc_attr( $target ),
+        wp_kses_post( $button['label'] )
+    );
+
+    if ( $echo ) {
+        echo $button;
+    }
+
+    return $button;
+}

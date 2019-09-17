@@ -112,3 +112,68 @@ function add_team_member_to_team( $team_member_id, $team_id ) {
         update_post_meta( $team_id, 'related_team_members', $related_team_members );
     }
 }
+
+/**
+ * Filter query for Honourees based on Award to limit
+ * Honouree Type returned.
+ */
+add_filter( 'pre_get_posts', function ( $query ) {
+    /** @var \WP_Query $query */
+    if ( is_admin() ) {
+        return $query;
+    }
+
+    $post_type = $query->get( 'post_type' );
+
+    if ( 'honouree' !== $post_type ) {
+        return $query;
+    }
+
+    $tax_query = $query->get( 'tax_query' );
+
+    $award_id = array_reduce( $tax_query, function ( $carry, $value ) {
+        if ( false !== $carry ) {
+            return $carry;
+        }
+
+        $tax = is_array( $value ) ? $value['taxonomy'] : false;
+
+        if ( 'award' === $tax ) {
+            return $value['terms'];
+        }
+
+        return false;
+    }, false );
+
+    if ( false === $award_id || is_array( $award_id ) ) {
+        return $query;
+    }
+
+    $award = get_term( $award_id, 'award' );
+
+    switch ( $award->name ) {
+        case "Clean50":
+            $tax_query[] = [
+                'taxonomy' => 'honouree-type',
+                'field'    => 'slug',
+                'terms'    => 'team',
+                'operator' => 'NOT IN',
+            ];
+            $query->set( 'tax_query', $tax_query );
+            break;
+        case "Clean16":
+            $tax_query[] = [
+                'taxonomy' => 'honouree-type',
+                'field'    => 'slug',
+                'terms'    => 'team-member',
+                'operator' => 'NOT IN',
+            ];
+            $query->set( 'tax_query', $tax_query );
+            break;
+        case "Emerging Leader":
+        default:
+            break;
+    }
+
+    return $query;
+}, 10, 1 );

@@ -7,6 +7,42 @@
  */
 
 /**
+ * Register the Honouree Archives section
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $wp_customize->add_section(
+        '_toibox_honouree_archive_section',
+        array(
+            'title'    => esc_html__( 'Archive: Honourees', '' ),
+            'priority' => 10,
+            'panel'    => 'site-options',
+        )
+    );
+} );
+
+/**
+ * Register the Project Archives section
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $wp_customize->add_section(
+        '_toibox_project_archive_section',
+        array(
+            'title'    => esc_html__( 'Archive: Projects', '' ),
+            'priority' => 10,
+            'panel'    => 'site-options',
+        )
+    );
+} );
+
+/**
  * Register the Copyright section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
@@ -22,8 +58,6 @@ add_action( 'customize_register', function ( $wp_customize ) {
             'panel'    => 'site-options',
         )
     );
-
-
 } );
 
 /**
@@ -38,6 +72,25 @@ add_action( 'customize_register', function ( $wp_customize ) {
         '_toibox_social_profiles_section',
         array(
             'title'    => esc_html__( 'Social Profiles', '' ),
+            'priority' => 10,
+            'panel'    => 'site-options',
+        )
+    );
+
+} );
+
+/**
+ * Register the Twitter API section
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $wp_customize->add_section(
+        '_toibox_twitter_api_section',
+        array(
+            'title'    => esc_html__( 'Twitter API', '' ),
             'priority' => 10,
             'panel'    => 'site-options',
         )

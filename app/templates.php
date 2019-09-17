@@ -19,15 +19,17 @@ function get_sidebar( $sidebar = 'partials/sidebar.php' ) {
 function has_sidebar() {
     static $display;
 
-    isset( $display ) || $display = ! in_array( true, [
-        // The sidebar will NOT be displayed if ANY of the following return true.
-        // @link https://codex.wordpress.org/Conditional_Tags
-        is_404(),
-        is_front_page(),
-        is_page_template( 'template-custom.php' ),
-    ] );
-
-    return $display;
+    // No widgetized sidebars on any pages.
+    return false;
+//    isset( $display ) || $display = ! in_array( true, [
+//        // The sidebar will NOT be displayed if ANY of the following return true.
+//        // @link https://codex.wordpress.org/Conditional_Tags
+//        is_404(),
+//        is_front_page(),
+//        is_page_template( 'template-custom.php' ),
+//    ] );
+//
+//    return $display;
 }
 
 /**

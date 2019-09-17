@@ -8,14 +8,14 @@
 //$white:    #fff;
 //$gray-100: #f8f9fa;
 //$gray-200: #e9ecef;
-//$gray-300: #dee2e6;
+$gray-300: #D8D8D8;
 //$gray-400: #ced4da;
 //$gray-500: #adb5bd;
 //$gray-600: #6c757d;
 //$gray-700: #495057;
 //$gray-800: #343a40;
 $gray-900: #2B2E31;
-$black:    #1A1819;
+$black: #1A1819;
 
 //$grays: ();
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -34,18 +34,21 @@ $black:    #1A1819;
 //		$grays
 //);
 
-$blue:    #143677;
+$blue: #143677;
 //$indigo:  #6610f2;
 //$purple:  #6f42c1;
 //$pink:    #e83e8c;
 //$red:     #dc3545;
 //$orange:  #fd7e14;
 //$yellow:  #ffc107;
-$green:   #1E7A3E;
+$merino: #F4F1DE;
+$green: #1E7A3E;
 //$teal:    #20c997;
 //$cyan:    #17a2b8;
 
-//$colors: ();
+$colors: (
+	"merino": $merino,
+);
 // stylelint-disable-next-line scss/dollar-variable-default
 //$colors: map-merge(
 //		(
@@ -66,7 +69,7 @@ $green:   #1E7A3E;
 //		$colors
 //);
 
-//$primary:       $blue;
+$primary: $blue;
 //$secondary:     $gray-600;
 //$success:       $green;
 //$info:          $cyan;
@@ -116,7 +119,7 @@ $green:   #1E7A3E;
 //$enable-grid-classes:                         true;
 //$enable-pointer-cursor-for-buttons:           true;
 //$enable-print-styles:                         true;
-//$enable-responsive-font-sizes:                false;
+$enable-responsive-font-sizes: true;
 //$enable-validation-icons:                     true;
 //$enable-deprecation-messages:                 true;
 
@@ -219,7 +222,7 @@ $green:   #1E7A3E;
 // Set the number of columns and specify the width of the gutters.
 
 //$grid-columns:                12;
-$grid-gutter-width:           20px;
+$grid-gutter-width: 20px;
 
 
 // Components
@@ -270,35 +273,37 @@ $grid-gutter-width:           20px;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-//$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 //$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 //$font-family-base:            $font-family-sans-serif;
 // stylelint-enable value-keyword-case
 
-//$font-size-base:              1rem; // Assumes the browser default, typically `16px`
+$font-size-base: 1rem; // Assumes the browser default, typically `16px`
 //$font-size-lg:                $font-size-base * 1.25;
 //$font-size-sm:                $font-size-base * .875;
 
 //$font-weight-lighter:         lighter;
 //$font-weight-light:           300;
-//$font-weight-normal:          400;
-//$font-weight-bold:            700;
-//$font-weight-bolder:          bolder;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+//$font-weight-bolder: bolder;
 
 //$font-weight-base:            $font-weight-normal;
-//$line-height-base:            1.5;
+$line-height-base: 1.625;
 
-//$h1-font-size:                $font-size-base * 2.5;
-//$h2-font-size:                $font-size-base * 2;
-//$h3-font-size:                $font-size-base * 1.75;
-//$h4-font-size:                $font-size-base * 1.5;
-//$h5-font-size:                $font-size-base * 1.25;
-//$h6-font-size:                $font-size-base;
+$h1-font-size: $font-size-base * 2.25; // 36px
+$h2-font-size: $font-size-base * 1.5; // 24px
+$h3-font-size: $font-size-base; // 16px
+$h4-font-size: $font-size-base; // 16px
+$h5-font-size: $font-size-base * 0.75; // 12px;
+$h6-font-size: $font-size-base * 0.75; // 12px;
 
 //$headings-margin-bottom:      $spacer / 2;
 //$headings-font-family:        null;
-//$headings-font-weight:        500;
-//$headings-line-height:        1.2;
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: 1.5;
 //$headings-color:              null;
 
 //$display1-size:               6rem;
@@ -731,12 +736,12 @@ $grid-gutter-width:           20px;
 //$navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23");
 //$navbar-dark-toggler-border-color:  rgba($white, .1);
 
-//$navbar-light-color:                rgba($black, .5);
-//$navbar-light-hover-color:          rgba($black, .7);
-//$navbar-light-active-color:         rgba($black, .9);
-//$navbar-light-disabled-color:       rgba($black, .3);
-//$navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23");
-//$navbar-light-toggler-border-color: rgba($black, .1);
+$navbar-light-color: $primary;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+$navbar-light-disabled-color: rgba($black, .3);
+$navbar-light-toggler-icon-bg: str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$primary}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23");
+$navbar-light-toggler-border-color: $primary;
 
 //$navbar-light-brand-color:                $navbar-light-active-color;
 //$navbar-light-brand-hover-color:          $navbar-light-active-color;
@@ -1057,12 +1062,12 @@ $grid-gutter-width:           20px;
 //$carousel-control-hover-opacity:     .9;
 //$carousel-control-transition:        opacity .15s ease;
 
-//$carousel-indicator-width:           30px;
-//$carousel-indicator-height:          3px;
+$carousel-indicator-width: 10px;
+$carousel-indicator-height: 10px;
 //$carousel-indicator-hit-area-height: 10px;
-//$carousel-indicator-spacer:          3px;
-//$carousel-indicator-active-bg:       $white;
-//$carousel-indicator-transition:      opacity .6s ease;
+$carousel-indicator-spacer: 3px;
+//$carousel-indicator-active-bg:       #D8D8D8;
+$carousel-indicator-transition: background-color .6s ease;
 
 //$carousel-caption-width:             70%;
 //$carousel-caption-color:             $white;

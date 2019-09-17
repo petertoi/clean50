@@ -50,6 +50,7 @@ mix
 	.setPublicPath( outputDir )
 	.sourceMaps( false )
 	.sass( `${ assetsDir }/scss/main.scss`, `${ outputDir }/css/main.css` )
+	.sass( `${ assetsDir }/scss/admin.scss`, `${ outputDir }/css/admin.css` )
 	.criticalCss(
 		{
 			enabled: mix.inProduction(),
@@ -74,11 +75,11 @@ mix
 		targets: false,
 	} )
 	.extract()
-	.copy( `${ assetsDir }/fonts/**/*`, `${ outputDir }/fonts` )
-	.copy( `${ assetsDir }/img/**/*`, `${ outputDir }/img` )
+	.copyDirectory( `${ assetsDir }/fonts`, `${ outputDir }/fonts` )
+	.copyDirectory( `${ assetsDir }/img`, `${ outputDir }/img` )
 	.copy( `${ assetsDir }/lang/**/*.mo`, `${ outputDir }/lang` )
-	.copy( `${ assetsDir }/svg/**/*`, `${ outputDir }/svg` )
-	.copy( `${ assetsDir }/sprites/*`, `${ outputDir }/sprites` )
+	.copyDirectory( `${ assetsDir }/svg`, `${ outputDir }/svg` )
+	.copyDirectory( `${ assetsDir }/sprites`, `${ outputDir }/sprites` )
 	.browserSync( {
 		proxy: config.devUrl,
 		files: config.watch,

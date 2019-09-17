@@ -1,3 +1,35 @@
 .site-header {
 	// placeholder
+	.boulders {
+		position: absolute;
+		width: 100%;
+
+		.container {
+			position: relative;
+		}
+
+		.boulder-1,
+		.boulder-2 {
+			position: absolute;
+		}
+
+		.boulder-1 {
+			left: -127px;
+			top: -109px;
+			height: 430.73px;
+			width: 817.63px;
+			opacity: 0.14;
+			transform: scaleX(-1) rotate(1deg);
+			fill: $blue;
+		}
+
+		.boulder-2 {
+			right: -38px;
+			top: 120px;
+			height: 370px;
+			width: 708px;
+			opacity: 0.75;
+			fill: $merino;
+		}
+	}
 }

@@ -2,6 +2,9 @@
 /**
  * Ensure compatible version of PHP is used
  */
+
+use Toi\ToiBox\Sprite;
+
 if ( version_compare( '7.1', phpversion(), '>=' ) ) {
     wp_die( __( 'You must be using PHP 7.1 or greater.', '' ), __( 'Invalid PHP version', '' ) );
 }
@@ -53,4 +56,6 @@ array_map( function ( $file ) {
     'taxonomies.php',
     'templates.php',
     'widgets.php',
+    'wp-sprite/class-sprite.php',
 ] );
+

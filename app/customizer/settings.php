@@ -7,6 +7,104 @@
  */
 
 /**
+ * Register the Honouree Archive section settings
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_honouree_archive_title',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_honouree_archive_title',
+        array(
+            'label'       => esc_html__( 'Title', '' ),
+            'description' => esc_html__( 'Title.', '' ),
+            'section'     => '_toibox_honouree_archive_section',
+            'type'        => 'text',
+        )
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_honouree_archive_content',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_honouree_archive_content',
+        array(
+            'label'       => esc_html__( 'Intro Content', '' ),
+            'description' => esc_html__( 'Intro Content.', '' ),
+            'section'     => '_toibox_honouree_archive_section',
+            'type'        => 'textarea',
+        )
+    );
+} );
+
+/**
+ * Register the Project Archive section settings
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_project_archive_title',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_project_archive_title',
+        array(
+            'label'       => esc_html__( 'Title', '' ),
+            'description' => esc_html__( 'Title.', '' ),
+            'section'     => '_toibox_project_archive_section',
+            'type'        => 'text',
+        )
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_project_archive_content',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_project_archive_content',
+        array(
+            'label'       => esc_html__( 'Intro Content', '' ),
+            'description' => esc_html__( 'Intro Content.', '' ),
+            'section'     => '_toibox_project_archive_section',
+            'type'        => 'textarea',
+        )
+    );
+} );
+
+/**
  * Register the Copyright section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
@@ -82,6 +180,72 @@ add_action( 'customize_register', function ( $wp_customize ) {
             )
         );
     }
+
+} );
+
+/**
+ * Register the Twitter API section settings
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_twitter_api_consumer_key',
+        array(
+            'default' => '',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_twitter_api_consumer_key',
+        array(
+            'label'       => esc_html__( 'Twitter API Consumer Key', '' ),
+            'description' => esc_html__( 'Twitter API Consumer Key', '' ),
+            'section'     => '_toibox_twitter_api_section',
+            'type'        => 'text',
+        )
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_twitter_api_consumer_secret',
+        array(
+            'default' => '',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_twitter_api_consumer_secret',
+        array(
+            'label'       => esc_html__( 'Twitter API Consumer Secret', '' ),
+            'description' => esc_html__( 'Twitter API Consumer Secret', '' ),
+            'section'     => '_toibox_twitter_api_section',
+            'type'        => 'text',
+        )
+    );
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_twitter_api_screen_name',
+        array(
+            'default' => '',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_twitter_api_screen_name',
+        array(
+            'label'       => esc_html__( 'Twitter API Screen Name', '' ),
+            'description' => esc_html__( 'Twitter API Screen Name', '' ),
+            'section'     => '_toibox_twitter_api_section',
+            'type'        => 'text',
+        )
+    );
 
 } );
 

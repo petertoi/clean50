@@ -1,0 +1,35 @@
+.block-hero {
+	.title {
+		margin-bottom: 0;
+	}
+
+	.subtitle {
+		color: $black;
+		font-weight: $font-weight-semi-bold;
+		margin-bottom: 0.3125rem; // 5px
+	}
+
+	.content {
+		font-size: 0.75rem; // 12px
+		line-height: 1rem; // 16px
+		margin-bottom: 2.875rem; // 46px
+	}
+
+	.sponsors-carousel {
+		.carousel__title {
+			font-weight: $font-weight-bold;
+			font-size: 0.75rem; // 12px
+			line-height: 1rem; // 16px
+			margin-bottom: 0.5625rem; // 9px
+		}
+
+		.sponsor__logo {
+			margin-bottom: 0.5rem; // 8px
+		}
+
+		.sponsor__description {
+			font-size: 0.75rem; // 12px
+			line-height: 1rem; // 16px
+		}
+	}
+}

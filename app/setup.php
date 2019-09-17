@@ -64,6 +64,17 @@ add_action( 'after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style( Assets\get_url( 'css/main.css' ) );
+
+    /**
+     * Image sizes
+     *
+     * @TODO Add codex link
+     */
+    add_image_size( 'sponsor-carousel', 300, 60, false );
+    add_image_size( 'block-articles', 285, 285, true );
+    add_image_size( 'honouree-archive', 285, 285, true );
+
+    add_image_size( 'sprite', 50, 50, true );
 }, 20 );
 
 /**
@@ -101,6 +112,7 @@ add_action( 'wp_enqueue_scripts', function () {
     if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
+
 }, 100 );
 
 /**
@@ -135,9 +147,31 @@ add_action( 'wp_head', function () {
 }, 7 );
 
 /**
+ * Web Font Loader
+ */
+add_action( 'wp_head', function () {
+    ?>
+    <script>
+		WebFontConfig = {
+			google: { families: [ 'Poppins:700,600,500,400,400i' ] },
+		};
+
+		( function( d ) {
+			var wf = d.createElement( 'script' ), s = d.scripts[ 0 ];
+			wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+			wf.async = true;
+			s.parentNode.insertBefore( wf, s );
+		} )( document );
+    </script>
+    <?php
+} );
+
+
+/**
  * Admin Scripts
  */
 add_action( 'admin_enqueue_scripts', function () {
+    wp_enqueue_style( 'toibox/admin', Assets\get_url( 'css/admin.css' ), false, null );
     wp_enqueue_script( 'toibox/manifest', Assets\get_url( 'js/manifest.js' ), [], false, true );
     wp_enqueue_script( 'toibox/vendor', Assets\get_url( 'js/vendor.js' ), [], false, true );
 } );

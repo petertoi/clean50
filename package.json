@@ -57,6 +57,8 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "popper.js": "^1.15.0",
-    "system-font-css": "^2.0.2"
+    "select2": "^4.0.10",
+    "select2-bootstrap4-theme": "^1.0.0",
+    "slick-carousel": "^1.8.1"
   }
 }
