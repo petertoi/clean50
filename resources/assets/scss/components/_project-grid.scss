@@ -1,0 +1,35 @@
+.project-grid {
+
+}
+
+.project-grid-item {
+	position: relative;
+
+	.thumb {
+		margin-bottom: 0.8125rem; //13px
+		text-align: center;
+
+		img {
+			border-radius: 8px;
+		}
+	}
+
+	.body {
+		.title {
+			color: $body-color;
+			margin-bottom: 0.4375rem; //7px
+		}
+
+		.excerpt {
+			margin-bottom: 0.75rem; //12px
+		}
+
+		.project-leads {
+			margin-bottom: 0.625rem; //10px
+		}
+
+		.badge {
+
+		}
+	}
+}

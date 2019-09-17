@@ -12,10 +12,12 @@
 /** Import theme styles */
 @import "common/sprite";
 @import "common/global";
+@import "components/badge";
 @import "components/buttons";
-//@import "components/comments";
-//@import "components/forms";
 @import "components/carousel";
+@import "components/honouree-grid";
+@import "components/honouree-sprite";
+@import "components/project-grid";
 @import "components/nav";
 @import "components/navbar";
 @import "components/type";
@@ -31,9 +33,6 @@
 @import "layouts/site-header";
 @import "layouts/site-content";
 @import "layouts/site-footer";
-//@import "layouts/header";
-//@import "layouts/sidebar";
-//@import "layouts/footer";
 //@import "layouts/pages";
 //@import "layouts/posts";
 //@import "layouts/tinymce";

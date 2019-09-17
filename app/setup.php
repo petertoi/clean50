@@ -71,10 +71,18 @@ add_action( 'after_setup_theme', function () {
      * @TODO Add codex link
      */
     add_image_size( 'sponsor-carousel', 300, 60, false );
-    add_image_size( 'block-articles', 285, 285, true );
-    add_image_size( 'honouree-archive', 285, 285, true );
+    add_image_size( 'block-articles-thumb', 285, 285, true );
+    add_image_size( 'archive-honouree-thumb', 256, 256, true );
+    add_image_size( 'archive-project-thumb', 570, 218, true );
+    add_image_size( 'archive-post-thumb', 570, 218, true );
 
-    add_image_size( 'sprite', 50, 50, true );
+//    add_image_size( 'single-honouree-article', 285, 285, true );
+//    add_image_size( 'single-project-article', 285, 285, true );
+//    add_image_size( 'single-post-article', 285, 285, true );
+
+    add_image_size( 'sprite-sm', 50, 50, true );
+    add_image_size( 'sprite-md', 50, 50, true );
+    add_image_size( 'sprite-lg', 50, 50, true );
 }, 20 );
 
 /**

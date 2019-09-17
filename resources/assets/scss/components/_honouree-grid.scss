@@ -1,0 +1,89 @@
+.honouree-grid {
+
+}
+
+.honouree-grid-item {
+	position: relative;
+	margin-bottom: 3.125rem; //50px;
+
+	.thumb {
+		position: relative;
+		padding: 0 10%;
+		margin-bottom: 1.125rem; //18px
+
+		.boulder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			fill: transparentize($blue, 0.86);
+		}
+
+		img {
+			position: relative;
+			border-radius: 8px;
+		}
+
+		.badge {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			transform: translateY(50%);
+		}
+	}
+
+	.body {
+		.year {
+			margin-bottom: 0.1875rem; //3px
+		}
+
+		.title {
+			color: $body-color;
+			margin-bottom: 0.25rem; //4px
+		}
+
+		.organization {
+			font-weight: $font-weight-medium;
+			margin-bottom: 0.375rem; //6px;
+			text-transform: uppercase;
+		}
+
+		.category {
+			margin-bottom: 0.3125rem; //5px;
+			font-style: italic;;
+		}
+
+		.badge {
+
+		}
+	}
+}
+
+.col {
+	&:nth-child(4n+1) {
+		.thumb {
+			.boulder {
+				transform: scale(-1, 1);
+			}
+		}
+	}
+
+	&:nth-child(4n+2) {
+		.thumb {
+			.boulder {
+				transform: scale(1, -1);
+			}
+		}
+
+	}
+
+	&:nth-child(4n+3) {
+		.thumb {
+			.boulder {
+				transform: scale(-1, -1);
+			}
+		}
+
+	}
+}

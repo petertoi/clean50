@@ -32,7 +32,7 @@ $posts = get_posts( $args );
     <div class="col col-lg-3">
       <article>
         <?php if ( has_post_thumbnail( $post ) ) : ?>
-          <?php printf( '<div><a href="%s">%s</a></div>', get_the_permalink( $post ), get_the_post_thumbnail( $post, 'block-articles', [] ) ); ?>
+          <?php printf( '<div><a href="%s">%s</a></div>', get_the_permalink( $post ), get_the_post_thumbnail( $post, 'block-articles-thumb', [] ) ); ?>
         <?php endif; ?>
         <?php
         $category = get_the_category( $post );

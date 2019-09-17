@@ -177,3 +177,20 @@ add_filter( 'pre_get_posts', function ( $query ) {
 
     return $query;
 }, 10, 1 );
+
+add_filter( 'pre_get_posts', function ( $query ) {
+    /** @var \WP_Query $query */
+    if ( is_admin() ) {
+        return $query;
+    }
+
+    if ( ! is_post_type_archive( 'honouree' ) ) {
+        return $query;
+    }
+
+    $per_page = get_theme_mod( '_toibox_honouree_archive_per_page' ) ?: 4;
+
+    $query->set( 'posts_per_page', $per_page );
+
+    return $query;
+} );

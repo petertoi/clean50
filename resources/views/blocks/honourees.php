@@ -46,7 +46,8 @@ $tabs = get_field( 'tabs' );
               ] );
 
               if ( $honouree_query->have_posts() ) {
-                $sprite = new Sprite( $honouree_query->posts );
+                $size   = sprintf( 'sprite-%s', esc_attr( $tab['sprite']['size'] ) );
+                $sprite = new Sprite( $honouree_query->posts, $size );
                 // If sprite loaded correctly
                 // Display
                 $class = sprintf( 'sprite-%s', strtolower( sanitize_title_with_dashes( $tab['label'] ) ) );
@@ -55,9 +56,9 @@ $tabs = get_field( 'tabs' );
 
               ?>
               <div class="row no-gutters">
-                <div class="honouree-grid honouree-grid--<?php echo esc_attr( $tab['sprite']['size'] ); ?> d-flex flex-wrap">
+                <div class="honouree-sprite honouree-sprite--<?php echo esc_attr( $tab['sprite']['size'] ); ?> d-flex flex-wrap">
                   <?php foreach ( $honouree_query->posts as $honouree ) : ?>
-                    <div class="<?php echo $class; ?> honouree-grid-item" style="<?php $sprite->sprite_style( $honouree ); ?>">
+                    <div class="<?php echo $class; ?> honouree-sprite-item" style="<?php $sprite->sprite_style( $honouree ); ?>">
                       <a href="<?php echo get_the_permalink( $honouree ); ?>" alt="<?php echo esc_attr( get_the_title( $honouree ) ); ?>" class="stretched-link">
                         <span class="sr-only"><?php echo get_the_title( $honouree ); ?></span>
                       </a>

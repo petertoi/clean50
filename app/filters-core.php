@@ -59,6 +59,10 @@ add_filter( 'search_form_args', function ( $args ) {
     return $args;
 } );
 
+add_filter( 'excerpt_length', function () {
+    return 38;
+} );
+
 add_filter( 'excerpt_more', function () {
-    return ' &hellip; <a href="' . get_permalink() . '">' . __( 'Read More', '' ) . '</a>';
+    return '&hellip;';
 } );

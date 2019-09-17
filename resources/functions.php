@@ -47,6 +47,7 @@ array_map( function ( $file ) {
     'dashboard.php',
     'filters-core.php',
     'filters-honourees.php',
+    'filters-projects.php',
     'filters-theme-mod.php',
     'filters-wpallimport.php',
     'post-types.php',

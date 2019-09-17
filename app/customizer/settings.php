@@ -53,6 +53,31 @@ add_action( 'customize_register', function ( $wp_customize ) {
             'type'        => 'textarea',
         )
     );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_honouree_archive_per_page',
+        array(
+            'default'           => 16,
+            'sanitize_callback' => 'absint',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_honouree_archive_per_page',
+        array(
+            'label'       => esc_html__( 'Per Page', '' ),
+            'description' => esc_html__( 'Number of Honourees to display on each page of the archive.', '' ),
+            'section'     => '_toibox_honouree_archive_section',
+            'type'        => 'number',
+            'input_attrs' => [
+                'min'  => 4,
+                'max'  => 40,
+                'step' => 4,
+            ]
+        )
+    );
 } );
 
 /**
@@ -100,6 +125,32 @@ add_action( 'customize_register', function ( $wp_customize ) {
             'description' => esc_html__( 'Intro Content.', '' ),
             'section'     => '_toibox_project_archive_section',
             'type'        => 'textarea',
+        )
+    );
+
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_project_archive_per_page',
+        array(
+            'default'           => 8,
+            'sanitize_callback' => 'absint',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_project_archive_per_page',
+        array(
+            'label'       => esc_html__( 'Per Page', '' ),
+            'description' => esc_html__( 'Number of Projects to display on each page of the archive.', '' ),
+            'section'     => '_toibox_project_archive_section',
+            'type'        => 'number',
+            'input_attrs' => [
+                'min'  => 2,
+                'max'  => 20,
+                'step' => 2,
+            ]
         )
     );
 } );
