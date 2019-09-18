@@ -37,7 +37,9 @@ add_filter( 'allowed_block_types', function ( $allowed_block_types, $post ) {
             'acf/tweets',
         ];
     } else if ( 'page' === $post->post_type ) {
-        $allowed_block_types = [];
+        $allowed_block_types = [
+            'acf/page-section',
+        ];
     } else {
 //        $allowed_block_types = [];
     }
@@ -59,6 +61,20 @@ add_action( 'acf/init', function () {
             'icon'            => 'editor-code',
             'render_callback' => __NAMESPACE__ . '\\acf_block_render_callback',
         ];
+
+        // Hero
+        acf_register_block(
+            [
+                'name'        => 'page-section',
+                'title'       => __( 'Page Section', '' ),
+                'description' => __( 'Page Section', '' ),
+                'keywords'    => [ 'text' ],
+                'supports'    => [
+                    'align'    => false,
+                    'multiple' => true,
+                ]
+            ] + $block_args
+        );
 
         // Hero
         acf_register_block(

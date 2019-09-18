@@ -62,11 +62,7 @@ class Template_Wrapper {
 
         $this->templates = [];
         foreach ( $templates as $template ) {
-            $this->templates = [
-                "views/layouts/$template",
-                "views/$template",
-                $template
-            ];
+            $this->templates[] = "views/layouts/$template";
         }
     }
 
@@ -81,7 +77,8 @@ class Template_Wrapper {
         }
 
         self::$main_template = $main;
-        self::$base          = basename( self::$main_template, '.php' );
+
+        self::$base = basename( self::$main_template, '.php' );
 
         if ( self::$base === 'index' ) {
             self::$base = false;

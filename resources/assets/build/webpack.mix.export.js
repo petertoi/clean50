@@ -12,7 +12,7 @@ const rimraf = require( 'rimraf' );
 const fs = require( 'fs' );
 
 // Folder name to export the files to.
-const exportPath = 'toibox';
+const exportPath = 'clean50';
 
 // Theme root-level files to include.
 const files = [

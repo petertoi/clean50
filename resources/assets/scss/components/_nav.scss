@@ -16,3 +16,14 @@
 		}
 	}
 }
+
+.nav-section {
+	padding-top: .25rem;
+
+	.nav-link {
+		font-weight: $font-weight-bold;
+		font-size: 0.75rem; //12px
+		line-height: 1rem; //16px
+		color: $body-color;
+	}
+}

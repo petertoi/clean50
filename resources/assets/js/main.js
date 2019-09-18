@@ -3,6 +3,7 @@
  */
 import 'bootstrap';
 import 'select2';
+// import SmoothScroll from 'smooth-scroll/dist/smooth-scroll';
 
 /**
  * Internal dependencies
@@ -16,4 +17,6 @@ $( document ).ready( () => {
 	$( 'select' ).select2( {
 		theme: 'bootstrap4',
 	} );
+
+	// new SmoothScroll( 'a[href*="#"]' );
 } );

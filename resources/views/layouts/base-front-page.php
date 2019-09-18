@@ -1,13 +1,12 @@
 <?php
 /**
- * Filename base.php
+ * Filename base-front-page.php
  *
- * @package Toi\ToiBox
+ * @package clean50
  * @author  Peter Toi <peter@petertoi.com>
  */
 
 use Toi\ToiBox\Templates;
-use function Toi\ToiBox\Snippets\breadcrumbs;
 
 ?>
 <!doctype html>
@@ -20,19 +19,9 @@ do_action( 'get_header' );
 get_template_part( 'views/partials/header' );
 ?>
 <div class="site-content" role="document">
-  <div class="container">
-    <?php if ( ! is_archive() ) : ?>
-      <div class="row">
-        <div class="col-auto">
-          <?php breadcrumbs(); ?>
-        </div>
-      </div>
-    <?php endif; ?>
-
-    <main class="main">
-      <?php include Templates\get_main(); ?>
-    </main>
-  </div>
+  <main class="main">
+    <?php include Templates\get_main(); ?>
+  </main>
 </div>
 <?php
 do_action( 'get_footer' );

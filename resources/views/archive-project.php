@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+use function Toi\ToiBox\Snippets\bootstrap_pagination;
+
 $title   = get_theme_mod( '_toibox_project_archive_title' );
 $content = get_theme_mod( '_toibox_project_archive_content' );
 
@@ -79,4 +81,12 @@ $award_years = get_terms( [
       </div>
     <?php endwhile; ?>
   </div>
+
+  <nav class="d-flex justify-content-center" aria-label="<?php _ex( 'Project archive pagination', '', '' ); ?>">
+    <?php bootstrap_pagination( null, [
+      'prev_text' => '&lt;<span class="sr-only">' . _x( 'Previous', '', '' ) . '</span>',
+      'next_text' => '&gt;<span class="sr-only">' . _x( 'Next', '', '' ) . '</span>',
+    ] ); ?>
+  </nav>
+
 <?php endif; ?>

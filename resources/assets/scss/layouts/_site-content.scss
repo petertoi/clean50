@@ -1,15 +1,5 @@
 .site-content {
-
-	> main,
-	> aside {
-
-		@include make-col-ready();
-	}
-
-	> aside {
-
-		@include make-col-ready();
-	}
+	//placeholder
 }
 
 .sidebar {

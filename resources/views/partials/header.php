@@ -8,6 +8,7 @@
 
 use IndigoTree\BootstrapNavWalker\Four\WalkerNavMenu;
 use Toi\ToiBox\Assets;
+use function Toi\ToiBox\Snippets\cached_menu;
 
 ?>
 <header class="site-header">
@@ -28,17 +29,13 @@ use Toi\ToiBox\Assets;
       </button>
 
       <div class="collapse navbar-collapse justify-content-end" id="navbar-primary">
-        <?php if ( has_nav_menu( 'primary' ) ) : ?>
-          <?php
-          wp_nav_menu( [
-            'container'      => '',
-            'theme_location' => 'primary',
-            'menu_class'     => 'menu navbar-nav',
-            'walker'         => new WalkerNavMenu(),
-          ] );
-          ?>
-        <?php endif; ?>
-
+        <?php
+        cached_menu( 'primary', [
+          'container'      => '',
+          'menu_class'     => 'menu navbar-nav',
+          'walker'         => new WalkerNavMenu(),
+        ] );
+        ?>
         <!--
         <div class="form-inline my-2 my-lg-0">
           <?php

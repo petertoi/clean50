@@ -36,18 +36,20 @@ if ( false === $tweets ) {
 }
 
 ?>
-<div class="row">
-  <div class="col">
-    <h2><?php echo $title; ?></h2>
-  </div>
-</div>
-<div class="row">
-  <?php foreach ( $tweets as $tweet ) : ?>
+<div class="container">
+  <div class="row">
     <div class="col">
-      <div class="article">
-        <?php //TODO link tweet entities ?>
-        <?php echo $tweet->text ?: ''; ?>
-      </div>
+      <h2><?php echo $title; ?></h2>
     </div>
-  <?php endforeach; ?>
+  </div>
+  <div class="row">
+    <?php foreach ( $tweets as $tweet ) : ?>
+      <div class="col">
+        <div class="article">
+          <?php //TODO link tweet entities ?>
+          <?php echo $tweet->text ?: ''; ?>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
 </div>

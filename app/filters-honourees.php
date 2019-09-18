@@ -131,6 +131,10 @@ add_filter( 'pre_get_posts', function ( $query ) {
 
     $tax_query = $query->get( 'tax_query' );
 
+    if ( ! is_array( $tax_query ) ) {
+        return $query;
+    }
+
     $award_id = array_reduce( $tax_query, function ( $carry, $value ) {
         if ( false !== $carry ) {
             return $carry;

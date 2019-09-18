@@ -3,6 +3,7 @@
         "johnbillion/extended-cpts": "^4.3",
         "wp-bootstrap/wp-bootstrap-navwalker": "^4.2",
         "indigotree/wp-bootstrap-nav-walker": "^1.1",
-        "abraham/twitteroauth": "^1.0"
+        "abraham/twitteroauth": "^1.0",
+        "justintadlock/hybrid-breadcrumbs": "^1.0"
     }
 }

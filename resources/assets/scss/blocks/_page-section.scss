@@ -1,0 +1,21 @@
+.block-page-section {
+
+	[data-toggle="collapse"] {
+		color: $body-color;
+		text-decoration: none;
+
+
+		&[aria-expanded="true"] {
+			&::before {
+				content: '-';
+			}
+		}
+
+		&[aria-expanded="false"] {
+			&::before {
+				content: '+';
+			}
+
+		}
+	}
+}

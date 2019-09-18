@@ -66,3 +66,37 @@ add_filter( 'excerpt_length', function () {
 add_filter( 'excerpt_more', function () {
     return '&hellip;';
 } );
+
+add_action( 'wp_update_nav_menu', function ( $menu_id ) {
+    foreach ( get_nav_menu_locations() as $location => $assigned_menu_id ) {
+        if ( $assigned_menu_id === $menu_id ) {
+            delete_transient( "toibox_cached_menu_$location" );
+        }
+    }
+}, 10, 1 );
+
+add_filter( 'hybrid/breadcrumbs/trail', function ( $html, $crumbs, $breadcrumb ) {
+    $dom = new \DOMDocument();
+    libxml_use_internal_errors( true );
+    $dom->loadHTML( $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+    libxml_clear_errors();
+
+    foreach ( $dom->getElementsByTagName( '*' ) as $element ) {
+        /* @var \DomElement $element */
+        $element->removeAttribute( 'itemprop' );
+        $element->removeAttribute( 'itemscope' );
+        $element->removeAttribute( 'itemtype' );
+    }
+
+    $list_items = $dom->getElementsByTagName( 'li' );
+
+    /* @var \DomElement $last_item */
+    $last_item = $list_items->item( $list_items->length - 1 );
+    $classes   = $last_item->getAttribute( 'class' );
+    $last_item->setAttribute( 'class', $classes . ' active' );
+    $last_item->setAttribute( 'aria-current', 'page' );
+
+    $modified = $dom->saveHTML( $dom );
+
+    return $modified;
+}, 10, 3 );
