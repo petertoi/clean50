@@ -312,7 +312,7 @@ class Sprite {
      * @return bool
      */
     public function is_loaded() {
-        return ! empty( $this->map );
+        return ( ! empty( $this->map ) && file_exists( $this->get_image_path() ) );
     }
 
     public function get_name( $name = null, $size = null ) {
