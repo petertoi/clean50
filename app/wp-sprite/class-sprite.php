@@ -97,7 +97,7 @@ class Sprite {
     public function __construct( $name, $post_ids, $size = 'thumbnail' ) {
 
         // Normalize post IDs.
-        sort( array_map( 'absint', $post_ids ), SORT_NUMERIC );
+        sort( $post_ids, SORT_NUMERIC );
 
         $query = new \WP_Query( [
             'post_type'      => 'sprite',
