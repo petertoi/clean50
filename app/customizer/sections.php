@@ -7,7 +7,7 @@
  */
 
 /**
- * Register the Honouree Archives section
+ * Register the Archives: Honouree section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -25,7 +25,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
- * Register the Project Archives section
+ * Register the Archives: Project section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**

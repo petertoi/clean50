@@ -1,5 +1,29 @@
 .block-articles {
-	img {
-		border-radius: 8px;
+	padding-top: 2.9375rem; //47px;
+	padding-bottom: 3.4375rem; //55px
+	background-color: $merino;
+
+	.article {
+		position: relative;
+
+		&:hover {
+			.article-title {
+				text-decoration: underline;
+			}
+		}
+
+	}
+
+	.view-all {
+		font-weight: $font-weight-bold;
+		text-decoration: underline;
+	}
+
+	.article-title {
+
+	}
+
+	.article-link {
+		color: $body-color;
 	}
 }

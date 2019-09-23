@@ -19,17 +19,17 @@ add_action( 'init', function () {
             'show_in_rest'   => true,
             'featured_image' => 'Headshot',
             'admin_cols'     => [
-                'featured-image' => [
+                'featured-image'    => [
                     'title'          => 'Headshot',
                     'featured_image' => 'thumbnail',
                     'width'          => 80,
                     'height'         => 80,
                 ],
-                'honouree-type'  => [
+                'honouree-type'     => [
                     'title'    => 'Type',
                     'taxonomy' => 'honouree-type',
                 ],
-                'related'        => [
+                'related'           => [
                     'title'    => 'Related',
                     'function' => function () {
                         global $post;
@@ -50,19 +50,19 @@ add_action( 'init', function () {
                         }
                     },
                 ],
-                'award'          => [
+                'award'             => [
                     'title'    => 'Award',
                     'taxonomy' => 'award',
                 ],
-                'award-year'     => [
+                'award-year'        => [
                     'title'    => 'Year',
                     'taxonomy' => 'award-year',
                 ],
-                'award-category' => [
+                'award-category'    => [
                     'title'    => 'Category',
                     'taxonomy' => 'award-category',
                 ],
-                'meta_title' => [
+                'meta_title'        => [
                     'title'    => 'Title',
                     'meta_key' => 'title',
                 ],
@@ -104,9 +104,25 @@ add_action( 'init', function () {
                     'width'          => 80,
                     'height'         => 80,
                 ],
+                'leads'          => [
+                    'title'    => 'Project Leads',
+                    'function' => function () {
+                        global $post;
+                        $leads = get_field( 'leads', $post ) ?: [];
+                        $items = [];
+                        foreach ( $leads as $lead ) {
+                            $items[] = sprintf( '<li>%s</li>', $lead['name'] );
+                        }
+                        printf( '<ul>%s</ul>', implode( '', $items ) );
+                    },
+                ],
                 'award-year'     => [
                     'title'    => 'Year',
                     'taxonomy' => 'award-year',
+                ],
+                'project-award'  => [
+                    'title'    => 'Project Awards',
+                    'taxonomy' => 'project-award',
                 ],
             ],
             'admin_filters' => [

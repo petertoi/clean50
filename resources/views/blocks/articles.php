@@ -20,19 +20,24 @@ if ( $category__in ) {
 $posts = get_posts( $args );
 ?>
 <div class="container">
-  <div class="row">
+  <div class="row align-content-center">
     <div class="col">
       <?php if ( $title ) : ?>
         <h2><?php echo $title; ?></h2>
+      <?php endif; ?>
+    </div>
+    <div class="col-auto text-right">
+      <?php if ( get_option( 'page_for_posts' ) ) : ?>
+        <?php printf( '<a class="article-read-more" href="%s">%s</a>', get_the_permalink( get_option( 'page_for_posts' ) ), _x( 'View all', '', '' ) ); ?>
       <?php endif; ?>
     </div>
   </div>
   <div class="row">
     <?php foreach ( $posts as $post ) : ?>
       <div class="col col-lg-3">
-        <article>
+        <article class="article">
           <?php if ( has_post_thumbnail( $post ) ) : ?>
-            <?php printf( '<div><a href="%s">%s</a></div>', get_the_permalink( $post ), get_the_post_thumbnail( $post, 'block-articles-thumb', [] ) ); ?>
+            <?php echo get_the_post_thumbnail( $post, 'block-articles-thumb', [ 'class' => 'img-fluid rounded' ] ); ?>
           <?php endif; ?>
           <?php
           $category = get_the_category( $post );
@@ -40,10 +45,11 @@ $posts = get_posts( $args );
           /** @var \WP_Term $primary */
           $primary = $category[0] ?: 0;
           if ( $primary ) {
-            printf( '<div><a href="%s">%s</a></div>', get_category_link( $primary ), $primary->name );
+            printf( '<div><a href="%s" class="article-label">%s</a></div>', get_category_link( $primary ), $primary->name );
           }
           ?>
-          <?php printf( '<h3><a href="%s">%s</a></h3>', get_the_permalink( $post ), get_the_title( $post ) ); ?>
+          <?php printf( '<h4 class="article-title">%s</h4>', get_the_title( $post ) ); ?>
+          <?php printf( '<a title="%s" href="%s" class="article-read-more stretched-link">%s</a>', get_the_title( $post ), get_the_permalink( $post ), _x( 'Read more', '', '' ) ); ?>
         </article>
       </div>
     <?php endforeach; ?>

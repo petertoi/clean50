@@ -55,6 +55,38 @@ add_action( 'init', function () {
      * @see https://github.com/johnbillion/extended-cpts
      */
     register_extended_taxonomy(
+        'individual-award',
+        'honouree',
+        [
+            'public'           => false,
+            'show_ui'          => true,
+            'hierarchical'     => true,
+            'query_var'        => false,
+            'exclusive'        => true,
+            'allow_hierarchy'  => false,
+            'meta_box'         => 'simple',
+            'dashboard_glance' => false,
+            'checked_ontop'    => false,
+            'required'         => true,
+            # Add a custom column to the admin screen:
+            'admin_cols'       => [
+                'sponsor' => [
+                    'title'    => 'Sponsor',
+                    'function' => function ( $term_id ) {
+                        $sponsor = get_term_meta( $term_id, 'sponsor', true );
+                        if ( $sponsor ) {
+                            echo get_the_title( $sponsor );
+                        }
+                    },
+                ],
+            ],
+        ]
+    );
+
+    /**
+     * @see https://github.com/johnbillion/extended-cpts
+     */
+    register_extended_taxonomy(
         'award-category',
         'honouree',
         [
@@ -67,8 +99,19 @@ add_action( 'init', function () {
             'meta_box'         => 'dropdown',
             'dashboard_glance' => false,
             'checked_ontop'    => true,
-            'admin_cols'       => null,
             'required'         => true,
+            # Add a custom column to the admin screen:
+            'admin_cols'       => [
+                'sponsor' => [
+                    'title'    => 'Sponsor',
+                    'function' => function ( $term_id ) {
+                        $sponsor = get_term_meta( $term_id, 'sponsor', true );
+                        if ( $sponsor ) {
+                            echo get_the_title( $sponsor );
+                        }
+                    },
+                ],
+            ],
         ],
         [
             'plural' => __( 'Award Categories', '' )
@@ -80,7 +123,7 @@ add_action( 'init', function () {
      */
     register_extended_taxonomy(
         'award-year',
-        ['honouree', 'project'],
+        [ 'honouree', 'project' ],
         [
             'public'           => true,
             'show_ui'          => true,
@@ -93,6 +136,39 @@ add_action( 'init', function () {
             'checked_ontop'    => true,
             'admin_cols'       => null,
             'required'         => true,
+        ]
+    );
+
+
+    /**
+     * @see https://github.com/johnbillion/extended-cpts
+     */
+    register_extended_taxonomy(
+        'project-award',
+        [ 'project' ],
+        [
+            'public'           => false,
+            'show_ui'          => true,
+            'hierarchical'     => false,
+            'query_var'        => true,
+            'exclusive'        => false,
+            'allow_hierarchy'  => false,
+            'meta_box'         => 'simple',
+            'dashboard_glance' => false,
+            'checked_ontop'    => true,
+            'required'         => true,
+            # Add a custom column to the admin screen:
+            'admin_cols'       => [
+                'sponsor' => [
+                    'title'    => 'Sponsor',
+                    'function' => function ( $term_id ) {
+                        $sponsor = get_term_meta( $term_id, 'sponsor', true );
+                        if ( $sponsor ) {
+                            echo get_the_title( $sponsor );
+                        }
+                    },
+                ],
+            ],
         ]
     );
 } );
@@ -106,6 +182,12 @@ add_action( 'after_switch_theme', function () {
     }
     if ( false === get_term_by( 'slug', 'team-member', 'honouree-type' ) ) {
         wp_insert_term( 'Team Member', 'honouree-type' );
+    }
+    if ( false === get_term_by( 'slug', 'top-project', 'project-award' ) ) {
+        wp_insert_term( 'Top Project', 'project-award' );
+    }
+    if ( false === get_term_by( 'slug', 'top-15-project', 'project-award' ) ) {
+        wp_insert_term( 'Top 15 Project', 'project-award' );
     }
 } );
 

@@ -1,0 +1,26 @@
+.block-projects {
+	background-color: transparentize($blue, .86);
+	padding-top: 3.875rem; //62px
+	padding-bottom: 3.875rem; //62px
+
+	.project {
+		position: relative;
+
+		&:hover {
+			.project-title {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.project-feature-image {
+		display: block;
+		margin-bottom: 0.4375rem; //7px
+	}
+
+	.project-title {
+		text-transform: uppercase;
+		margin-bottom: 0.25rem; //4px
+	}
+}
+

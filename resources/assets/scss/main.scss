@@ -18,9 +18,12 @@
 @import "components/carousel";
 @import "components/honouree-grid";
 @import "components/honouree-sprite";
+@import "components/images";
 @import "components/project-grid";
 @import "components/nav";
 @import "components/navbar";
+@import "components/sidebar-links";
+@import "components/tables";
 @import "components/type";
 @import "components/wordpress";
 @import "blocks/articles";
@@ -32,6 +35,8 @@
 @import "blocks/specials";
 @import "blocks/tweets";
 @import "layouts/body";
+@import "layouts/honouree";
+@import "layouts/project";
 @import "layouts/site-header";
 @import "layouts/site-content";
 @import "layouts/site-footer";

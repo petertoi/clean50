@@ -7,7 +7,7 @@
  */
 
 /**
- * Register the Honouree Archive section settings
+ * Register the Archive: Honouree section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**

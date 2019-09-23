@@ -14,3 +14,15 @@ h6,
 .h6 {
 	font-weight: $font-weight-normal;
 }
+
+.article-label {
+	@extend .h6;
+	margin-bottom: 0.25rem; //4px
+	color: $body-color;
+}
+
+.article-read-more {
+	@extend .h5;
+	display: block;
+	text-decoration: underline;
+}

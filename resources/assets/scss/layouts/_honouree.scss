@@ -1,0 +1,111 @@
+.single-honouree {
+	.featured-image {
+		margin-bottom: 0.9375rem; //15px
+	}
+
+	.award {
+		margin-bottom: 1.5625rem; //25px
+	}
+
+	.links {
+		.link-title {
+			font-weight: $font-weight-normal;
+			margin-bottom: 0.6875rem; //11px
+		}
+
+		.link-list {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.link-item {
+			margin-bottom: 0.875rem; //14px
+
+			a {
+				font-size: 0.75rem; //12px
+				line-height: 1rem; //12px;
+				font-weight: $font-weight-bold;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.header {
+		margin-bottom: 0.6875rem; //11px
+	}
+
+	.title {
+		margin-bottom: 0.0625rem; //1px
+	}
+
+	.organization {
+		font-weight: $font-weight-semi-bold;
+		color: $green;
+		margin-bottom: 0.375rem; //6px
+	}
+
+	.social {
+		.profile {
+			position: relative;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 2rem;
+			background-color: $white;
+			margin-right: 10px;
+
+			svg {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 1rem;
+				height: 1rem;
+				transform: translate(-50%, -50%);
+				fill: $blue;
+			}
+
+			&:hover,
+			&:focus {
+				background-color: $blue;
+
+				svg {
+					fill: $white;
+				}
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.related-team {
+		margin-bottom: 3.1875rem; //51px
+	}
+
+	.related-team-title {
+		margin-bottom: 0.6875rem; //1px
+
+		a {
+			color: $body-color;
+		}
+	}
+
+	.related-team-members {
+		margin-bottom: 0.9375rem; //15px
+	}
+
+	.related-team-link {
+		text-decoration: underline;
+	}
+
+	.sprite-row {
+		@include make-row();
+	}
+
+	.sprite-col {
+		@include make-col-ready();
+		@include make-col(1, 3);
+	}
+
+}

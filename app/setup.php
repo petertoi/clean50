@@ -71,19 +71,29 @@ add_action( 'after_setup_theme', function () {
      *
      * @TODO Add codex link
      */
+
+    // feature-lg
+    // feature-md
+    // feature-sm
+
+    // square-lg
+    // square-md
+    // square-sm
+
     add_image_size( 'sponsor-carousel', 300, 60, false );
     add_image_size( 'block-articles-thumb', 285, 285, true );
+    add_image_size( 'block-projects-feature', 570, 235, true );
     add_image_size( 'archive-honouree-thumb', 256, 256, true );
     add_image_size( 'archive-project-thumb', 570, 218, true );
     add_image_size( 'archive-post-thumb', 570, 218, true );
 
-//    add_image_size( 'single-honouree-article', 285, 285, true );
-//    add_image_size( 'single-project-article', 285, 285, true );
+    add_image_size( 'single-honouree-thumb', 285, 285, true );
+    add_image_size( 'single-project-feature', 1140, 392, true );
 //    add_image_size( 'single-post-article', 285, 285, true );
 
     add_image_size( 'sprite-sm', 50, 50, true );
-    add_image_size( 'sprite-md', 50, 50, true );
-    add_image_size( 'sprite-lg', 50, 50, true );
+    add_image_size( 'sprite-md', 100, 100, true );
+    add_image_size( 'sprite-lg', 150, 150, true );
 }, 20 );
 
 /**
@@ -97,12 +107,12 @@ add_action( 'widgets_init', function () {
         'after_title'   => '</h3>'
     ];
     register_sidebar( [
-                          'name' => __( 'Primary', '' ),
-                          'id'   => 'sidebar-primary'
+                          'name' => __( 'Single: Honouree', '' ),
+                          'id'   => 'sidebar-single-honouree'
                       ] + $config );
     register_sidebar( [
-                          'name' => __( 'Footer', '' ),
-                          'id'   => 'sidebar-footer'
+                          'name' => __( 'Single: Post', '' ),
+                          'id'   => 'sidebar-single'
                       ] + $config );
 } );
 

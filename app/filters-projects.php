@@ -22,3 +22,40 @@ add_filter( 'pre_get_posts', function ( $query ) {
 
     return $query;
 } );
+
+add_filter( 'term_link', function ( $termlink, $term, $taxonomy ) {
+    global $wp_query;
+
+    if ( 'award-year' !== $taxonomy ) {
+        return $termlink;
+    }
+
+    if ( 'project' !== $wp_query->get( 'post_type' ) ) {
+        return $termlink;
+    }
+
+    $link = get_post_type_archive_link( 'project' );
+    $link = add_query_arg( 'year', $term->slug, $link );
+
+    return $link;
+
+}, 10, 3 );
+
+add_filter( 'pre_get_posts', function ( $query ) {
+
+    /** @var $query \WP_Query */
+    if ( $query->is_admin ) {
+        return $query;
+    }
+
+    if ( ! $query->is_post_type_archive( 'project' ) ) {
+        return $query;
+    }
+    $year = $query->get( 'year' );
+    $query->set( 'year', '' );
+
+    $query->set( 'award-year', $year );
+
+    return $query;
+
+}, 10, 1 );

@@ -23,7 +23,7 @@ add_filter( 'body_class', function ( $classes ) {
         if ( 1 === preg_match( '/^.*template-default.*$/', $class ) ) {
             $keep = false;
         } else if ( 1 === preg_match( '/^single-.*$/', $class ) ) {
-            $keep = false;
+            $keep = true;
         } else if ( 1 === preg_match( '/^.*paged-\d*$/', $class ) ) {
             $keep = false;
         } else if ( 1 === preg_match( '/^p(ost|age|arent-page)id-\d*$/', $class ) ) {

@@ -14,8 +14,19 @@ import hello from './modules/hello';
 $( document ).ready( () => {
 	hello.init();
 
-	$( 'select' ).select2( {
+	const $tooltips = $( '[data-toggle="tooltip"]' );
+	$tooltips.tooltip();
+
+	const $select = $( 'select' );
+
+	$select.select2( {
 		theme: 'bootstrap4',
+	} );
+
+	$select.on( 'select2:select', function() {
+		const $form = $( this ).parents( 'form:first' );
+		$form.find( 'select' ).prop( 'disabled', true );
+		$form.submit();
 	} );
 
 	// new SmoothScroll( 'a[href*="#"]' );

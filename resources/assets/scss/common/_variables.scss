@@ -235,9 +235,9 @@ $grid-gutter-width: 20px;
 //$border-width:                1px;
 //$border-color:                $gray-300;
 
-//$border-radius:               .25rem;
-//$border-radius-lg:            .3rem;
-//$border-radius-sm:            .2rem;
+$border-radius:               .5rem;
+$border-radius-lg:            .75rem;
+$border-radius-sm:            .1875rem;
 
 //$rounded-pill:                50rem;
 
@@ -442,7 +442,7 @@ $headings-line-height: 1.5;
 //$btn-block-spacing-y:         .5rem;
 
 // Allows for customizing button radius independently from global border radius
-//$btn-border-radius:           $border-radius;
+$btn-border-radius:           $border-radius-sm;
 //$btn-border-radius-lg:        $border-radius-lg;
 //$btn-border-radius-sm:        $border-radius-sm;
 
@@ -478,7 +478,7 @@ $headings-line-height: 1.5;
 //$input-border-width:                    $input-btn-border-width;
 //$input-box-shadow:                      inset 0 1px 1px rgba($black, .075);
 
-//$input-border-radius:                   $border-radius;
+$input-border-radius:                   $border-radius-sm;
 //$input-border-radius-lg:                $border-radius-lg;
 //$input-border-radius-sm:                $border-radius-sm;
 
@@ -1034,8 +1034,8 @@ $badge-pill-padding-x: 1em;
 
 // Figures
 
-//$figure-caption-font-size:          90%;
-//$figure-caption-color:              $gray-600;
+$figure-caption-font-size:          0.75rem;
+$figure-caption-color:              $body-color;
 
 
 // Breadcrumbs

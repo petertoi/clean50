@@ -15,17 +15,19 @@ $featured = get_field( 'featured' );
 ?>
 <div class="container">
   <div class="row">
-    <div class="col-lg-7">
+    <div class="col-lg-6">
       <h2><?php echo $title; ?></h2>
       <?php echo $content; ?>
       <?php render_button( $button ); ?>
     </div>
-    <div class="col-lg-5">
-      <h3 class="h6 project__label"><?php _ex( 'Featured Project', '', '' ); ?></h3>
-      <div class="article">
-        <h4 class="h5"><?php echo get_the_title( $featured ); ?></h4>
-        <?php echo wp_get_attachment_image( $featured, 'medium', false, [] ); ?>
-        <a class="btn btn-link btn-sm" href="<?php echo get_the_permalink( $featured ); ?>"><?php _ex( 'View Project', '', '' ); ?></a>
+    <div class="col-lg-6">
+      <div class="article project">
+        <?php if ( has_post_thumbnail( $featured ) ) : ?>
+          <?php echo get_the_post_thumbnail( $featured, 'block-projects-feature', [ 'class' => ' project-feature-image img-fluid rounded' ] ); ?>
+        <?php endif; ?>
+        <span class="article-label"><?php _ex( 'Featured Project', '', '' ); ?></span>
+        <h4 class="project-title"><?php echo get_the_title( $featured ); ?></h4>
+        <a class="article-read-more stretched-link" href="<?php echo get_the_permalink( $featured ); ?>"><?php _ex( 'View Project', '', '' ); ?></a>
       </div>
     </div>
   </div>

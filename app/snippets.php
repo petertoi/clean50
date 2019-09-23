@@ -12,6 +12,152 @@ use Hybrid\Breadcrumbs\Breadcrumbs;
 use Hybrid\Breadcrumbs\Trail;
 
 /**
+ * @param int|null $honouree_id
+ *
+ * @return bool|\WP_Term
+ */
+function get_award( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $awards = get_the_terms( $honouree_id, 'award' );
+
+    if ( empty( $awards ) ) {
+        return false;
+    }
+
+    return $awards[0];
+}
+
+/**
+ * @param int|null $honouree_id
+ *
+ * @return bool|\WP_Term
+ */
+function get_award_year( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $award_years = get_the_terms( $honouree_id, 'award-year' );
+
+    if ( empty( $award_years ) ) {
+        return false;
+    }
+
+    return $award_years[0];
+}
+
+/**
+ * @param int|null $honouree_id
+ *
+ * @return bool|\WP_Term
+ */
+function get_award_category( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $award_categories = get_the_terms( $honouree_id, 'award-category' );
+
+    if ( empty( $award_categories ) ) {
+        return false;
+    }
+
+    return $award_categories[0];
+}
+
+/**
+ * @param int|null $honouree_id
+ *
+ * @return bool|\WP_Term
+ */
+function get_honouree_type( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $honouree_types = get_the_terms( $honouree_id, 'honouree-type' );
+
+    if ( empty( $honouree_types ) ) {
+        return false;
+    }
+
+    return $honouree_types[0];
+}
+
+/**
+ * @param int|null $project_id
+ *
+ * @return bool|\WP_Term
+ */
+function get_project_award( $project_id = null ) {
+    if ( is_null( $project_id ) ) {
+        $project_id = get_the_ID();
+    }
+
+    $project_awards = get_the_terms( $project_id, 'project-award' );
+
+    if ( empty( $project_awards ) ) {
+        return false;
+    }
+
+    return $project_awards[0];
+}
+
+/**
+ * @param null|int $honouree_id
+ *
+ * @return false|\WP_Post
+ */
+function get_team( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $type = get_honouree_type( $honouree_id );
+
+    if ( false === $type ) {
+        return false;
+    }
+
+    switch ( $type->slug ) {
+        case 'team-member':
+            $team = get_field( 'related_team', $honouree_id );
+            break;
+        case 'team':
+            $team = get_post( $honouree_id );
+            break;
+        case 'individual':
+        default:
+            $team = false;
+            break;
+    }
+
+    return $team;
+}
+
+/**
+ * @param null $team_id
+ *
+ * @return false|\WP_Post[]
+ */
+function get_team_members( $team_id = null ) {
+    if ( is_null( $team_id ) ) {
+        $team_id = get_the_ID();
+    }
+
+    $team_members = get_field( 'related_team_members', $team_id );
+
+    if ( empty( $team_members ) ) {
+        $team_members = [];
+    }
+
+    return $team_members;
+}
+
+/**
  * Returns a formatted year to year string suitable for use in copyright statements etc.
  *
  * @param string $from
@@ -28,7 +174,6 @@ function year_from_to( $from, $separator = '&ndash;' ) {
 
     return $from_to;
 }
-
 
 function render_button( $button, $classes = [ 'btn', 'btn-primary' ], $echo = true ) {
     if ( 'page' === $button['link']['type'] ) {

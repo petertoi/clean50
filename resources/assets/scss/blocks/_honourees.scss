@@ -1,3 +1,45 @@
 .block-honourees {
+	margin-bottom: 2.5rem; //40px
 
+	.sprite-row {
+		@include make-row(10px);
+	}
+
+	.sprite-col {
+		@include make-col-ready(10px);
+		@include make-col(1, 10);
+		margin-bottom: 10px;
+	}
+
+	.sprite-sm {
+		.sprite-col {
+			@include make-col(1, 10);
+		}
+	}
+
+	.sprite-md {
+		.sprite-col {
+			@include make-col(1, 8);
+		}
+	}
+
+	.sprite-lg {
+		.sprite-col {
+			@include make-col(1, 8);
+		}
+	}
+
+	.content {
+		margin-bottom: $spacer * 2;
+	}
+
+	.actions {
+		margin-bottom: $spacer;
+
+		.btn-link {
+			font-size: .75rem; //12px;
+			font-weight: $font-weight-bold;
+			text-decoration: underline;
+		}
+	}
 }
