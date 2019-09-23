@@ -109,7 +109,7 @@ class Sprite {
             $existing = $query->posts[0];
 
             $data = json_decode( $existing->post_content, true );
-            if ( $post_ids === $data['post_ids'] && $size === $data['size'] ) {
+            if ( isset( $data['post_ids'] ) && isset( $data['size'] ) && $post_ids === $data['post_ids'] && $size === $data['size'] ) {
                 $this->name     = $existing->post_title;
                 $this->post_ids = $data['post_ids'];
                 $this->size     = $data['size'];
