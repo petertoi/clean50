@@ -55,7 +55,7 @@ $tabs = get_field( 'tabs' );
                 $sprite = new Sprite( $name, $honouree_query->posts, $size );
 
                 if ( ! $sprite->is_loaded() ) {
-                  $sprite->create( $honouree_query->posts, $size );
+                  $sprite->create( $name, $honouree_query->posts, $size );
                 }
 
                 $sprite->render_style();

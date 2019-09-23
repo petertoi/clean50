@@ -42,7 +42,7 @@ $links        = get_field( 'links' );
       <div class="col-lg-3">
         <?php
         if ( has_post_thumbnail() ) {
-          echo get_the_post_thumbnail( null, 'single-honouree-thumb', [ 'alt' => get_the_title() . ' headshot', 'class' => 'featured-image rounded' ] );
+          echo get_the_post_thumbnail( null, 'single-honouree-thumb', [ 'alt' => get_the_title() . ' headshot', 'class' => 'featured-image img-fluid rounded' ] );
         }
         ?>
         <div class="row">
