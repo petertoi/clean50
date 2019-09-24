@@ -63,7 +63,7 @@ $award_years = get_terms( [
           <div class="thumb">
             <?php
             if ( has_post_thumbnail() ) {
-              echo get_the_post_thumbnail( null, 'archive-project-thumb', [] );
+              echo get_the_post_thumbnail( null, 'archive-project-thumb', [ 'class' => 'img-fluid' ] );
             }
             ?>
           </div>
