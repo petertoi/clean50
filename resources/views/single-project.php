@@ -26,7 +26,7 @@ $award = get_project_award();
       <div class="col">
         <?php if ( has_post_thumbnail() ) : ?>
           <figure class="figure feature-image">
-            <?php the_post_thumbnail( 'single-project-feature', [ 'class' => 'img-fluid rounded' ] ); ?>
+            <?php the_post_thumbnail( 'banner-lg-12', [ 'class' => 'img-fluid rounded' ] ); ?>
             <?php if ( get_the_post_thumbnail_caption() ) : ?>
               <figcaption class="figure-caption"><?php the_post_thumbnail_caption(); ?></figcaption>
             <?php endif; ?>

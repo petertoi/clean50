@@ -11,7 +11,7 @@ use function Toi\ToiBox\Snippets\cached_menu;
 
 ?>
 <footer class="site-footer">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row flex-xl-row-reverse justify-content-center justify-content-xl-between">
       <div class="col-12 col-xl-auto">
         <?php

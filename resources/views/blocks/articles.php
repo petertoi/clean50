@@ -19,7 +19,7 @@ if ( $category__in ) {
 
 $posts = get_posts( $args );
 ?>
-<div class="container">
+<div class="container-fluid">
   <div class="row align-content-center">
     <div class="col">
       <?php if ( $title ) : ?>
@@ -34,10 +34,11 @@ $posts = get_posts( $args );
   </div>
   <div class="row">
     <?php foreach ( $posts as $post ) : ?>
-      <div class="col col-lg-3">
+      <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
         <article class="article">
           <?php if ( has_post_thumbnail( $post ) ) : ?>
-            <?php echo get_the_post_thumbnail( $post, 'block-articles-thumb', [ 'class' => 'img-fluid rounded' ] ); ?>
+            <?php echo get_the_post_thumbnail( $post, 'square-lg-3', [ 'class' => 'd-none d-md-block img-fluid rounded' ] ); ?>
+            <?php echo get_the_post_thumbnail( $post, 'banner-lg-6', [ 'class' => 'd-md-none img-fluid rounded' ] ); ?>
           <?php endif; ?>
           <?php
           $category = get_the_category( $post );

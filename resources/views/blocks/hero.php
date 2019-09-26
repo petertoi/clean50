@@ -12,10 +12,19 @@ $content        = get_field( 'content' );
 $honourees      = get_field( 'honourees' );
 $sponsors_title = get_field( 'sponsors_title' );
 $sponsors       = get_field( 'sponsors' );
+
+$honouree = ( is_array( $honourees ) )
+  ? $honourees[ rand( 0, count( $honourees ) - 1 ) ]
+  : false;
 ?>
-<div class="container">
+<div class="container-fluid">
+  <?php if ( $honouree ) : ?>
+    <div class="bg">
+      <?php echo wp_get_attachment_image( $honouree['image'], 'full' ); ?>
+    </div>
+  <?php endif; ?>
   <div class="row">
-    <div class="col-lg-7">
+    <div class="col-md-9 col-lg-7">
       <h1 class="title">
         <?php echo $title; ?>
       </h1>
@@ -26,7 +35,7 @@ $sponsors       = get_field( 'sponsors' );
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-10 col-sm-6 col-md-6 col-lg-4">
       <div class="sponsors-carousel">
         <?php if ( $sponsors_title ) : ?>
           <h5 class="carousel__title"><?php echo $sponsors_title; ?></h5>

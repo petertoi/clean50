@@ -7,11 +7,12 @@
  */
 
 use Toi\ToiBox\Sprite;
+use function Toi\ToiBox\Snippets\get_display_name;
 use function Toi\ToiBox\Snippets\render_button;
 
 $tabs = get_field( 'tabs' );
 ?>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col">
       <ul class="nav nav-ruled justify-content-center" id="tab-content--honourees" role="tablist">
@@ -25,7 +26,7 @@ $tabs = get_field( 'tabs' );
         <?php foreach ( $tabs as $key => $tab ) : ?>
           <div class="tab-pane fade <?php echo ( 0 === $key ) ? 'show active' : ''; ?>" id="<?php echo sanitize_title_with_dashes( "{$tab['label']}-{$key}" ); ?>" role="tabpanel" aria-labelledby="<?php echo sanitize_title_with_dashes( "tab-{$tab['label']}-{$key}" ); ?>">
             <div class="row">
-              <div class="col-lg-5 col-sprite">
+              <div class="col-12 col-sm-8 offset-sm-2 offset-md-0 col-md-5 col-sprite mb-3 mb-md-0">
                 <?php
                 $award = get_term( $tab['sprite']['award'], 'award' );
                 $year  = get_term( $tab['sprite']['award_year'], 'award-year' );
@@ -61,25 +62,28 @@ $tabs = get_field( 'tabs' );
                 $sprite->render_style();
 
                 ?>
-                <div class="sprite-row <?php echo esc_attr( $size ); ?>">
-                  <?php foreach ( $honouree_query->posts as $honouree ) : ?>
-                    <div class="sprite-col">
-                      <div class="<?php echo $sprite->get_class(); ?> rounded" style="<?php $sprite->sprite_style( $honouree ); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo get_the_title( $honouree ); ?>">
-                        <a href="<?php echo get_the_permalink( $honouree ); ?>" alt="<?php echo esc_attr( get_the_title( $honouree ) ); ?>" class="stretched-link">
-                          <span class="sr-only"><?php echo get_the_title( $honouree ); ?></span>
-                        </a>
+                <div class="sprite">
+                  <div class="sprite-row <?php echo esc_attr( $size ); ?>">
+                    <?php foreach ( $honouree_query->posts as $honouree_id ) : ?>
+                      <div class="sprite-col">
+                        <?php $display_name = get_display_name( $honouree_id ); ?>
+                        <div class="<?php echo $sprite->get_class(); ?> rounded" style="<?php $sprite->sprite_style( $honouree_id ); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo esc_attr( $display_name ); ?>">
+                          <a href="<?php echo get_the_permalink( $honouree_id ); ?>" alt="<?php echo esc_attr( $display_name ); ?>" class="stretched-link">
+                            <span class="sr-only"><?php echo $display_name; ?></span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  <?php endforeach; ?>
+                    <?php endforeach; ?>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-7">
+              <div class="col-12 col-sm-8 offset-sm-2 offset-md-0 col-md-7">
                 <div class="content">
                   <?php echo $tab['content']; ?>
                 </div>
-                <div class="actions">
-                  <?php render_button( $tab['primary_link'], [ 'btn', 'btn-primary' ] ); ?>
-                  <?php render_button( $tab['secondary_link'], [ 'btn', 'btn-link' ] ); ?>
+                <div class="actions text-center text-md-left">
+                  <?php render_button( $tab['primary_link'], [ 'btn btn-primary mb-3 mb-md-0 d-block d-md-inline' ] ); ?>
+                  <?php render_button( $tab['secondary_link'], [ 'btn btn-link d-block d-md-inline' ] ); ?>
                 </div>
               </div>
             </div>

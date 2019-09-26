@@ -41,7 +41,7 @@ add_action( 'init', function () {
             'show_ui'          => true,
             'hierarchical'     => true,
             'query_var'        => true,
-            'exclusive'        => false,
+            'exclusive'        => true,
             'allow_hierarchy'  => false,
             'meta_box'         => 'simple',
             'dashboard_glance' => false,

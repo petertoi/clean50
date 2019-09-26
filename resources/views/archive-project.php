@@ -8,8 +8,9 @@
 
 use function Toi\ToiBox\Snippets\bootstrap_pagination;
 
-$title   = get_theme_mod( '_toibox_project_archive_title' );
-$content = get_theme_mod( '_toibox_project_archive_content' );
+$title           = get_theme_mod( '_toibox_project_archive_title' );
+$content         = get_theme_mod( '_toibox_project_archive_content' );
+$fallback_banner = get_theme_mod( '_toibox_project_archive_fallback_project_image' );
 
 $award_years = get_terms( [
   'taxonomy'   => 'award-year',
@@ -31,7 +32,7 @@ $award_years = get_terms( [
           <?php
           printf( '<option value="%s" %s>%s',
             $year->slug,
-            selected( $year->slug, filter_input( INPUT_GET, 'year', FILTER_SANITIZE_STRING ), false ),
+            selected( $year->slug, filter_input( INPUT_GET, 'award-year', FILTER_SANITIZE_STRING ), false ),
             $year->name );
           ?>
         <?php endforeach; ?>
@@ -39,7 +40,7 @@ $award_years = get_terms( [
     </div>
     <div class="form-group col-auto">
       <label for="search-projects"><?php _ex( 'Search projects', '', '' ); ?></label>
-      <input type="search" class="form-control" id="search-projects" name="search-projects">
+      <input type="search" class="form-control" id="search-projects" name="s" value="<?php the_search_query(); ?>">
     </div>
   </div>
   <noscript>
@@ -63,7 +64,9 @@ $award_years = get_terms( [
           <div class="thumb">
             <?php
             if ( has_post_thumbnail() ) {
-              echo get_the_post_thumbnail( null, 'archive-project-thumb', [ 'class' => 'img-fluid' ] );
+              echo get_the_post_thumbnail( null, 'banner-lg-6', [ 'class' => 'img-fluid' ] );
+            } else if ( $fallback_banner ) {
+              echo wp_get_attachment_image( $fallback_banner, 'banner-lg-6', [ 'class' => 'img-fluid' ] );
             }
             ?>
           </div>

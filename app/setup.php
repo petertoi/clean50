@@ -72,24 +72,15 @@ add_action( 'after_setup_theme', function () {
      * @TODO Add codex link
      */
 
-    // feature-lg
-    // feature-md
-    // feature-sm
+    // Banner: 2.91 x 1
+    add_image_size( 'banner-lg-12', 1120, 385, true ); // col-lg-12
+    add_image_size( 'banner-lg-6', 550, 189, true ); // col-lg-6
 
-    // square-lg
-    // square-md
-    // square-sm
+    // Square 1 x 1
+    add_image_size( 'square-lg-4', 360, 360, true ); // col-lg-4
+    add_image_size( 'square-lg-3', 265, 265, true ); // col-lg-3
 
     add_image_size( 'sponsor-carousel', 300, 60, false );
-    add_image_size( 'block-articles-thumb', 285, 285, true );
-    add_image_size( 'block-projects-feature', 570, 235, true );
-    add_image_size( 'archive-honouree-thumb', 256, 256, true );
-    add_image_size( 'archive-project-thumb', 570, 218, true );
-    add_image_size( 'archive-post-thumb', 570, 218, true );
-
-    add_image_size( 'single-honouree-thumb', 285, 285, true );
-    add_image_size( 'single-project-feature', 1140, 392, true );
-//    add_image_size( 'single-post-article', 285, 285, true );
 
     add_image_size( 'sprite-sm', 50, 50, true );
     add_image_size( 'sprite-md', 100, 100, true );
@@ -183,8 +174,16 @@ add_action( 'wp_head', function () {
 		} )( document );
     </script>
     <?php
-} );
+}, 7 );
 
+/**
+ * SVG Paths
+ */
+//add_action( 'wp_body_open', function () {
+//    if ( file_exists( Assets\get_path( "svg/paths.svg" ) ) ) {
+//        printf( file_get_contents( Assets\get_path( "svg/paths.svg" ) ) );
+//    }
+//}, 7 );
 
 /**
  * Admin Scripts

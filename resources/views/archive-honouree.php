@@ -8,6 +8,9 @@
 
 use function Toi\ToiBox\Assets\get_svg;
 use function Toi\ToiBox\Snippets\bootstrap_pagination;
+use function Toi\ToiBox\Snippets\get_award;
+use function Toi\ToiBox\Snippets\get_award_category;
+use function Toi\ToiBox\Snippets\get_award_year;
 
 global $wp_query;
 
@@ -31,7 +34,7 @@ $award_categories = get_terms( [
 ] );
 ?>
 
-<div class="container">
+<div class="container-fluid">
   <?php printf( '<h1>%s</h1>', $title ); ?>
   <?php echo apply_filters( 'the_content', $content ); ?>
 
@@ -68,13 +71,13 @@ $award_categories = get_terms( [
       </div>
       <div class="form-group col-auto">
         <label for="award-category"><?php _ex( 'Select a category', '', '' ); ?></label>
-        <select class="form-control" id="award-category" name="category">
+        <select class="form-control" id="award-category" name="cat">
           <option value=""><?php _ex( 'All categories', '', '' ); ?></option>
           <?php foreach ( $award_categories as $category ) : ?>
             <?php
             printf( '<option value="%s" %s>%s',
               $category->slug,
-              selected( $category->slug, filter_input( INPUT_GET, 'category', FILTER_SANITIZE_STRING ), false ),
+              selected( $category->slug, filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_STRING ), false ),
               $category->name );
             ?>
           <?php endforeach; ?>
@@ -97,26 +100,26 @@ $award_categories = get_terms( [
         <div class="col col-md-4 col-lg-3">
           <?php
           the_post();
-          $award        = get_the_terms( get_the_ID(), 'award' );
-          $years        = get_the_terms( get_the_ID(), 'award-year' );
-          $categories   = get_the_terms( get_the_ID(), 'award-category' );
-          $organization = get_field( 'organization' );
+          $award          = get_award();
+          $award_year     = get_award_year();
+          $award_category = get_award_category();
+          $organization   = get_field( 'organization' );
           ?>
           <article class="honouree-grid-item">
             <div class="thumb">
               <?php echo get_svg( 'boulder', 'boulder' ); ?>
               <?php
               if ( has_post_thumbnail() ) {
-                echo get_the_post_thumbnail( null, 'archive-honouree-thumb', [] );
+                echo get_the_post_thumbnail( null, 'square-lg-3', [ 'class' => 'img-fluid' ] );
               }
               ?>
-              <?php if ( isset( $award[0] ) ) : ?>
-                <span class="badge badge-pill badge-<?php echo $award[0]->slug; ?>"><?php echo $award[0]->name ?: ''; ?></span>
+              <?php if ( $award ) : ?>
+                <span class="badge badge-pill badge-<?php echo $award->slug; ?>"><?php echo $award->name ?: ''; ?></span>
               <?php endif; ?>
             </div>
             <div class="body">
-              <?php if ( isset( $years[0] ) ) : ?>
-                <div class="year h6"><?php echo $years[0]->name ?: ''; ?></div>
+              <?php if ( $award_year ) : ?>
+                <div class="year h6"><?php echo $award_year->name ?: ''; ?></div>
               <?php endif; ?>
               <a href="<?php the_permalink(); ?>" class="stretched-link">
                 <?php the_title( '<h2 class="title h5">', '</h1>' ); ?>
@@ -124,8 +127,8 @@ $award_categories = get_terms( [
               <?php if ( isset( $organization ) ) : ?>
                 <div class="organization h6"><?php echo $organization; ?></div>
               <?php endif; ?>
-              <?php if ( isset( $years[0] ) ) : ?>
-                <div class="category h6"><?php echo $categories[0]->name ?: ''; ?></div>
+              <?php if ( $award_category ) : ?>
+                <div class="category h6"><?php echo $award_category->name ?: ''; ?></div>
               <?php endif; ?>
             </div>
           </article>

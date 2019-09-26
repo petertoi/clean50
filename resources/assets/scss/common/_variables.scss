@@ -5,7 +5,7 @@
 
 // Color system
 
-$white:    #fff;
+$white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #D8D8D8;
@@ -35,19 +35,21 @@ $black: #1A1819;
 //);
 
 $blue: #143677;
-$indigo:  #6610f2;
-$purple:  #6f42c1;
-$pink:    #e83e8c;
-$red:     #dc3545;
-$orange:  #fd7e14;
-$yellow:  #ffc107;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
 $merino: #F4F1DE;
 $green: #1E7A3E;
-$teal:    #20c997;
-$cyan:    #17a2b8;
+$teal: #20c997;
+$cyan: #17a2b8;
+$waikawa-gray: #576F9D;
 
 $colors: (
 	"merino": $merino,
+	"waikawa-gray": $waikawa-gray,
 );
 // stylelint-disable-next-line scss/dollar-variable-default
 //$colors: map-merge(
@@ -70,13 +72,13 @@ $colors: (
 //);
 
 $primary: $blue;
-$secondary:     $gray-600;
-$success:       $green;
-$info:          $cyan;
-$warning:       $yellow;
-$danger:        $red;
-$light:         $gray-100;
-$dark:          $gray-800;
+$secondary: $gray-600;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-800;
 
 //$theme-colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -235,9 +237,9 @@ $grid-gutter-width: 20px;
 //$border-width:                1px;
 //$border-color:                $gray-300;
 
-$border-radius:               .5rem;
-$border-radius-lg:            .75rem;
-$border-radius-sm:            .1875rem;
+$border-radius: .5rem;
+$border-radius-lg: .75rem;
+$border-radius-sm: .1875rem;
 
 //$rounded-pill:                50rem;
 
@@ -442,7 +444,7 @@ $headings-line-height: 1.5;
 //$btn-block-spacing-y:         .5rem;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius:           $border-radius-sm;
+$btn-border-radius: $border-radius-sm;
 //$btn-border-radius-lg:        $border-radius-lg;
 //$btn-border-radius-sm:        $border-radius-sm;
 
@@ -478,7 +480,7 @@ $btn-border-radius:           $border-radius-sm;
 //$input-border-width:                    $input-btn-border-width;
 //$input-box-shadow:                      inset 0 1px 1px rgba($black, .075);
 
-$input-border-radius:                   $border-radius-sm;
+$input-border-radius: $border-radius-sm;
 //$input-border-radius-lg:                $border-radius-lg;
 //$input-border-radius-sm:                $border-radius-sm;
 
@@ -1034,8 +1036,8 @@ $badge-pill-padding-x: 1em;
 
 // Figures
 
-$figure-caption-font-size:          0.75rem;
-$figure-caption-color:              $body-color;
+$figure-caption-font-size: 0.75rem;
+$figure-caption-color: $body-color;
 
 
 // Breadcrumbs

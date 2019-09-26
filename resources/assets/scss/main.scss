@@ -2,6 +2,7 @@
 @import "lib/bootstrap";
 @import "~select2";
 @import "~select2-bootstrap4-theme";
+@import "lib/hamburgers";
 /**
  * Import npm dependencies
  *
@@ -12,6 +13,7 @@
 /** Import theme styles */
 @import "common/sprite";
 @import "common/global";
+@import "components/article-grid";
 @import "components/badge";
 @import "components/breadcrumb";
 @import "components/buttons";
@@ -35,11 +37,11 @@
 @import "blocks/specials";
 @import "blocks/tweets";
 @import "layouts/body";
+@import "layouts/home";
 @import "layouts/honouree";
 @import "layouts/project";
 @import "layouts/site-header";
 @import "layouts/site-content";
 @import "layouts/site-footer";
-//@import "layouts/pages";
 //@import "layouts/posts";
 //@import "layouts/tinymce";

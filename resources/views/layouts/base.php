@@ -20,7 +20,7 @@ do_action( 'get_header' );
 get_template_part( 'views/partials/header' );
 ?>
 <div class="site-content" role="document">
-  <div class="container">
+  <div class="container-fluid">
     <?php if ( ! is_archive() ) : ?>
       <div class="row">
         <div class="col-auto">

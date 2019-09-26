@@ -12,7 +12,7 @@ use function Toi\ToiBox\Snippets\render_button;
 $title  = get_field( 'title' );
 $button = get_field( 'button' );
 ?>
-<div class="container">
+<div class="container-fluid">
   <div class="row justify-content-center align-items-center">
     <div class="col-auto">
       <h3><?php echo $title; ?></h3>

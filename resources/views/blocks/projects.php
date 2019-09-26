@@ -13,17 +13,17 @@ $content  = get_field( 'content' );
 $button   = get_field( 'button' );
 $featured = get_field( 'featured' );
 ?>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-6 mb-5 mb-md-0">
       <h2><?php echo $title; ?></h2>
       <?php echo $content; ?>
       <?php render_button( $button ); ?>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <div class="article project">
         <?php if ( has_post_thumbnail( $featured ) ) : ?>
-          <?php echo get_the_post_thumbnail( $featured, 'block-projects-feature', [ 'class' => ' project-feature-image img-fluid rounded' ] ); ?>
+          <?php echo get_the_post_thumbnail( $featured, 'banner-lg-6', [ 'class' => ' project-feature-image img-fluid rounded' ] ); ?>
         <?php endif; ?>
         <span class="article-label"><?php _ex( 'Featured Project', '', '' ); ?></span>
         <h4 class="project-title"><?php echo get_the_title( $featured ); ?></h4>

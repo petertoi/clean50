@@ -6,6 +6,9 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+/**
+ * Project Archive posts per page
+ */
 add_filter( 'pre_get_posts', function ( $query ) {
     /** @var \WP_Query $query */
     if ( is_admin() ) {
@@ -23,6 +26,9 @@ add_filter( 'pre_get_posts', function ( $query ) {
     return $query;
 } );
 
+/**
+ * Set Award Year term link to point to Honouree archive when in Honouree context
+ */
 add_filter( 'term_link', function ( $termlink, $term, $taxonomy ) {
     global $wp_query;
 
@@ -41,21 +47,26 @@ add_filter( 'term_link', function ( $termlink, $term, $taxonomy ) {
 
 }, 10, 3 );
 
-add_filter( 'pre_get_posts', function ( $query ) {
+/**
+ * Use 'year' query string to filter by 'award-year' instead of default 'post_date'
+ */
+add_filter( 'request', function ( $query_vars ) {
 
-    /** @var $query \WP_Query */
-    if ( $query->is_admin ) {
-        return $query;
+    if ( empty( $query_vars['post_type'] ) || 'project' !== $query_vars['post_type'] ) {
+        return $query_vars;
     }
 
-    if ( ! $query->is_post_type_archive( 'project' ) ) {
-        return $query;
+    if ( empty( $query_vars['year'] ) ) {
+        return $query_vars;
     }
-    $year = $query->get( 'year' );
-    $query->set( 'year', '' );
 
-    $query->set( 'award-year', $year );
+    $query_vars['award-year'] = $query_vars['year'];
+    unset( $query_vars['year'] );
 
-    return $query;
+    return $query_vars;
 
+}, 10, 1 );
+
+add_filter( 'template_include', function ( $template ) {
+    return $template;
 }, 10, 1 );

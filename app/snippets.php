@@ -12,6 +12,26 @@ use Hybrid\Breadcrumbs\Breadcrumbs;
 use Hybrid\Breadcrumbs\Trail;
 
 /**
+ * Get the Honouree display_name if it exists, falling back to Honouree post_title
+ *
+ * @param int|null $honouree_id
+ *
+ * @return string
+ */
+function get_display_name( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $display_name = get_field( 'display_name' );
+    if ( empty( $display_name ) ) {
+        $display_name = get_the_title( $honouree_id );
+    }
+
+    return $display_name;
+}
+
+/**
  * @param int|null $honouree_id
  *
  * @return bool|\WP_Term
@@ -331,4 +351,12 @@ function breadcrumbs() {
 
     $breadcrumbs = new Breadcrumbs( $args );
     $breadcrumbs->make()->display();
+}
+
+function to_array( $value ) {
+    if ( ! is_array( $value ) ) {
+        $value = [ $value ];
+    }
+
+    return $value;
 }

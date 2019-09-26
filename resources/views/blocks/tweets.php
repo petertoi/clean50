@@ -36,7 +36,7 @@ if ( false === $tweets ) {
 }
 
 ?>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col">
       <h2><?php echo $title; ?></h2>
@@ -44,7 +44,7 @@ if ( false === $tweets ) {
   </div>
   <div class="row">
     <?php foreach ( $tweets as $tweet ) : ?>
-      <div class="col">
+      <div class="col-12 col-md-4 mb-4 mb-md-0">
         <div class="article">
           <?php //TODO link tweet entities ?>
           <?php echo $tweet->text ?: ''; ?>

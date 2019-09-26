@@ -25,7 +25,7 @@ $( document ).ready( () => {
 
 	$select.on( 'select2:select', function() {
 		const $form = $( this ).parents( 'form:first' );
-		$form.find( 'select' ).prop( 'disabled', true );
+		$form.find( 'select' ).prop( 'readonly', true );
 		$form.submit();
 	} );
 

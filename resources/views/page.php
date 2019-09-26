@@ -11,7 +11,7 @@
   <?php while ( have_posts() ) : ?>
     <?php the_post(); ?>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row justify-content-between">
         <div class="col-lg-2">
           <?php if ( has_blocks( $post->post_content ) ) : ?>

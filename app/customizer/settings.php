@@ -78,10 +78,29 @@ add_action( 'customize_register', function ( $wp_customize ) {
             ]
         )
     );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_honouree_archive_fallback_honouree_image',
+        []
+    );
+    // Create the setting field.
+    $wp_customize->add_control(
+
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            '_toibox_honouree_archive_fallback_honouree_image',
+            array(
+                'label'     => __( 'Fallback Profile Image', '' ),
+                'section'   => '_toibox_honouree_archive_section',
+                'settings'  => '_toibox_honouree_archive_fallback_honouree_image',
+                'mime_type' => 'image',
+            ) )
+    );
 } );
 
 /**
- * Register the Project Archive section settings
+ * Register the Archive: Project section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -152,6 +171,25 @@ add_action( 'customize_register', function ( $wp_customize ) {
                 'step' => 2,
             ]
         )
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_project_archive_fallback_project_image',
+        []
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            '_toibox_project_archive_fallback_project_image',
+            array(
+                'label'     => __( 'Fallback Project Image', '' ),
+                'section'   => '_toibox_project_archive_section',
+                'settings'  => '_toibox_project_archive_fallback_project_image',
+                'mime_type' => 'image',
+            ) )
     );
 } );
 

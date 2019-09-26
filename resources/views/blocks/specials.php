@@ -8,10 +8,10 @@
 
 $features = [ 1, 2, 3 ]; //get_field( 'features' );
 ?>
-<div class="container">
-  <div class="row">
+<div class="container-fluid">
+  <div class="row flex-column flex-md-row">
     <?php foreach ( $features as $feature ) : ?>
-      <div class="col">
+      <div class="col mb-4 mb-md-0">
         <article class="special d-flex flex-column">
           <div class="special-label h6"><?php _ex( 'Special Feature', '', '' ); ?></div>
           <h2 class="special-title h4">Hello World!</h2>

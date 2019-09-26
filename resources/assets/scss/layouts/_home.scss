@@ -1,0 +1,7 @@
+.home {
+	.boulders {
+		@include media-breakpoint-up(lg) {
+			display: none;
+		}
+	}
+}
