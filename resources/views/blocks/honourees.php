@@ -26,7 +26,7 @@ $tabs = get_field( 'tabs' );
         <?php foreach ( $tabs as $key => $tab ) : ?>
           <div class="tab-pane fade <?php echo ( 0 === $key ) ? 'show active' : ''; ?>" id="<?php echo sanitize_title_with_dashes( "{$tab['label']}-{$key}" ); ?>" role="tabpanel" aria-labelledby="<?php echo sanitize_title_with_dashes( "tab-{$tab['label']}-{$key}" ); ?>">
             <div class="row">
-              <div class="col-12 col-sm-8 offset-sm-2 offset-md-0 col-md-5 col-sprite mb-3 mb-md-0">
+              <div class="col-12 col-sm-8 offset-sm-2 offset-md-0 col-md-6 col-lg-5 col-sprite mb-3 mb-md-0">
                 <?php
                 $award = get_term( $tab['sprite']['award'], 'award' );
                 $year  = get_term( $tab['sprite']['award_year'], 'award-year' );
@@ -77,7 +77,7 @@ $tabs = get_field( 'tabs' );
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-sm-8 offset-sm-2 offset-md-0 col-md-7">
+              <div class="col-12 col-sm-8 offset-sm-2 offset-md-0 col-md-6 col-lg-7">
                 <div class="content">
                   <?php echo $tab['content']; ?>
                 </div>

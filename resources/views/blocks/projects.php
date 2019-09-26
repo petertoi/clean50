@@ -23,7 +23,26 @@ $featured = get_field( 'featured' );
     <div class="col-md-6">
       <div class="article project">
         <?php if ( has_post_thumbnail( $featured ) ) : ?>
-          <?php echo get_the_post_thumbnail( $featured, 'banner-lg-6', [ 'class' => ' project-feature-image img-fluid rounded' ] ); ?>
+          <?php
+          $banner_sm_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $featured ), 'banner-sm-12' );
+          $banner_sm_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $featured ), 'banner-sm-12' );
+          $banner_lg_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $featured ), 'banner-lg-6' );
+          $banner_lg_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $featured ), 'banner-lg-6' );
+          ?>
+          <picture>
+            <source
+              class="img-fluid rounded"
+              src="<?php echo $banner_lg_src; ?>"
+              srcset="<?php echo $banner_lg_srcset; ?>"
+              media="(min-width: 768px)"
+            >
+            <img
+              class="img-fluid rounded"
+              src="<?php echo $banner_sm_src; ?>"
+              srcset="<?php echo $banner_sm_srcset; ?>"
+              alt=""
+            >
+          </picture>
         <?php endif; ?>
         <span class="article-label"><?php _ex( 'Featured Project', '', '' ); ?></span>
         <h4 class="project-title"><?php echo get_the_title( $featured ); ?></h4>

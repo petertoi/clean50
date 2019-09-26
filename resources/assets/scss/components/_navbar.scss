@@ -3,5 +3,11 @@
 }
 
 .navbar-brand {
-	width: 218px;
+	width: 134px;
+	@include media-breakpoint-up(sm) {
+		width: 180px;
+	}
+	@include media-breakpoint-up(lg) {
+		width: 218px;
+	}
 }

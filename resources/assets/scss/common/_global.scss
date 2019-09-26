@@ -1,3 +1,5 @@
 .container-fluid {
 	max-width: 1140px;
+	padding-left: $grid-gutter-width;
+	padding-right: $grid-gutter-width;
 }

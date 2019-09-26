@@ -25,7 +25,7 @@ use function Toi\ToiBox\Snippets\cached_menu;
         </span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbar-primary">
+      <div class="collapse navbar-collapse justify-content-end text-right" id="navbar-primary">
         <?php
         cached_menu( 'primary', [
           'container'  => '',

@@ -37,8 +37,26 @@ $posts = get_posts( $args );
       <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
         <article class="article">
           <?php if ( has_post_thumbnail( $post ) ) : ?>
-            <?php echo get_the_post_thumbnail( $post, 'square-lg-3', [ 'class' => 'd-none d-md-block img-fluid rounded' ] ); ?>
-            <?php echo get_the_post_thumbnail( $post, 'banner-lg-6', [ 'class' => 'd-md-none img-fluid rounded' ] ); ?>
+            <?php
+            $banner_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $post ), 'banner-sm-12' );
+            $banner_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $post ), 'banner-sm-12' );
+            $square_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $post ), 'square-lg-3' );
+            $square_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $post ), 'square-lg-3' );
+            ?>
+            <picture>
+              <source
+                class="img-fluid rounded"
+                src="<?php echo $square_src; ?>"
+                srcset="<?php echo $square_srcset; ?>"
+                media="(min-width: 768px)"
+              >
+              <img
+                class="img-fluid rounded"
+                src="<?php echo $banner_src; ?>"
+                srcset="<?php echo $banner_srcset; ?>"
+                alt=""
+              >
+            </picture>
           <?php endif; ?>
           <?php
           $category = get_the_category( $post );

@@ -76,6 +76,9 @@ add_action( 'after_setup_theme', function () {
     add_image_size( 'banner-lg-12', 1120, 385, true ); // col-lg-12
     add_image_size( 'banner-lg-6', 550, 189, true ); // col-lg-6
 
+    // Banner sm: 1.53 x 1
+    add_image_size( 'banner-sm-12', 535, 350, true );
+
     // Square 1 x 1
     add_image_size( 'square-lg-4', 360, 360, true ); // col-lg-4
     add_image_size( 'square-lg-3', 265, 265, true ); // col-lg-3
