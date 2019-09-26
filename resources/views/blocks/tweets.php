@@ -7,6 +7,7 @@
  */
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Twitter\Text\Autolink;
 
 $title       = get_field( 'title' );
 $screen_name = get_field( 'screen_name' );
@@ -43,12 +44,16 @@ if ( false === $tweets ) {
     </div>
   </div>
   <div class="row">
+    <?php
+
+    ?>
     <?php foreach ( $tweets as $tweet ) : ?>
       <div class="col-12 col-md-4 mb-4 mb-md-0">
-        <div class="article">
-          <?php //TODO link tweet entities ?>
-          <?php echo $tweet->text ?: ''; ?>
-        </div>
+        <article class="tweet">
+          <?php if ( ! empty( $tweet->text ) ) : ?>
+            <?php echo Autolink::create()->setNoFollow( true )->autoLink( $tweet->text ); ?>
+          <?php endif; ?>
+        </article>
       </div>
     <?php endforeach; ?>
   </div>

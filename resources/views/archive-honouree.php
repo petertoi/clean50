@@ -32,13 +32,21 @@ $award_categories = get_terms( [
   'taxonomy'   => 'award-category',
   'hide_empty' => false,
 ] );
+
+$selected_award = filter_input( INPUT_GET, 'award', FILTER_SANITIZE_STRING ) ?: '';
+$selected_year  = filter_input( INPUT_GET, 'year', FILTER_SANITIZE_STRING ) ?: '';
+$selected_cat   = filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_STRING ) ?: '';
 ?>
 
 <div class="container-fluid">
-  <?php printf( '<h1>%s</h1>', $title ); ?>
-  <?php echo apply_filters( 'the_content', $content ); ?>
+  <div class="intro row">
+    <div class="col col-md-10 col-lg-9">
+      <?php printf( '<h1>%s</h1>', $title ); ?>
+      <?php echo apply_filters( 'the_content', $content ); ?>
+    </div>
+  </div>
 
-  <form method="get">
+  <form class="filters" method="get">
     <div class="row">
       <div class="form-group col-auto">
         <label for="award"><?php _ex( 'Select an award', '', '' ); ?></label>
@@ -48,7 +56,7 @@ $award_categories = get_terms( [
             <?php
             printf( '<option value="%s" %s>%s',
               $award->slug,
-              selected( $award->slug, filter_input( INPUT_GET, 'award', FILTER_SANITIZE_STRING ), false ),
+              selected( $award->slug, $selected_award, false ),
               $award->name
             );
             ?>
@@ -63,7 +71,7 @@ $award_categories = get_terms( [
             <?php
             printf( '<option value="%s" %s>%s',
               $year->slug,
-              selected( $year->slug, filter_input( INPUT_GET, 'year', FILTER_SANITIZE_STRING ), false ),
+              selected( $year->slug, $selected_year, false ),
               $year->name );
             ?>
           <?php endforeach; ?>
@@ -77,7 +85,7 @@ $award_categories = get_terms( [
             <?php
             printf( '<option value="%s" %s>%s',
               $category->slug,
-              selected( $category->slug, filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_STRING ), false ),
+              selected( $category->slug, $selected_cat, false ),
               $category->name );
             ?>
           <?php endforeach; ?>
@@ -92,6 +100,16 @@ $award_categories = get_terms( [
       </div>
     </noscript>
   </form>
+
+  <?php if ( $selected_cat ) : ?>
+    <?php $category = get_term_by( 'slug', $selected_cat, 'award-category' ); ?>
+    <header class="header row justify-content-between">
+      <div class="col-12 col-md-6">
+        <h2><?php echo $category->name; ?></h2>
+      </div>
+      <div class="col-12 col-md-5 col-lg-4">so</div>
+    </header>
+  <?php endif; ?>
 
   <?php if ( have_posts() ) : ?>
 

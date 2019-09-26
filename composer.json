@@ -4,6 +4,10 @@
         "wp-bootstrap/wp-bootstrap-navwalker": "^4.2",
         "indigotree/wp-bootstrap-nav-walker": "^1.1",
         "abraham/twitteroauth": "^1.0",
-        "justintadlock/hybrid-breadcrumbs": "^1.0"
+        "justintadlock/hybrid-breadcrumbs": "^1.0",
+        "symfony/polyfill-intl-icu": "^1.12",
+        "nojimage/twitter-text-php": "^3.0",
+        "symfony/polyfill-intl-normalizer": "^1.12",
+        "symfony/polyfill-intl-idn": "^1.12"
     }
 }
