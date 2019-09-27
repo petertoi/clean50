@@ -18,7 +18,9 @@
 
 .sponsors-carousel {
 	&.has-indicators {
-		padding-bottom: 30px;
+		.carousel {
+			padding-bottom: 30px;
+		}
 	}
 
 	.carousel__title {
