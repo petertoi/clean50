@@ -194,6 +194,100 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
+ * Register the Archive: Articles section settings
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_article_archive_title',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_article_archive_title',
+        array(
+            'label'       => esc_html__( 'Title', '' ),
+            'description' => esc_html__( 'Title.', '' ),
+            'section'     => '_toibox_article_archive_section',
+            'type'        => 'text',
+        )
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_article_archive_content',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        )
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_article_archive_content',
+        array(
+            'label'       => esc_html__( 'Intro Content', '' ),
+            'description' => esc_html__( 'Intro Content.', '' ),
+            'section'     => '_toibox_article_archive_section',
+            'type'        => 'textarea',
+        )
+    );
+
+
+    // Register a setting.
+//    $wp_customize->add_setting(
+//        '_toibox_article_archive_per_page',
+//        array(
+//            'default'           => 8,
+//            'sanitize_callback' => 'absint',
+//        )
+//    );
+
+    // Create the setting field.
+//    $wp_customize->add_control(
+//        '_toibox_article_archive_per_page',
+//        array(
+//            'label'       => esc_html__( 'Per Page', '' ),
+//            'description' => esc_html__( 'Number of Articles to display on each page of the archive.', '' ),
+//            'section'     => '_toibox_article_archive_section',
+//            'type'        => 'number',
+//            'input_attrs' => [
+//                'min'  => 2,
+//                'max'  => 20,
+//                'step' => 2,
+//            ]
+//        )
+//    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_article_archive_fallback_article_image',
+        []
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            '_toibox_article_archive_fallback_article_image',
+            array(
+                'label'     => __( 'Fallback Article Image', '' ),
+                'section'   => '_toibox_article_archive_section',
+                'settings'  => '_toibox_article_archive_fallback_article_image',
+                'mime_type' => 'image',
+            ) )
+    );
+} );
+
+/**
  * Register the Copyright section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {

@@ -5,6 +5,10 @@
 	.navbar {
 		z-index: $zindex-fixed;
 	}
+
+	.hamburger {
+		transform: translateX(15px);
+	}
 }
 
 .boulders {
@@ -26,7 +30,8 @@
 		top: 100%;
 		transform: scaleX(-1) translate(-225px, 0);
 		@include media-breakpoint-up(lg) {
-			top: -109px;
+			top: 0;
+			transform: scaleX(-1) translate(-225px, -116px);
 		}
 	}
 
@@ -37,9 +42,10 @@
 		opacity: 0.75;
 		left: 50%;
 		top: 100%;
-		transform: translate(-197px, 229px);
+		transform: translate(-200px, 229px);
 		@include media-breakpoint-up(lg) {
-			top: 120px;
+			top: 0;
+			transform: translate(-200px, 120px);
 		}
 	}
 }

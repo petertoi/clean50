@@ -8,17 +8,28 @@
 
 use function Toi\ToiBox\Snippets\bootstrap_pagination;
 
-$page_for_posts = get_option( 'page_for_posts' );
+$title           = get_theme_mod( '_toibox_article_archive_title' ) ?: '';
+$content         = get_theme_mod( '_toibox_article_archive_content' ) ?: '';
+$fallback_banner = get_theme_mod( '_toibox_article_archive_fallback_article_image' );
+
 ?>
 
 
-<?php printf( '<h1>%s</h1>', get_the_title( $page_for_posts ) ); ?>
-<?php echo get_the_content( $page_for_posts ); ?>
+<div class="intro row">
+  <div class="col col-md-10 col-lg-9">
+    <?php if ( $title ) : ?>
+      <?php printf( '<h1>%s</h1>', $title ); ?>
+    <?php endif; ?>
+    <?php if ( $content ) : ?>
+      <?php echo apply_filters( 'the_content', $content ); ?>
+    <?php endif; ?>
+  </div>
+</div>
 
 <?php if ( have_posts() ) : ?>
   <div class="article-grid row">
     <?php while ( have_posts() ) : ?>
-      <div class="col col-md-6">
+      <div class="col-12 col-md-6 mb-4">
         <?php
         the_post();
         ?>
@@ -26,7 +37,9 @@ $page_for_posts = get_option( 'page_for_posts' );
           <div class="thumb">
             <?php
             if ( has_post_thumbnail() ) {
-              echo get_the_post_thumbnail( null, 'banner-lg-6', [ 'class' => 'img-fluid' ] );
+              echo get_the_post_thumbnail( null, 'banner-lg-6', [ 'class' => 'img-fluid rounded' ] );
+            } else if ( $fallback_banner ) {
+              echo wp_get_attachment_image( $fallback_banner, 'banner-lg-6', false, [ 'class' => 'img-fluid rounded' ] );
             }
             ?>
           </div>

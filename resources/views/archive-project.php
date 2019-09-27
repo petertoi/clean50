@@ -7,6 +7,7 @@
  */
 
 use function Toi\ToiBox\Snippets\bootstrap_pagination;
+use function Toi\ToiBox\Snippets\get_award_year;
 
 $title           = get_theme_mod( '_toibox_project_archive_title' );
 $content         = get_theme_mod( '_toibox_project_archive_content' );
@@ -17,12 +18,21 @@ $award_years = get_terms( [
   'order'      => 'DESC',
   'hide_empty' => false,
 ] );
+
+$selected_year = filter_input( INPUT_GET, 'year', FILTER_SANITIZE_STRING ) ?: '';
 ?>
+<div class="intro row">
+  <div class="col col-md-10 col-lg-9">
+    <?php if ( $title ) : ?>
+      <?php printf( '<h1>%s</h1>', $title ); ?>
+    <?php endif; ?>
+    <?php if ( $content ) : ?>
+      <?php echo apply_filters( 'the_content', $content ); ?>
+    <?php endif; ?>
+  </div>
+</div>
 
-<?php printf( '<h1>%s</h1>', $title ); ?>
-<?php echo apply_filters( 'the_content', $content ); ?>
-
-<form method="get">
+<form class="filters" method="get">
   <div class="row">
     <div class="form-group col-auto">
       <label for="award-year"><?php _ex( 'Select a year', '', '' ); ?></label>
@@ -32,7 +42,7 @@ $award_years = get_terms( [
           <?php
           printf( '<option value="%s" %s>%s',
             $year->slug,
-            selected( $year->slug, filter_input( INPUT_GET, 'award-year', FILTER_SANITIZE_STRING ), false ),
+            selected( $year->slug, $selected_year, false ),
             $year->name );
           ?>
         <?php endforeach; ?>
@@ -55,22 +65,26 @@ $award_years = get_terms( [
 <?php if ( have_posts() ) : ?>
   <div class="project-grid row">
     <?php while ( have_posts() ) : ?>
-      <div class="col col-md-6">
+      <div class="col-12 col-md-6 mb-4">
         <?php
         the_post();
-        $leads = get_field( 'project-leaders' );
+        $leads      = get_field( 'project-leaders' );
+        $award_year = get_award_year();
         ?>
         <article class="project-grid-item">
           <div class="thumb">
             <?php
             if ( has_post_thumbnail() ) {
-              echo get_the_post_thumbnail( null, 'banner-lg-6', [ 'class' => 'img-fluid' ] );
+              echo get_the_post_thumbnail( null, 'banner-lg-6', [ 'class' => 'img-fluid rounded' ] );
             } else if ( $fallback_banner ) {
-              echo wp_get_attachment_image( $fallback_banner, 'banner-lg-6', [ 'class' => 'img-fluid' ] );
+              echo wp_get_attachment_image( $fallback_banner, 'banner-lg-6', false, [ 'class' => 'img-fluid rounded' ] );
             }
             ?>
           </div>
           <div class="body">
+            <?php if ( $award_year ) : ?>
+              <div class="year h6"><?php echo $award_year->name ?: ''; ?></div>
+            <?php endif; ?>
             <a href="<?php the_permalink(); ?>" class="stretched-link">
               <?php the_title( '<h2 class="h3 title">', '</h1>' ); ?>
             </a>

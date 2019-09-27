@@ -13,6 +13,7 @@ use function Toi\ToiBox\Snippets\get_award;
 use function Toi\ToiBox\Snippets\get_award_category;
 use function Toi\ToiBox\Snippets\get_award_year;
 use function Toi\ToiBox\Snippets\get_honouree_type;
+use function Toi\ToiBox\Snippets\get_sponsor_carousel;
 use function Toi\ToiBox\Snippets\get_team;
 use function Toi\ToiBox\Snippets\get_team_members;
 
@@ -24,29 +25,35 @@ $type         = get_honouree_type();
 $team         = get_team();
 $social       = get_field( 'social' );
 $links        = get_field( 'links' );
+if ( isset( $category->term_id ) ) {
+  $sponsors = get_field( 'sponsors', 'award-category_' . $category->term_id );
+}
 
 ?>
 <?php if ( have_posts() ) : ?>
   <?php while ( have_posts() ) : ?>
     <?php the_post(); ?>
 
-    <div class="row">
+    <div class="meta row pb-3 mb-4">
       <div class="col-lg-9">
-        year / category
+        <div class="year"><?php echo $year->name; ?></div>
+        <div class="category h3"><?php echo $category->name; ?></div>
       </div>
-      <div class="col-lg3">
-        category sponsor
+      <div class="col-lg-3">
+        <?php if ( $sponsors ) : ?>
+          <?php echo get_sponsor_carousel( $sponsors ); ?>
+        <?php endif; ?>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-12 col-md-3">
         <?php
         if ( has_post_thumbnail() ) {
           echo get_the_post_thumbnail( null, 'square-lg-3', [ 'alt' => get_the_title() . ' headshot', 'class' => 'featured-image img-fluid rounded' ] );
         }
         ?>
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-6 col-sm-4 col-md-8">
             <?php
             if ( $award ) {
               switch ( $award->slug ) {

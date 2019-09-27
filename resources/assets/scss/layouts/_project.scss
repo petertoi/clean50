@@ -1,3 +1,29 @@
+.post-type-archive-project {
+	.intro {
+		padding-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.filters {
+		margin-bottom: 3.375rem; //54px
+	}
+
+	.header {
+		margin-bottom: 2.875rem; //46px
+	}
+
+	.carousel__title {
+		font-weight: $font-weight-normal;
+	}
+
+	.carousel-item {
+		.sponsor__logo {
+			float: left;
+			margin: 0 $grid-gutter-width $grid-gutter-width 0;
+		}
+	}
+}
+
 .single-project {
 	.feature-image {
 		margin-bottom: 3rem; //48px;
@@ -16,7 +42,7 @@
 	}
 
 	.links {
-		
+
 	}
 
 }

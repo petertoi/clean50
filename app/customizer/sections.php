@@ -43,6 +43,24 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
+ * Register the Archives: Articles section
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $wp_customize->add_section(
+        '_toibox_article_archive_section',
+        array(
+            'title'    => esc_html__( 'Archive: Articles', '' ),
+            'priority' => 10,
+            'panel'    => 'site-options',
+        )
+    );
+} );
+
+/**
  * Register the Copyright section
  */
 add_action( 'customize_register', function ( $wp_customize ) {

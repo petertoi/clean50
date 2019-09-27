@@ -360,3 +360,50 @@ function to_array( $value ) {
 
     return $value;
 }
+
+function get_sponsor_carousel( $sponsors ) {
+    $id    = uniqid( 'sponsors-' );
+    $title = ( ! empty( $sponsors['title'] ) )
+        ? sprintf( '<h5 class="carousel__title">%s</h5>', $sponsors['title'] )
+        : '';
+
+    $indicators = [];
+    $slides     = [];
+    foreach ( $sponsors['sponsors'] as $key => $sponsor ) {
+        $indicators[] = sprintf(
+            '<li data-target="#%s" data-slide-to="%s" class="%s"></li>',
+            esc_attr( $id ),
+            esc_attr( $key ),
+            ( 0 === $key ) ? 'active' : ''
+        );
+
+        $slides[] = sprintf(
+            '<div class="carousel-item %s">%s<p class="sponsor__description">%s</p></div>',
+            ( 0 === $key ) ? 'active' : '',
+            get_the_post_thumbnail(
+                $sponsor->ID,
+                'sponsor-carousel',
+                [
+                    'class' => 'sponsor__logo',
+                    'alt'   => $sponsor->post_title,
+                ]
+            ),
+            get_field( 'short_description', $sponsor->ID )
+        );
+    }
+
+    if ( 1 === count( $indicators ) ) {
+        $indicators = [];
+    }
+
+    $carousel_indicators = sprintf( '<ol class="carousel-indicators">%s</ol>', implode( '', $indicators ) );
+    $carousel_slides     = sprintf( '<div class="carousel-inner">%s</div>', implode( '', $slides ) );
+    $carousel            = sprintf( '<div id="%s" class="carousel slide" data-ride="carousel" data-interal="3000">%s%s</div>', $id, $carousel_indicators, $carousel_slides );
+    $inner               = sprintf( '%s%s', $title, $carousel );
+    $output              = sprintf( '<div class="sponsors-carousel %s">%s</div>',
+        ( 1 < count( $slides ) ) ? 'has-indicators' : 'no-indicators',
+        $inner
+    );
+
+    return $output;
+}
