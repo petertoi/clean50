@@ -1,7 +1,4 @@
 .carousel {
-	&.has-indicators {
-		padding-bottom: 30px;
-	}
 }
 
 .carousel-indicators {
@@ -20,6 +17,10 @@
 }
 
 .sponsors-carousel {
+	&.has-indicators {
+		padding-bottom: 30px;
+	}
+
 	.carousel__title {
 		font-weight: $font-weight-bold;
 		font-size: 0.75rem; // 12px
