@@ -27,34 +27,33 @@ if ( false === $tweets ) {
       'include_rts' => true,
     ]
   );
-  if ( $response->error ) {
+  if ( isset( $response->error ) ) {
     $tweets = [];
   } else {
     $tweets = $response;
   }
 
-  set_transient( "tweets-$screen_name", $tweets, HOUR_IN_SECONDS );
+  set_transient( "tweets-$screen_name", $tweets, 6 * HOUR_IN_SECONDS );
 }
 
 ?>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h2><?php echo $title; ?></h2>
+<?php if ( ! empty( $tweets ) ) : ?>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2><?php echo $title; ?></h2>
+      </div>
+    </div>
+    <div class="row">
+      <?php foreach ( $tweets as $tweet ) : ?>
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <article class="tweet">
+            <?php if ( ! empty( $tweet->text ) ) : ?>
+              <?php echo Autolink::create()->setNoFollow( true )->autoLink( $tweet->text ); ?>
+            <?php endif; ?>
+          </article>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
-  <div class="row">
-    <?php
-
-    ?>
-    <?php foreach ( $tweets as $tweet ) : ?>
-      <div class="col-12 col-md-4 mb-4 mb-md-0">
-        <article class="tweet">
-          <?php if ( ! empty( $tweet->text ) ) : ?>
-            <?php echo Autolink::create()->setNoFollow( true )->autoLink( $tweet->text ); ?>
-          <?php endif; ?>
-        </article>
-      </div>
-    <?php endforeach; ?>
-  </div>
-</div>
+<?php endif; ?>

@@ -178,6 +178,25 @@ function get_team_members( $team_id = null ) {
 }
 
 /**
+ * @param null $sponsor_id
+ *
+ * @return false|\WP_Term
+ */
+function get_sponsor_tier( $sponsor_id = null ) {
+    if ( is_null( $sponsor_id ) ) {
+        $sponsor_id = get_the_ID();
+    }
+
+    $sponsor_tier = get_the_terms( $sponsor_id, 'sponsor-tier' );
+
+    if ( empty( $sponsor_tier ) ) {
+        return false;
+    }
+
+    return $sponsor_tier[0];
+}
+
+/**
  * Returns a formatted year to year string suitable for use in copyright statements etc.
  *
  * @param string $from
@@ -377,9 +396,12 @@ function get_sponsor_carousel( $sponsors ) {
             ( 0 === $key ) ? 'active' : ''
         );
 
+        $link = get_field( 'link', $sponsor->ID );
+
         $slides[] = sprintf(
-            '<div class="carousel-item %s">%s<p class="sponsor__description">%s</p></div>',
+            '<div class="carousel-item %s"><a href="%s" target="_blank">%s</a><p class="sponsor__description">%s</p></div>',
             ( 0 === $key ) ? 'active' : '',
+            ! empty( $link['target'] ) ? $link['target'] : '#',
             get_the_post_thumbnail(
                 $sponsor->ID,
                 'sponsor-carousel',

@@ -32,12 +32,14 @@ get_template_part( 'views/partials/header' );
     <main class="main">
       <?php include Templates\get_main(); ?>
     </main>
+
   </div>
 </div>
 <?php
-do_action( 'get_footer' );
+get_template_part( 'views/partials/footer-sponsor' );
 get_template_part( 'views/partials/footer' );
+do_action( 'get_footer' );
+wp_footer();
 ?>
-<?php wp_footer(); ?>
 </body>
 </html>

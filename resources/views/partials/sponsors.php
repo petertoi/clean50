@@ -6,5 +6,5 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
-var_dump( $sponsors );
+var_dump( $tiers );
 ?>

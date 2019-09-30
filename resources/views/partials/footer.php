@@ -9,6 +9,7 @@
 use IndigoTree\BootstrapNavWalker\Four\WalkerNavMenu;
 use function Toi\ToiBox\Snippets\cached_menu;
 
+
 ?>
 <footer class="site-footer">
   <div class="container-fluid">

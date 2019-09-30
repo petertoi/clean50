@@ -143,6 +143,18 @@ add_action( 'init', function () {
             'menu_icon'      => 'dashicons-heart',
             'show_in_rest'   => true,
             'featured_image' => 'Sponsor Logo',
+            'admin_cols'     => [
+                'featured-image' => [
+                    'title'          => 'Logo',
+                    'featured_image' => 'sponsor-carousel',
+//                    'width'          => 60,
+//                    'height'         => 300,
+                ],
+                'sponsor-tier'   => [
+                    'title'    => 'Tier',
+                    'taxonomy' => 'sponsor-tier',
+                ],
+            ],
         ]
     );
 } );

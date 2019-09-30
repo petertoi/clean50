@@ -1,0 +1,102 @@
+.sponsor-footer {
+	.tier-title {
+		opacity: 0.75;
+	}
+
+	.sponsors {
+		margin-bottom: 2.5rem; //40px
+		display: flex;
+		flex-flow: column nowrap;
+		text-align: center;
+		@include media-breakpoint-up(md) {
+			justify-content: center;
+			flex-flow: row nowrap;
+		}
+	}
+
+	.sponsor {
+		margin: 0 30px;
+	}
+
+	.tier-1 {
+		.sponsor {
+			margin-bottom: 25px;
+			@include media-breakpoint-up(md) {
+				margin-bottom: 0;
+			}
+		}
+
+		.sponsor-title {
+			@include sr-only;
+		}
+	}
+
+	.tier-2 {
+		.sponsor {
+			margin-bottom: 25px;
+			@include media-breakpoint-up(md) {
+				margin-bottom: 0;
+			}
+		}
+
+		.sponsor-logo {
+			width: 85%;
+			height: auto;
+		}
+
+		.sponsor-title {
+			@include sr-only;
+		}
+	}
+
+	.tier-3 {
+		.sponsor-logo {
+			display: none;
+		}
+
+		@include media-breakpoint-up(md) {
+			.sponsor-title {
+				@include sr-only;
+			}
+			.sponsor-logo {
+				width: 74%;
+				height: auto;
+				display: block;
+			}
+		}
+	}
+
+	.tier-4 {
+		.sponsor-logo {
+			display: none;
+		}
+
+		@include media-breakpoint-up(md) {
+			.sponsor-title {
+				@include sr-only;
+			}
+			.sponsor-logo {
+				width: 66%;
+				height: auto;
+				display: block;
+			}
+		}
+	}
+
+	.summit {
+		.sponsor-logo {
+			display: none;
+		}
+
+		@include media-breakpoint-up(md) {
+			.sponsor-title {
+				@include sr-only;
+			}
+			.sponsor-logo {
+				width: 60%;
+				height: auto;
+				display: block;
+			}
+		}
+	}
+}

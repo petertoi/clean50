@@ -171,9 +171,32 @@ add_action( 'init', function () {
             ],
         ]
     );
+
+    /**
+     * @see https://github.com/johnbillion/extended-cpts
+     */
+    register_extended_taxonomy(
+        'sponsor-tier',
+        [ 'sponsor' ],
+        [
+            'public'           => true,
+            'show_ui'          => true,
+            'hierarchical'     => false,
+            'query_var'        => true,
+            'exclusive'        => false,
+            'allow_hierarchy'  => false,
+            'meta_box'         => 'simple',
+            'dashboard_glance' => false,
+            'checked_ontop'    => true,
+            'required'         => true,
+        ]
+    );
+
 } );
 
 add_action( 'after_switch_theme', function () {
+
+    /** Honouree Types */
     if ( false === get_term_by( 'slug', 'individual', 'honouree-type' ) ) {
         wp_insert_term( 'Individual', 'honouree-type' );
     }
@@ -183,11 +206,28 @@ add_action( 'after_switch_theme', function () {
     if ( false === get_term_by( 'slug', 'team-member', 'honouree-type' ) ) {
         wp_insert_term( 'Team Member', 'honouree-type' );
     }
+
+    /** Project Awards */
     if ( false === get_term_by( 'slug', 'top-project', 'project-award' ) ) {
         wp_insert_term( 'Top Project', 'project-award' );
     }
-    if ( false === get_term_by( 'slug', 'top-15-project', 'project-award' ) ) {
-        wp_insert_term( 'Top 15 Project', 'project-award' );
+
+    /** Sponsor Tiers */
+    if ( false === get_term_by( 'slug', 'tier-1', 'sponsor-tier' ) ) {
+        wp_insert_term( 'Tier 1', 'sponsor-tier' );
     }
+    if ( false === get_term_by( 'slug', 'tier-2', 'sponsor-tier' ) ) {
+        wp_insert_term( 'Tier 2', 'sponsor-tier' );
+    }
+    if ( false === get_term_by( 'slug', 'tier-3', 'sponsor-tier' ) ) {
+        wp_insert_term( 'Tier 3', 'sponsor-tier' );
+    }
+    if ( false === get_term_by( 'slug', 'tier-4', 'sponsor-tier' ) ) {
+        wp_insert_term( 'Tier 4', 'sponsor-tier' );
+    }
+    if ( false === get_term_by( 'slug', 'summit', 'sponsor-tier' ) ) {
+        wp_insert_term( 'Summit', 'sponsor-tier' );
+    }
+
 } );
 

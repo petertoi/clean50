@@ -7,7 +7,7 @@
  */
 
 /**
- * Register the Archives: Honouree section
+ * Register the Archive: Honouree section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -25,7 +25,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
- * Register the Archives: Project section
+ * Register the Archive: Project section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -43,7 +43,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
- * Register the Archives: Articles section
+ * Register the Archive: Articles section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -54,6 +54,24 @@ add_action( 'customize_register', function ( $wp_customize ) {
         '_toibox_article_archive_section',
         array(
             'title'    => esc_html__( 'Archive: Articles', '' ),
+            'priority' => 10,
+            'panel'    => 'site-options',
+        )
+    );
+} );
+
+/**
+ * Register the Single: Project section
+ */
+add_action( 'customize_register', function ( $wp_customize ) {
+    /**
+     * @var WP_Customize_Manager $wp_customize
+     */
+
+    $wp_customize->add_section(
+        '_toibox_project_single_section',
+        array(
+            'title'    => esc_html__( 'Single: Projects', '' ),
             'priority' => 10,
             'panel'    => 'site-options',
         )
