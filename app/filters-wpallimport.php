@@ -50,11 +50,12 @@ namespace Toi\ToiBox\Filters_WPAllImport;
  */
 add_action( 'pmxi_after_xml_import', function ( $import_id ) {
 
-//    update_team_links();
+//    update_team_links_legacy();
+    update_team_links_2020();
 
 }, 10, 1 );
 
-function update_team_links() {
+function update_team_links_legacy() {
     $query = new \WP_Query( [
         'post_type'      => 'honouree',
         'post_status'    => 'all',
@@ -89,6 +90,73 @@ function update_team_links() {
             'fields'         => 'ids',
 //            'meta_key'       => '_original_team_slug',
 //            'meta_value'     => $team_slug,
+            'tax_query'      => [
+                [
+                    'taxonomy' => 'honouree-type',
+                    'field'    => 'slug',
+                    'terms'    => 'team',
+                ],
+            ],
+
+        ] );
+
+        if ( empty( $team_query->posts ) ) {
+            continue;
+        }
+
+        $team_id = $team_query->posts[0];
+
+        update_field( 'related_team', $team_id, $team_member_id );
+
+        $related_team_members = get_field( 'related_team_members', $team_id, false );
+
+        if ( ! is_array( $related_team_members ) ) {
+            $related_team_members = [];
+        }
+
+        if ( ! in_array( $team_member_id, $related_team_members ) ) {
+            $related_team_members[] = $team_member_id;
+            update_field( 'related_team_members', $related_team_members, $team_id );
+        }
+    }
+
+    return $team_member_ids;
+}
+
+function update_team_links_2020() {
+    $query = new \WP_Query( [
+        'post_type'      => 'honouree',
+        'post_status'    => 'all',
+        'tax_query'      => [
+            'relation' => 'AND',
+            [
+                'taxonomy' => 'honouree-type',
+                'field'    => 'slug',
+                'terms'    => 'team-member',
+            ],
+            [
+                'taxonomy' => 'award-year',
+                'field'    => 'slug',
+                'terms'    => '2020',
+                'operator' => 'IN'
+            ],
+        ],
+        'posts_per_page' => - 1,
+        'fields'         => 'ids',
+    ] );
+
+    $team_member_ids = $query->get_posts();
+
+    foreach ( $team_member_ids as $team_member_id ) {
+        $team_slug = get_post_meta( $team_member_id, '_original_team_slug', true );
+
+        $team_query = new \WP_Query( [
+            'post_type'      => 'honouree',
+            'post_status'    => 'all',
+            'posts_per_page' => 1,
+            'fields'         => 'ids',
+            'meta_key'       => '_original_team_slug',
+            'meta_value'     => $team_slug,
             'tax_query'      => [
                 [
                     'taxonomy' => 'honouree-type',

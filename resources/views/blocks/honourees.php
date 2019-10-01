@@ -34,21 +34,10 @@ $tabs = get_field( 'tabs' );
 
                 $honouree_query = new \WP_Query( [
                   'post_type'      => 'honouree',
-                  'posts_per_page' => - 1,
+                  'posts_per_page' => 100,
                   'fields'         => 'ids',
-                  'tax_query'      => [
-                    'relation' => 'AND',
-                    [
-                      'taxonomy' => 'award',
-                      'field'    => 'term_id',
-                      'terms'    => $award->term_id,
-                    ],
-                    [
-                      'taxonomy' => 'award-year',
-                      'field'    => 'term_id',
-                      'terms'    => $year->term_id,
-                    ]
-                  ],
+                  'award'          => $award->slug,
+                  'award-year'     => $year->slug,
                 ] );
 
                 $name = sprintf( '%s-%s', $award->slug, $year->slug );

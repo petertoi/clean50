@@ -72,7 +72,9 @@ if ( isset( $category->term_id ) ) {
             ?>
           </div>
         </div>
-        <?php if ( $links ) : ?>
+        <?php if ( array_filter( $links, function ( $link ) {
+          return ! empty( $link['target'] );
+        } ) ) : ?>
           <div class="links sidebar-links">
             <h4 class="sidebar-links-title"><?php _ex( 'Learn More', '', '' ); ?></h4>
             <ul class="sidebar-links-list">
@@ -90,7 +92,9 @@ if ( isset( $category->term_id ) ) {
           <?php if ( $organization ) : ?>
             <div class="organization h3"><?php echo $organization; ?></div>
           <?php endif; ?>
-          <?php if ( $social ) : ?>
+          <?php if ( array_filter( $social, function ( $profile ) {
+            return ! empty( $profile['target'] );
+          } ) ) : ?>
             <?php
             uasort( $social, function ( $a, $b ) {
               if ( $a['service'] === $b['service'] ) {

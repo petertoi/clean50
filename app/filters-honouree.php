@@ -236,6 +236,10 @@ add_filter( 'pre_get_posts', function ( $query ) {
         return $query;
     }
 
+    if ( ! $query->is_main_query() ) {
+        return $query;
+    }
+
     if ( ! is_post_type_archive( 'honouree' ) ) {
         return $query;
     }
@@ -351,48 +355,20 @@ add_filter( 'pre_get_posts', function ( $query ) {
         return $query;
     }
 
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
+        return $query;
+    }
+
     $post_type = $query->get( 'post_type' );
 
     if ( 'honouree' !== $post_type ) {
         return $query;
     }
 
-    $tax_query = $query->get( 'tax_query' );
+    $award = $query->get( 'award' );
 
-    if ( ! is_array( $tax_query ) ) {
-        $tax_query = [];
-    }
-
-    $award_id = array_reduce( $tax_query, function ( $carry, $value ) {
-        if ( false !== $carry ) {
-            return $carry;
-        }
-
-        $tax = is_array( $value ) ? $value['taxonomy'] : false;
-
-        if ( 'award' === $tax ) {
-            return $value['terms'];
-        }
-
-        return false;
-    }, false );
-
-    if ( false === $award_id || is_array( $award_id ) ) {
-        $tax_query[] = [
-            'taxonomy' => 'honouree-type',
-            'field'    => 'slug',
-            'terms'    => 'team',
-            'operator' => 'NOT IN',
-        ];
-        $query->set( 'tax_query', $tax_query );
-
-        return $query;
-    }
-
-    $award = get_term( $award_id, 'award' );
-
-    switch ( $award->name ) {
-        case "Clean16":
+    switch ( $award ) {
+        case "clean16":
             $tax_query[] = [
                 'taxonomy' => 'honouree-type',
                 'field'    => 'slug',
@@ -401,8 +377,8 @@ add_filter( 'pre_get_posts', function ( $query ) {
             ];
             $query->set( 'tax_query', $tax_query );
             break;
-        case "Clean50":
-        case "Emerging Leader":
+        case "clean50":
+        case "emerging-leader":
         default:
             $tax_query[] = [
                 'taxonomy' => 'honouree-type',

@@ -97,6 +97,7 @@ add_action( 'init', function () {
         [
             'menu_icon'     => 'dashicons-portfolio',
             'show_in_rest'  => true,
+            'supports'      => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
             'admin_cols'    => [
                 'featured-image' => [
                     'title'          => 'Featured Image',

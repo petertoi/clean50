@@ -23,7 +23,7 @@ if ( false === $tweets ) {
     'statuses/user_timeline',
     [
       'screen_name' => $screen_name,
-      'count'       => 4,
+      'count'       => 3,
       'include_rts' => true,
     ]
   );
