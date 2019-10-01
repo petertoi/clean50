@@ -339,7 +339,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
     // Register a setting.
     $wp_customize->add_setting(
-        '_toibox_sponsors_footer',
+        '_toibox_sponsor_footer_intro',
         array(
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
@@ -348,11 +348,11 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
     // Create the setting field.
     $wp_customize->add_control(
-        '_toibox_sponsors_footer_intro',
+        '_toibox_sponsor_footer_intro',
         array(
-            'label'       => esc_html__( 'Copyright Statement', '' ),
-            'description' => esc_html__( 'Copyright statement. Basic HTML tags are allowed.', '' ),
-            'section'     => '_toibox_copyright_section',
+            'label'       => esc_html__( 'Sponsor Footer intro content.', '' ),
+//            'description' => esc_html__( 'Content', '' ),
+            'section'     => '_toibox_sponsor_footer_section',
             'type'        => 'text',
         )
     );

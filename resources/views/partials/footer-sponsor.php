@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+$intro = get_theme_mod( '_toibox_sponsor_footer_intro' ) ?: false;
+
 $tiers = get_terms( [
   'taxonomy' => 'sponsor-tier',
 ] );
@@ -38,6 +40,13 @@ foreach ( $tiers as $tier ) {
 ?>
 <div class="sponsor-footer">
   <div class="container-fluid">
+    <?php if ( $intro ) : ?>
+      <div class="row">
+        <div class="col text-center">
+          <h4 class="intro h6"><?php echo $intro; ?></h4>
+        </div>
+      </div>
+    <?php endif; ?>
     <?php foreach ( $tiers_sponsors as $key => $tier_sponsors ) : ?>
       <?php
       if ( 'summit' === $key ) {
