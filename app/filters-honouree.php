@@ -347,6 +347,10 @@ add_filter( 'pre_get_posts', function ( $query ) {
         return $query;
     }
 
+    if ( defined( 'WP_IMPORTING' ) && WP_IMPORTING ) {
+        return $query;
+    }
+
     $post_type = $query->get( 'post_type' );
 
     if ( 'honouree' !== $post_type ) {

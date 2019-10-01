@@ -59,11 +59,17 @@ function update_team_links() {
         'post_type'      => 'honouree',
         'post_status'    => 'all',
         'tax_query'      => [
-            'relation' => 'OR',
+            'relation' => 'AND',
             [
                 'taxonomy' => 'honouree-type',
                 'field'    => 'slug',
                 'terms'    => 'team-member',
+            ],
+            [
+                'taxonomy' => 'award-year',
+                'field'    => 'slug',
+                'terms'    => '2020',
+                'operator' => 'NOT IN'
             ],
         ],
         'posts_per_page' => - 1,
@@ -75,24 +81,36 @@ function update_team_links() {
     foreach ( $team_member_ids as $team_member_id ) {
         $team_slug = get_post_meta( $team_member_id, '_original_team_slug', true );
 
-        $team = get_posts( [
+        $team_query = new \WP_Query( [
             'name'           => $team_slug,
             'post_type'      => 'honouree',
             'post_status'    => 'all',
             'posts_per_page' => 1,
             'fields'         => 'ids',
+//            'meta_key'       => '_original_team_slug',
+//            'meta_value'     => $team_slug,
+            'tax_query'      => [
+                [
+                    'taxonomy' => 'honouree-type',
+                    'field'    => 'slug',
+                    'terms'    => 'team',
+                ],
+            ],
+
         ] );
 
-        if ( empty( $team ) ) {
+        if ( empty( $team_query->posts ) ) {
             continue;
         }
 
-        $team_id = $team[0];
+        $team_id = $team_query->posts[0];
+
+        update_field( 'related_team', $team_id, $team_member_id );
 
         $related_team_members = get_field( 'related_team_members', $team_id, false );
 
         if ( ! is_array( $related_team_members ) ) {
-                $related_team_members = [];
+            $related_team_members = [];
         }
 
         if ( ! in_array( $team_member_id, $related_team_members ) ) {
