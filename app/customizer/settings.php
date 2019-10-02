@@ -7,7 +7,7 @@
  */
 
 /**
- * Register the Archive: Honouree section settings
+ * Register the Honouree section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -17,71 +17,71 @@ add_action( 'customize_register', function ( $wp_customize ) {
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_honouree_archive_title',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_honouree_archive_title',
-        array(
+        [
             'label'       => esc_html__( 'Title', '' ),
             'description' => esc_html__( 'Title.', '' ),
-            'section'     => '_toibox_honouree_archive_section',
+            'section'     => '_toibox_honouree_section',
             'type'        => 'text',
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_honouree_archive_content',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_honouree_archive_content',
-        array(
+        [
             'label'       => esc_html__( 'Intro Content', '' ),
             'description' => esc_html__( 'Intro Content.', '' ),
-            'section'     => '_toibox_honouree_archive_section',
+            'section'     => '_toibox_honouree_section',
             'type'        => 'textarea',
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_honouree_archive_per_page',
-        array(
+        [
             'default'           => 16,
             'sanitize_callback' => 'absint',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_honouree_archive_per_page',
-        array(
+        [
             'label'       => esc_html__( 'Per Page', '' ),
             'description' => esc_html__( 'Number of Honourees to display on each page of the archive.', '' ),
-            'section'     => '_toibox_honouree_archive_section',
+            'section'     => '_toibox_honouree_section',
             'type'        => 'number',
             'input_attrs' => [
                 'min'  => 4,
                 'max'  => 40,
                 'step' => 4,
             ]
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
-        '_toibox_honouree_archive_fallback_honouree_image',
+        '_toibox_honouree_fallback_image',
         []
     );
     // Create the setting field.
@@ -89,18 +89,19 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
         new WP_Customize_Media_Control(
             $wp_customize,
-            '_toibox_honouree_archive_fallback_honouree_image',
-            array(
-                'label'     => __( 'Fallback Profile Image', '' ),
-                'section'   => '_toibox_honouree_archive_section',
-                'settings'  => '_toibox_honouree_archive_fallback_honouree_image',
+            '_toibox_honouree_fallback_image',
+            [
+                'label'     => __( 'Fallback Image', '' ),
+                'section'   => '_toibox_honouree_section',
+                'settings'  => '_toibox_honouree_fallback_image',
                 'mime_type' => 'image',
-            ) )
+            ]
+        )
     );
 } );
 
 /**
- * Register the Archive: Project section settings
+ * Register the Project section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -110,72 +111,72 @@ add_action( 'customize_register', function ( $wp_customize ) {
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_project_archive_title',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_project_archive_title',
-        array(
+        [
             'label'       => esc_html__( 'Title', '' ),
             'description' => esc_html__( 'Title.', '' ),
-            'section'     => '_toibox_project_archive_section',
+            'section'     => '_toibox_project_section',
             'type'        => 'text',
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_project_archive_content',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_project_archive_content',
-        array(
+        [
             'label'       => esc_html__( 'Intro Content', '' ),
             'description' => esc_html__( 'Intro Content.', '' ),
-            'section'     => '_toibox_project_archive_section',
+            'section'     => '_toibox_project_section',
             'type'        => 'textarea',
-        )
+        ]
     );
 
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_project_archive_per_page',
-        array(
+        [
             'default'           => 8,
             'sanitize_callback' => 'absint',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_project_archive_per_page',
-        array(
+        [
             'label'       => esc_html__( 'Per Page', '' ),
             'description' => esc_html__( 'Number of Projects to display on each page of the archive.', '' ),
-            'section'     => '_toibox_project_archive_section',
+            'section'     => '_toibox_project_section',
             'type'        => 'number',
             'input_attrs' => [
                 'min'  => 2,
                 'max'  => 20,
                 'step' => 2,
             ]
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
-        '_toibox_project_archive_fallback_project_image',
+        '_toibox_project_fallback_image',
         []
     );
 
@@ -183,125 +184,22 @@ add_action( 'customize_register', function ( $wp_customize ) {
     $wp_customize->add_control(
         new WP_Customize_Media_Control(
             $wp_customize,
-            '_toibox_project_archive_fallback_project_image',
-            array(
+            '_toibox_project_fallback_image',
+            [
                 'label'     => __( 'Fallback Project Image', '' ),
-                'section'   => '_toibox_project_archive_section',
-                'settings'  => '_toibox_project_archive_fallback_project_image',
+                'section'   => '_toibox_project_section',
+                'settings'  => '_toibox_project_fallback_image',
                 'mime_type' => 'image',
-            ) )
-    );
-} );
-
-/**
- * Register the Archive: Articles section settings
- */
-add_action( 'customize_register', function ( $wp_customize ) {
-    /**
-     * @var WP_Customize_Manager $wp_customize
-     */
-
-    // Register a setting.
-    $wp_customize->add_setting(
-        '_toibox_article_archive_title',
-        array(
-            'default'           => '',
-            'sanitize_callback' => 'force_balance_tags',
+            ]
         )
     );
-
-    // Create the setting field.
-    $wp_customize->add_control(
-        '_toibox_article_archive_title',
-        array(
-            'label'       => esc_html__( 'Title', '' ),
-            'description' => esc_html__( 'Title.', '' ),
-            'section'     => '_toibox_article_archive_section',
-            'type'        => 'text',
-        )
-    );
-
-    // Register a setting.
-    $wp_customize->add_setting(
-        '_toibox_article_archive_content',
-        array(
-            'default'           => '',
-            'sanitize_callback' => 'force_balance_tags',
-        )
-    );
-
-    // Create the setting field.
-    $wp_customize->add_control(
-        '_toibox_article_archive_content',
-        array(
-            'label'       => esc_html__( 'Intro Content', '' ),
-            'description' => esc_html__( 'Intro Content.', '' ),
-            'section'     => '_toibox_article_archive_section',
-            'type'        => 'textarea',
-        )
-    );
-
-
-    // Register a setting.
-//    $wp_customize->add_setting(
-//        '_toibox_article_archive_per_page',
-//        array(
-//            'default'           => 8,
-//            'sanitize_callback' => 'absint',
-//        )
-//    );
-
-    // Create the setting field.
-//    $wp_customize->add_control(
-//        '_toibox_article_archive_per_page',
-//        array(
-//            'label'       => esc_html__( 'Per Page', '' ),
-//            'description' => esc_html__( 'Number of Articles to display on each page of the archive.', '' ),
-//            'section'     => '_toibox_article_archive_section',
-//            'type'        => 'number',
-//            'input_attrs' => [
-//                'min'  => 2,
-//                'max'  => 20,
-//                'step' => 2,
-//            ]
-//        )
-//    );
-
-    // Register a setting.
-    $wp_customize->add_setting(
-        '_toibox_article_archive_fallback_article_image',
-        []
-    );
-
-    // Create the setting field.
-    $wp_customize->add_control(
-        new WP_Customize_Media_Control(
-            $wp_customize,
-            '_toibox_article_archive_fallback_article_image',
-            array(
-                'label'     => __( 'Fallback Article Image', '' ),
-                'section'   => '_toibox_article_archive_section',
-                'settings'  => '_toibox_article_archive_fallback_article_image',
-                'mime_type' => 'image',
-            ) )
-    );
-} );
-
-/**
- * Register the Single: Project section settings
- */
-add_action( 'customize_register', function ( $wp_customize ) {
-    /**
-     * @var WP_Customize_Manager $wp_customize
-     */
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_project_sponsor',
-        array(
-//            'default'           => '',
-//            'sanitize_callback' => 'force_balance_tags',
-        )
+        [
+            'sanitize_callback' => 'absint',
+        ]
     );
 
     $sponsors = get_posts( [
@@ -318,19 +216,18 @@ add_action( 'customize_register', function ( $wp_customize ) {
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_project_sponsor',
-        array(
+        [
             'label'       => esc_html__( 'Project Sponsor', '' ),
             'description' => esc_html__( 'Project Sponsor.', '' ),
-            'section'     => '_toibox_project_single_section',
+            'section'     => '_toibox_project_section',
             'type'        => 'select',
             'choices'     => $choices,
-        )
+        ]
     );
-
 } );
 
 /**
- * Register the Sponsors Footer section settings
+ * Register the Article (Post) section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -339,27 +236,68 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
     // Register a setting.
     $wp_customize->add_setting(
-        '_toibox_sponsor_footer_intro',
-        array(
+        '_toibox_article_archive_title',
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
-        '_toibox_sponsor_footer_intro',
-        array(
-            'label'       => esc_html__( 'Sponsor Footer intro content.', '' ),
-//            'description' => esc_html__( 'Content', '' ),
-            'section'     => '_toibox_sponsor_footer_section',
+        '_toibox_article_archive_title',
+        [
+            'label'       => esc_html__( 'Title', '' ),
+            'description' => esc_html__( 'Title.', '' ),
+            'section'     => '_toibox_article_section',
             'type'        => 'text',
+        ]
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_article_archive_content',
+        [
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        ]
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_article_archive_content',
+        [
+            'label'       => esc_html__( 'Intro Content', '' ),
+            'description' => esc_html__( 'Intro Content.', '' ),
+            'section'     => '_toibox_article_section',
+            'type'        => 'textarea',
+        ]
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_article_fallback_image',
+        []
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            '_toibox_article_fallback_image',
+            [
+                'label'     => __( 'Fallback Article Image', '' ),
+                'section'   => '_toibox_article_section',
+                'settings'  => '_toibox_article_fallback_image',
+                'mime_type' => 'image',
+            ]
         )
     );
+
 } );
 
 /**
- * Register the Copyright section settings
+ * Register the Footer section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -368,27 +306,46 @@ add_action( 'customize_register', function ( $wp_customize ) {
 
     // Register a setting.
     $wp_customize->add_setting(
-        '_toibox_copyright',
-        array(
+        '_toibox_footer_sponsor_intro',
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
+    );
+
+    // Create the setting field.
+    $wp_customize->add_control(
+        '_toibox_footer_sponsor_intro',
+        [
+            'label'   => esc_html__( 'Sponsor intro content.', '' ),
+            'section' => '_toibox_footer_section',
+            'type'    => 'text',
+        ]
+    );
+
+    // Register a setting.
+    $wp_customize->add_setting(
+        '_toibox_copyright',
+        [
+            'default'           => '',
+            'sanitize_callback' => 'force_balance_tags',
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_copyright',
-        array(
+        [
             'label'       => esc_html__( 'Copyright Statement', '' ),
-            'description' => esc_html__( 'Copyright statement. Basic HTML tags are allowed.', '' ),
-            'section'     => '_toibox_copyright_section',
+            'description' => esc_html__( 'Basic HTML tags are allowed.', '' ),
+            'section'     => '_toibox_footer_section',
             'type'        => 'text',
-        )
+        ]
     );
 } );
 
 /**
- * Register the Social section settings
+ * Register the Social Profile section settings
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -418,20 +375,20 @@ add_action( 'customize_register', function ( $wp_customize ) {
         // Register a setting.
         $wp_customize->add_setting(
             sprintf( '_toibox_%s_url', $key ),
-            array(
+            [
                 'default' => '',
-            )
+            ]
         );
 
         // Create the setting field.
         $wp_customize->add_control(
             sprintf( '_toibox_%s_url', $key ),
-            array(
+            [
                 'label'       => $social_network['label'],
                 'description' => $social_network['description'],
                 'section'     => '_toibox_social_profiles_section',
                 'type'        => 'text',
-            )
+            ]
         );
     }
 
@@ -448,57 +405,57 @@ add_action( 'customize_register', function ( $wp_customize ) {
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_twitter_api_consumer_key',
-        array(
+        [
             'default' => '',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_twitter_api_consumer_key',
-        array(
+        [
             'label'       => esc_html__( 'Twitter API Consumer Key', '' ),
             'description' => esc_html__( 'Twitter API Consumer Key', '' ),
             'section'     => '_toibox_twitter_api_section',
             'type'        => 'text',
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_twitter_api_consumer_secret',
-        array(
+        [
             'default' => '',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_twitter_api_consumer_secret',
-        array(
+        [
             'label'       => esc_html__( 'Twitter API Consumer Secret', '' ),
             'description' => esc_html__( 'Twitter API Consumer Secret', '' ),
             'section'     => '_toibox_twitter_api_section',
             'type'        => 'text',
-        )
+        ]
     );
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_twitter_api_screen_name',
-        array(
+        [
             'default' => '',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_twitter_api_screen_name',
-        array(
+        [
             'label'       => esc_html__( 'Twitter API Screen Name', '' ),
             'description' => esc_html__( 'Twitter API Screen Name', '' ),
             'section'     => '_toibox_twitter_api_section',
             'type'        => 'text',
-        )
+        ]
     );
 
 } );
@@ -514,60 +471,60 @@ add_action( 'customize_register', function ( $wp_customize ) {
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_header_scripts',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_header_scripts',
-        array(
+        [
             'label'       => esc_html__( 'Header Scripts', '' ),
             'description' => esc_html__( 'Additional scripts to add to the header. Basic HTML tags are allowed.', '' ),
             'section'     => '_toibox_additional_scripts_section',
             'type'        => 'textarea',
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_body_open_scripts',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_body_open_scripts',
-        array(
+        [
             'label'       => esc_html__( 'Body Open Scripts', '' ),
             'description' => esc_html__( 'Additional scripts to add just after the <body> open tag. Basic HTML tags are allowed.', '' ),
             'section'     => '_toibox_additional_scripts_section',
             'type'        => 'textarea',
-        )
+        ]
     );
 
     // Register a setting.
     $wp_customize->add_setting(
         '_toibox_footer_scripts',
-        array(
+        [
             'default'           => '',
             'sanitize_callback' => 'force_balance_tags',
-        )
+        ]
     );
 
     // Create the setting field.
     $wp_customize->add_control(
         '_toibox_footer_scripts',
-        array(
+        [
             'label'       => esc_html__( 'Footer Scripts', '' ),
             'description' => esc_html__( 'Additional scripts to add to the footer. Basic HTML tags are allowed.', '' ),
             'section'     => '_toibox_additional_scripts_section',
             'type'        => 'textarea',
-        )
+        ]
     );
 } );

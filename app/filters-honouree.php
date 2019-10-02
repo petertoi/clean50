@@ -13,7 +13,6 @@ use function Toi\ToiBox\Snippets\get_award_category;
 use function Toi\ToiBox\Snippets\get_award_year;
 use function Toi\ToiBox\Snippets\get_honouree_type;
 use function Toi\ToiBox\Snippets\get_team;
-use function Toi\ToiBox\Snippets\to_array;
 
 /**
  * SAVE_POST_HONOUREE

@@ -15,9 +15,9 @@ add_action( 'customize_register', function ( $wp_customize ) {
      */
 
     $wp_customize->add_section(
-        '_toibox_honouree_archive_section',
+        '_toibox_honouree_section',
         array(
-            'title'    => esc_html__( 'Archive: Honourees', '' ),
+            'title'    => esc_html__( 'Honourees', '' ),
             'priority' => 10,
             'panel'    => 'site-options',
         )
@@ -25,7 +25,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
- * Register the Archive: Project section
+ * Register the Project section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -33,9 +33,9 @@ add_action( 'customize_register', function ( $wp_customize ) {
      */
 
     $wp_customize->add_section(
-        '_toibox_project_archive_section',
+        '_toibox_project_section',
         array(
-            'title'    => esc_html__( 'Archive: Projects', '' ),
+            'title'    => esc_html__( 'Projects', '' ),
             'priority' => 10,
             'panel'    => 'site-options',
         )
@@ -43,7 +43,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 } );
 
 /**
- * Register the Archive: Articles section
+ * Register the Articles section
  */
 add_action( 'customize_register', function ( $wp_customize ) {
     /**
@@ -51,27 +51,9 @@ add_action( 'customize_register', function ( $wp_customize ) {
      */
 
     $wp_customize->add_section(
-        '_toibox_article_archive_section',
+        '_toibox_article_section',
         array(
-            'title'    => esc_html__( 'Archive: Articles', '' ),
-            'priority' => 10,
-            'panel'    => 'site-options',
-        )
-    );
-} );
-
-/**
- * Register the Single: Project section
- */
-add_action( 'customize_register', function ( $wp_customize ) {
-    /**
-     * @var WP_Customize_Manager $wp_customize
-     */
-
-    $wp_customize->add_section(
-        '_toibox_project_single_section',
-        array(
-            'title'    => esc_html__( 'Single: Projects', '' ),
+            'title'    => esc_html__( 'Articles', '' ),
             'priority' => 10,
             'panel'    => 'site-options',
         )
@@ -87,27 +69,9 @@ add_action( 'customize_register', function ( $wp_customize ) {
      */
 
     $wp_customize->add_section(
-        '_toibox_sponsor_footer_section',
+        '_toibox_footer_section',
         array(
-            'title'    => esc_html__( 'Sponsor Footer', '' ),
-            'priority' => 10,
-            'panel'    => 'site-options',
-        )
-    );
-} );
-
-/**
- * Register the Copyright section
- */
-add_action( 'customize_register', function ( $wp_customize ) {
-    /**
-     * @var WP_Customize_Manager $wp_customize
-     */
-
-    $wp_customize->add_section(
-        '_toibox_copyright_section',
-        array(
-            'title'    => esc_html__( 'Copyright', '' ),
+            'title'    => esc_html__( 'Footer', '' ),
             'priority' => 10,
             'panel'    => 'site-options',
         )

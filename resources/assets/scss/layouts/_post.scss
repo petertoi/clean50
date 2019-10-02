@@ -1,0 +1,18 @@
+.single-post {
+	.feature-image {
+		margin-bottom: 3rem; //48px;
+
+		.figure-caption {
+			padding-top: 0.5625rem; //9px
+		}
+	}
+
+	.meta {
+		margin-bottom: 1rem; //16px
+
+		.author,
+		.published {
+			font-style: italic;
+		}
+	}
+}

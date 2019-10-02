@@ -197,6 +197,21 @@ function get_sponsor_tier( $sponsor_id = null ) {
 }
 
 /**
+ * @param null $post_id
+ *
+ * @return string|null
+ */
+function get_post_byline( $post_id = null ) {
+    if ( null === $post_id ) {
+        $post_id = get_the_ID();
+    }
+
+    $byline = get_field( 'byline' ) ?: get_the_author();
+
+    return $byline;
+}
+
+/**
  * Returns a formatted year to year string suitable for use in copyright statements etc.
  *
  * @param string $from
@@ -420,7 +435,7 @@ function get_sponsor_carousel( $sponsors ) {
 
     $carousel_indicators = sprintf( '<ol class="carousel-indicators">%s</ol>', implode( '', $indicators ) );
     $carousel_slides     = sprintf( '<div class="carousel-inner">%s</div>', implode( '', $slides ) );
-    $carousel            = sprintf( '<div id="%s" class="carousel slide" data-ride="carousel" data-interal="3000">%s%s</div>', $id, $carousel_indicators, $carousel_slides );
+    $carousel            = sprintf( '<div id="%s" class="carousel slide" data-ride="carousel" data-interval="3000">%s%s</div>', $id, $carousel_indicators, $carousel_slides );
     $inner               = sprintf( '%s%s', $title, $carousel );
     $output              = sprintf( '<div class="sponsors-carousel %s">%s</div>',
         ( 1 < count( $slides ) ) ? 'has-indicators' : 'no-indicators',

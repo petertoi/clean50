@@ -88,7 +88,16 @@ add_action( 'after_setup_theme', function () {
     add_image_size( 'sprite-sm', 50, 50, true );
     add_image_size( 'sprite-md', 100, 100, true );
     add_image_size( 'sprite-lg', 150, 150, true );
+
+
 }, 20 );
+
+add_filter( 'image_size_names_choose', function ( $sizes ) {
+    return array_merge( $sizes, array(
+//        'square-lg-4' => __( 'Square' ),
+        'square-lg-3' => __( 'Article Thumb' ),
+    ) );
+} );
 
 /**
  * Register sidebars
@@ -105,7 +114,7 @@ add_action( 'widgets_init', function () {
                           'id'   => 'sidebar-single-honouree'
                       ] + $config );
     register_sidebar( [
-                          'name' => __( 'Single: Post', '' ),
+                          'name' => __( 'Single: Article', '' ),
                           'id'   => 'sidebar-single'
                       ] + $config );
 } );

@@ -6,6 +6,23 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+namespace Toi\ToiBox\Filters_Projects;
+
+use function Toi\ToiBox\Snippets\get_award_year;
+
+/**
+ * Set _award-year meta to term->slug on save to aid with ordering clauses
+ */
+add_action( 'save_post_project', function ( $post_ID, $post, $update ) {
+    $award_year = get_award_year( $post_ID );
+    if ( false === $award_year ) {
+        delete_post_meta( $post_ID, '_award-year' );
+    } else {
+        update_post_meta( $post_ID, '_award-year', $award_year->slug );
+    }
+}, 10, 3 );
+
+
 /**
  * Project Archive posts per page
  */
@@ -25,6 +42,43 @@ add_filter( 'pre_get_posts', function ( $query ) {
 
     return $query;
 } );
+
+/**
+ * Set orderby
+ */
+add_filter( 'pre_get_posts', function ( $query ) {
+    /** @var \WP_Query $query */
+    if ( is_admin() ) {
+        return $query;
+    }
+
+    if ( 'project' !== $query->get( 'post_type' ) ) {
+        return $query;
+    }
+
+    $meta_query = $query->get( 'meta_query ' );
+
+    if ( empty( $meta_query ) ) {
+        $meta_query = [];
+    }
+
+    $meta_query['relation'] = 'AND';
+
+    $meta_query['award_year_order'] = [
+        'key'     => '_award-year',
+        'compare' => 'EXISTS',
+    ];
+
+    $query->set( 'meta_query', $meta_query );
+
+    $query->set( 'orderby', [
+        'award_year_order' => 'DESC',
+        'title'            => 'ASC',
+    ] );
+
+    return $query;
+} );
+
 
 /**
  * Set Award Year term link to point to Honouree archive when in Honouree context

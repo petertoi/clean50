@@ -12,7 +12,7 @@ add_action( 'init', function () {
     register_post_type(
         'sprite',
         [
-            'public' => 'false',
+            'public' => false,
         ]
     );
 
