@@ -14,6 +14,7 @@
 .boulders {
 	z-index: -1;
 	width: 100%;
+	overflow-x: hidden;
 
 	.boulder-1,
 	.boulder-2 {
