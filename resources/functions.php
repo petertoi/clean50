@@ -4,6 +4,7 @@
  */
 
 use Toi\ToiBox\Sprite;
+use function Toi\ToiBox\Snippets\get_award_year;
 
 if ( version_compare( '7.1', phpversion(), '>=' ) ) {
     wp_die( __( 'You must be using PHP 7.1 or greater.', '' ), __( 'Invalid PHP version', '' ) );
@@ -60,4 +61,3 @@ array_map( function ( $file ) {
     'widgets.php',
     'wp-sprite/class-sprite.php',
 ] );
-

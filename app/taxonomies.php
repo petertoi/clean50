@@ -105,9 +105,11 @@ add_action( 'init', function () {
                 'sponsor' => [
                     'title'    => 'Sponsor',
                     'function' => function ( $term_id ) {
-                        $sponsor = get_term_meta( $term_id, 'sponsor', true );
-                        if ( $sponsor ) {
-                            echo get_the_title( $sponsor );
+                        $sponsor_group = get_field( 'sponsors', get_term( $term_id, 'award-category' ) );
+                        if ( $sponsor_group && ! empty( $sponsor_group['sponsors'] ) ) {
+                            foreach ( $sponsor_group['sponsors'] as $sponsor ) {
+                                echo get_the_title( $sponsor ) . '<br>';
+                            }
                         }
                     },
                 ],

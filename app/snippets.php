@@ -51,16 +51,16 @@ function get_award( $honouree_id = null ) {
 }
 
 /**
- * @param int|null $honouree_id
+ * @param int|null $post_id Honouree or Project ID
  *
  * @return bool|\WP_Term
  */
-function get_award_year( $honouree_id = null ) {
-    if ( is_null( $honouree_id ) ) {
-        $honouree_id = get_the_ID();
+function get_award_year( $post_id = null ) {
+    if ( is_null( $post_id ) ) {
+        $post_id = get_the_ID();
     }
 
-    $award_years = get_the_terms( $honouree_id, 'award-year' );
+    $award_years = get_the_terms( $post_id, 'award-year' );
 
     if ( empty( $award_years ) ) {
         return false;

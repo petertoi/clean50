@@ -11,6 +11,10 @@ namespace Toi\ToiBox\Filters_Projects;
 use function Toi\ToiBox\Snippets\get_award_year;
 
 /**
+ * SAVE_POST_PROJECT
+ */
+
+/**
  * Set _award-year meta to term->slug on save to aid with ordering clauses
  */
 add_action( 'save_post_project', function ( $post_ID, $post, $update ) {
@@ -22,6 +26,33 @@ add_action( 'save_post_project', function ( $post_ID, $post, $update ) {
     }
 }, 10, 3 );
 
+/**
+ * REQUEST
+ */
+
+/**
+ * Use 'year' query string to filter by 'award-year' instead of default 'post_date'
+ */
+add_filter( 'request', function ( $query_vars ) {
+
+    if ( empty( $query_vars['post_type'] ) || 'project' !== $query_vars['post_type'] ) {
+        return $query_vars;
+    }
+
+    if ( empty( $query_vars['year'] ) ) {
+        return $query_vars;
+    }
+
+    $query_vars['award-year'] = $query_vars['year'];
+    unset( $query_vars['year'] );
+
+    return $query_vars;
+
+}, 10, 1 );
+
+/**
+ * PRE_GET_POSTS
+ */
 
 /**
  * Project Archive posts per page
@@ -29,6 +60,10 @@ add_action( 'save_post_project', function ( $post_ID, $post, $update ) {
 add_filter( 'pre_get_posts', function ( $query ) {
     /** @var \WP_Query $query */
     if ( is_admin() ) {
+        return $query;
+    }
+
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
         return $query;
     }
 
@@ -49,6 +84,10 @@ add_filter( 'pre_get_posts', function ( $query ) {
 add_filter( 'pre_get_posts', function ( $query ) {
     /** @var \WP_Query $query */
     if ( is_admin() ) {
+        return $query;
+    }
+
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
         return $query;
     }
 
@@ -79,6 +118,9 @@ add_filter( 'pre_get_posts', function ( $query ) {
     return $query;
 } );
 
+/**
+ * TERM_LINK
+ */
 
 /**
  * Set Award Year term link to point to Honouree archive when in Honouree context
@@ -101,26 +143,19 @@ add_filter( 'term_link', function ( $termlink, $term, $taxonomy ) {
 
 }, 10, 3 );
 
-/**
- * Use 'year' query string to filter by 'award-year' instead of default 'post_date'
- */
-add_filter( 'request', function ( $query_vars ) {
-
-    if ( empty( $query_vars['post_type'] ) || 'project' !== $query_vars['post_type'] ) {
-        return $query_vars;
-    }
-
-    if ( empty( $query_vars['year'] ) ) {
-        return $query_vars;
-    }
-
-    $query_vars['award-year'] = $query_vars['year'];
-    unset( $query_vars['year'] );
-
-    return $query_vars;
-
-}, 10, 1 );
 
 add_filter( 'template_include', function ( $template ) {
+//    global $wp_query;
+
+    if ( ! is_post_type_archive( 'project' ) ) {
+        return $template;
+    }
+
+    if ( ! is_search() ) {
+        return $template;
+    }
+
+    $template = get_post_type_archive_template();
+
     return $template;
 }, 10, 1 );

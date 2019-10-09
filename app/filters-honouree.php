@@ -182,7 +182,9 @@ function add_team_member_to_team( $team_member_id, $team_id ) {
     }
 }
 
-/** REQUEST */
+/**
+ * REQUEST
+ */
 
 /**
  * Use 'year' query string to filter by 'award-year' instead of default 'post_date'
@@ -224,7 +226,9 @@ add_filter( 'request', function ( $query_vars ) {
 
 }, 10, 1 );
 
-/** PRE_GET_POSTS */
+/**
+ * PRE_GET_POSTS
+ */
 
 /**
  * Set posts_per_page
@@ -392,13 +396,20 @@ add_filter( 'pre_get_posts', function ( $query ) {
     return $query;
 }, 10, 1 );
 
-/** THE_CONTENT */
+/**
+ * THE_CONTENT
+ */
 
 /**
  * Prepend Team content to Team Member content
  */
 add_filter( 'the_content', function ( $content ) {
     global $post;
+
+    if ( ! $post instanceof \WP_Post ) {
+        return $content;
+    }
+
     if ( 'honouree' !== $post->post_type ) {
         return $content;
     }
@@ -415,7 +426,9 @@ add_filter( 'the_content', function ( $content ) {
 
 }, 10, 1 );
 
-/** TERM_LINK */
+/**
+ * TERM_LINK
+ */
 
 /**
  * Set Award term link to point to Honouree archive when in Honouree context
