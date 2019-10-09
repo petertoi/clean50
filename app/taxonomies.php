@@ -92,7 +92,7 @@ add_action( 'init', function () {
         [
             'public'           => true,
             'show_ui'          => true,
-            'hierarchical'     => false,
+            'hierarchical'     => true,
             'query_var'        => true,
             'exclusive'        => true,
             'allow_hierarchy'  => false,
@@ -129,7 +129,7 @@ add_action( 'init', function () {
         [
             'public'           => true,
             'show_ui'          => true,
-            'hierarchical'     => false,
+            'hierarchical'     => true,
             'query_var'        => true,
             'exclusive'        => true,
             'allow_hierarchy'  => false,
@@ -151,7 +151,7 @@ add_action( 'init', function () {
         [
             'public'           => false,
             'show_ui'          => true,
-            'hierarchical'     => false,
+            'hierarchical'     => true,
             'query_var'        => true,
             'exclusive'        => false,
             'allow_hierarchy'  => false,
@@ -183,7 +183,7 @@ add_action( 'init', function () {
         [
             'public'           => true,
             'show_ui'          => true,
-            'hierarchical'     => false,
+            'hierarchical'     => true,
             'query_var'        => true,
             'exclusive'        => false,
             'allow_hierarchy'  => false,
