@@ -72,12 +72,16 @@ if ( isset( $category->term_id ) ) {
             ?>
           </div>
         </div>
-        <?php if ( ! empty( $links ) ) : ?>
+        <?php if ( array_filter( $links, function ( $link ) {
+          return ! empty( $link['target'] );
+        } ) ) : ?>
           <div class="links sidebar-links">
             <h4 class="sidebar-links-title"><?php _ex( 'Learn More', '', '' ); ?></h4>
             <ul class="sidebar-links-list">
               <?php foreach ( $links as $link ) : ?>
-                <?php printf( '<li class="sidebar-links-item"><a target="_blank" href="%1$s" title="%2$s">%2$s</a></li>', $link['target'], $link['label'] ); ?>
+                <?php if ( ! empty( $link['target'] ) ) : ?>
+                  <?php printf( '<li class="sidebar-links-item"><a target="_blank" href="%1$s" title="%2$s">%2$s</a></li>', $link['target'], $link['label'] ); ?>
+                <?php endif; ?>
               <?php endforeach; ?>
             </ul>
           </div>
