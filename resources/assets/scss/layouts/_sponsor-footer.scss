@@ -47,8 +47,11 @@
 			}
 		}
 
+		.sponsors {
+			transform: scale(0.84);
+		}
+
 		.sponsor-logo {
-			width: 85%;
 			height: auto;
 		}
 
@@ -66,8 +69,11 @@
 			.sponsor-title {
 				@include sr-only;
 			}
+			.sponsors {
+				transform: scale(0.74);
+			}
+
 			.sponsor-logo {
-				width: 74%;
 				height: auto;
 				display: block;
 			}
@@ -80,11 +86,15 @@
 		}
 
 		@include media-breakpoint-up(md) {
+			.sponsors {
+				transform: scale(0.66);
+			}
+
 			.sponsor-title {
 				@include sr-only;
 			}
+
 			.sponsor-logo {
-				width: 66%;
 				height: auto;
 				display: block;
 			}
@@ -92,6 +102,7 @@
 	}
 
 	.summit {
+
 		.sponsor-logo {
 			display: none;
 		}
@@ -100,8 +111,10 @@
 			.sponsor-title {
 				@include sr-only;
 			}
+			.sponsors {
+				transform: scale(0.6);
+			}
 			.sponsor-logo {
-				width: 60%;
 				height: auto;
 				display: block;
 			}

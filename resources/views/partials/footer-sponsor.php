@@ -55,24 +55,26 @@ foreach ( $tiers as $tier ) {
       ?>
       <div class="<?php echo esc_attr( $key ); ?>">
         <div class="row justify-content-center">
-          <div class="col-auto d-flex flex-nowrap align-content-center sponsors">
-            <?php foreach ( $tier_sponsors as $sponsor ) : ?>
-              <?php
-              if ( has_post_thumbnail( ( $sponsor->ID ) ) ) {
-                $atts  = [ 'class' => 'img-fluid sponsor-logo' ];
-                $scale = get_field( 'logo_scale', $sponsor->ID ) ?: 1;
-                if ( 1 !== $scale ) {
-                  $atts['style'] = sprintf( 'transform: scale(%s);', $scale );
+          <div class="col-auto d-flex flex-nowrap align-content-center">
+            <div class="sponsors">
+              <?php foreach ( $tier_sponsors as $sponsor ) : ?>
+                <?php
+                if ( has_post_thumbnail( ( $sponsor->ID ) ) ) {
+                  $atts  = [ 'class' => 'img-fluid sponsor-logo' ];
+                  $scale = get_field( 'logo_scale', $sponsor->ID ) ?: 1;
+                  if ( 1 !== $scale ) {
+                    $atts['style'] = sprintf( 'transform: scale(%s);', $scale );
+                  }
+                  $link = get_field( 'link', $sponsor->ID );
+                  printf( '<a href="%s" class="sponsor" target="_blank"><h5 class="sponsor-title">%s</h5>%s</a>',
+                    ! empty( $link['target'] ) ? $link['target'] : '#',
+                    $sponsor->post_title,
+                    get_the_post_thumbnail( $sponsor->ID, 'sponsor-carousel', $atts )
+                  );
                 }
-                $link = get_field( 'link', $sponsor->ID );
-                printf( '<a href="%s" class="sponsor" target="_blank"><h5 class="sponsor-title">%s</h5>%s</a>',
-                  ! empty( $link['target'] ) ? $link['target'] : '#',
-                  $sponsor->post_title,
-                  get_the_post_thumbnail( $sponsor->ID, 'sponsor-carousel', $atts )
-                );
-              }
-              ?>
-            <?php endforeach; ?>
+                ?>
+              <?php endforeach; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -85,24 +87,26 @@ foreach ( $tiers as $tier ) {
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-auto align-content-center sponsors">
-            <?php foreach ( $tiers_sponsors['summit'] as $sponsor ) : ?>
-              <?php
-              if ( has_post_thumbnail( ( $sponsor->ID ) ) ) {
-                $atts  = [ 'class' => 'img-fluid sponsor-logo' ];
-                $scale = get_field( 'logo_scale', $sponsor->ID ) ?: 1;
-                if ( 1 !== $scale ) {
-                  $atts['style'] = sprintf( 'transform: scale(%s);', $scale );
+          <div class="col-auto align-content-center">
+            <div class="sponsors">
+              <?php foreach ( $tiers_sponsors['summit'] as $sponsor ) : ?>
+                <?php
+                if ( has_post_thumbnail( ( $sponsor->ID ) ) ) {
+                  $atts  = [ 'class' => 'img-fluid sponsor-logo' ];
+                  $scale = get_field( 'logo_scale', $sponsor->ID ) ?: 1;
+                  if ( 1 !== $scale ) {
+                    $atts['style'] = sprintf( 'transform: scale(%s);', $scale );
+                  }
+                  $link = get_field( 'link', $sponsor->ID );
+                  printf( '<a href="%s" class="sponsor" target="_blank"><h5 class="sponsor-title">%s</h5>%s</a>',
+                    ! empty( $link['target'] ) ? $link['target'] : '#',
+                    $sponsor->post_title,
+                    get_the_post_thumbnail( $sponsor->ID, 'sponsor-carousel', $atts )
+                  );
                 }
-                $link = get_field( 'link', $sponsor->ID );
-                printf( '<a href="%s" class="sponsor" target="_blank"><h5 class="sponsor-title">%s</h5>%s</a>',
-                  ! empty( $link['target'] ) ? $link['target'] : '#',
-                  $sponsor->post_title,
-                  get_the_post_thumbnail( $sponsor->ID, 'sponsor-carousel', $atts )
-                );
-              }
-              ?>
-            <?php endforeach; ?>
+                ?>
+              <?php endforeach; ?>
+            </div>
           </div>
         </div>
       </div>
