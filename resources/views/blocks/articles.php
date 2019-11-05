@@ -6,6 +6,8 @@
  * @author  Peter Toi <peter@petertoi.com>
  */
 
+$fallback_image_id = get_theme_mod( '_toibox_article_archive_fallback_article_image' );
+
 $title        = get_field( 'title' );
 $category__in = get_field( 'category__in' );
 
@@ -36,28 +38,31 @@ $posts = get_posts( $args );
     <?php foreach ( $posts as $post ) : ?>
       <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
         <article class="article">
-          <?php if ( has_post_thumbnail( $post ) ) : ?>
-            <?php
-            $banner_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $post ), 'banner-sm-12' );
-            $banner_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $post ), 'banner-sm-12' );
-            $square_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $post ), 'square-lg-3' );
-            $square_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $post ), 'square-lg-3' );
-            ?>
-            <picture>
-              <source
-                class="img-fluid rounded"
-                src="<?php echo $square_src; ?>"
-                srcset="<?php echo $square_srcset; ?>"
-                media="(min-width: 768px)"
-              >
-              <img
-                class="img-fluid rounded"
-                src="<?php echo $banner_src; ?>"
-                srcset="<?php echo $banner_srcset; ?>"
-                alt=""
-              >
-            </picture>
-          <?php endif; ?>
+          <?php
+          $image_id = ( has_post_thumbnail( $post ) )
+            ? get_post_thumbnail_id( $post )
+            : $fallback_image_id;
+
+          $banner_src = wp_get_attachment_image_url( $image_id, 'banner-sm-12' );
+          $banner_srcset = wp_get_attachment_image_srcset( $image_id, 'banner-sm-12' );
+          $square_src = wp_get_attachment_image_url( $image_id, 'square-lg-3' );
+          $square_srcset = wp_get_attachment_image_srcset( $image_id, 'square-lg-3' );
+          ?>
+          <picture>
+            <source
+              class="img-fluid rounded"
+              src="<?php echo $square_src; ?>"
+              srcset="<?php echo $square_srcset; ?>"
+              media="(min-width: 768px)"
+            >
+            <img
+              class="img-fluid rounded"
+              src="<?php echo $banner_src; ?>"
+              srcset="<?php echo $banner_srcset; ?>"
+              alt=""
+            >
+          </picture>
+
           <?php
           $category = get_the_category( $post );
           // @TODO look at implementing a primary category library (not Yoast)

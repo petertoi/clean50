@@ -8,9 +8,9 @@
 
 use function Toi\ToiBox\Snippets\bootstrap_pagination;
 
-$title           = get_theme_mod( '_toibox_article_archive_title' ) ?: '';
-$content         = get_theme_mod( '_toibox_article_archive_content' ) ?: '';
-$fallback_banner = get_theme_mod( '_toibox_article_archive_fallback_article_image' );
+$title          = get_theme_mod( '_toibox_article_archive_title' ) ?: '';
+$content        = get_theme_mod( '_toibox_article_archive_content' ) ?: '';
+$fallback_image = get_theme_mod( '_toibox_article_archive_fallback_article_image' );
 
 ?>
 
@@ -38,8 +38,8 @@ $fallback_banner = get_theme_mod( '_toibox_article_archive_fallback_article_imag
             <?php
             if ( has_post_thumbnail() ) {
               echo get_the_post_thumbnail( null, 'banner-lg-6', [ 'class' => 'img-fluid rounded' ] );
-            } else if ( $fallback_banner ) {
-              echo wp_get_attachment_image( $fallback_banner, 'banner-lg-6', false, [ 'class' => 'img-fluid rounded' ] );
+            } else if ( $fallback_image ) {
+              echo wp_get_attachment_image( $fallback_image, 'banner-lg-6', false, [ 'class' => 'img-fluid rounded' ] );
             }
             ?>
           </div>

@@ -4,16 +4,25 @@
 		color: $body-color;
 		text-decoration: none;
 
+		&[aria-expanded="true"],
+		&[aria-expanded="false"] {
+			&::before {
+				content: ' ';
+				display: inline-block;
+				width: 2.25rem;
+				height: 2.25rem;
+				background-color: red;
+				border-radius: 100%;
+			}
+		}
 
 		&[aria-expanded="true"] {
 			&::before {
-				content: '-';
 			}
 		}
 
 		&[aria-expanded="false"] {
 			&::before {
-				content: '+';
 			}
 
 		}

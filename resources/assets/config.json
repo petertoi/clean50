@@ -12,7 +12,7 @@
   "criticalCss": {
     "urls": [
       {
-        "url": "",
+        "url": "/",
         "template": "home"
       }
     ]

@@ -24,12 +24,12 @@ $featured = get_field( 'featured' );
       <div class="article project">
         <?php if ( has_post_thumbnail( $featured ) ) : ?>
           <?php
-          $banner_sm_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $featured ), 'banner-sm-12' );
-          $banner_sm_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $featured ), 'banner-sm-12' );
+          $banner_sm_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $featured ), 'banner-md-12' );
+          $banner_sm_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $featured ), 'banner-md-12' );
           $banner_lg_src    = wp_get_attachment_image_url( get_post_thumbnail_id( $featured ), 'banner-lg-6' );
           $banner_lg_srcset = wp_get_attachment_image_srcset( get_post_thumbnail_id( $featured ), 'banner-lg-6' );
           ?>
-          <picture>
+          <picture class="project-feature-image">
             <source
               class="img-fluid rounded"
               src="<?php echo $banner_lg_src; ?>"
@@ -44,7 +44,7 @@ $featured = get_field( 'featured' );
             >
           </picture>
         <?php endif; ?>
-        <span class="article-label"><?php _ex( 'Featured Project', '', '' ); ?></span>
+        <div class="article-label"><?php _ex( 'Featured Project', '', '' ); ?></div>
         <h4 class="project-title"><?php echo get_the_title( $featured ); ?></h4>
         <a class="article-read-more stretched-link" href="<?php echo get_the_permalink( $featured ); ?>"><?php _ex( 'View Project', '', '' ); ?></a>
       </div>

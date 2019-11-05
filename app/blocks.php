@@ -14,7 +14,7 @@ add_filter( 'block_categories', function ( $categories, $post ) {
         array(
             array(
                 'slug'  => 'clean50',
-                'title' => __( 'Clean50', 'toibox' ),
+                'title' => __( 'Clean50', 'clean50' ),
                 'icon'  => 'code-editor',
             ),
         )

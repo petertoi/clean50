@@ -77,6 +77,9 @@ add_action( 'after_setup_theme', function () {
     add_image_size( 'banner-lg-6', 550, 189, true ); // col-lg-6
 
     // Banner sm: 1.53 x 1
+    add_image_size( 'banner-md-12', 768, 501, true );
+
+    // Banner sm: 1.53 x 1
     add_image_size( 'banner-sm-12', 535, 350, true );
 
     // Square 1 x 1
@@ -95,7 +98,7 @@ add_action( 'after_setup_theme', function () {
 add_filter( 'image_size_names_choose', function ( $sizes ) {
     return array_merge( $sizes, array(
 //        'square-lg-4' => __( 'Square' ),
-        'square-lg-3' => __( 'Article Thumb' ),
+        'square-lg-3' => __( 'Article Thumb', 'clean50' ),
     ) );
 } );
 

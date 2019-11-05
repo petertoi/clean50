@@ -339,20 +339,20 @@ function cached_menu( $location, $args = [] ) {
 function breadcrumbs() {
     $labels = [
         'title'               => false, //__( 'Browse:', 'hybrid-core' ),
-        'aria_label'          => _x( 'Breadcrumbs', 'breadcrumbs aria label', 'hybrid-core' ),
-        'home'                => __( 'Home', 'hybrid-core' ),
-        'error_404'           => __( '404 Not Found', 'hybrid-core' ),
-        'archives'            => __( 'Archives', 'hybrid-core' ),
+        'aria_label'          => _x( 'Breadcrumbs', 'breadcrumbs aria label', 'clean50' ),
+        'home'                => __( 'Home', 'clean50' ),
+        'error_404'           => __( '404 Not Found', 'clean50' ),
+        'archives'            => __( 'Archives', 'clean50' ),
         // Translators: %s is the search query.
-        'search'              => __( 'Search results for: %s', 'hybrid-core' ),
+        'search'              => __( 'Search results for: %s', 'clean50' ),
         // Translators: %s is the page number.
-        'paged'               => __( 'Page %s', 'hybrid-core' ),
+        'paged'               => __( 'Page %s', 'clean50' ),
         // Translators: %s is the page number.
-        'paged_comments'      => __( 'Comment Page %s', 'hybrid-core' ),
+        'paged_comments'      => __( 'Comment Page %s', 'clean50' ),
         // Translators: Minute archive title. %s is the minute time format.
-        'archive_minute'      => __( 'Minute %s', 'hybrid-core' ),
+        'archive_minute'      => __( 'Minute %s', 'clean50' ),
         // Translators: Weekly archive title. %s is the week date format.
-        'archive_week'        => __( 'Week %s', 'hybrid-core' ),
+        'archive_week'        => __( 'Week %s', 'clean50' ),
 
         // "%s" is replaced with the translated date/time format.
         'archive_minute_hour' => '%s',

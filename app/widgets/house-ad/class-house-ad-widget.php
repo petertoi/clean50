@@ -19,9 +19,9 @@ class House_Ad_Widget extends \WP_Widget_Media {
     public function __construct() {
         parent::__construct(
             'toibox_house_ad',
-            __( 'House Ad' ),
+            __( 'House Ad', 'clean50' ),
             array(
-                'description' => __( 'Display a house ad with link.' ),
+                'description' => __( 'Display a house ad with link.', 'clean50' ),
                 'mime_type'   => 'image',
             )
         );
@@ -29,18 +29,18 @@ class House_Ad_Widget extends \WP_Widget_Media {
         $this->l10n = array_merge(
             $this->l10n,
             array(
-                'no_media_selected'          => __( 'No image selected' ),
-                'add_media'                  => _x( 'Add Image', 'label for button in the image widget' ),
-                'replace_media'              => _x( 'Replace Image', 'label for button in the image widget; should preferably not be longer than ~13 characters long' ),
-                'edit_media'                 => _x( 'Edit Image', 'label for button in the image widget; should preferably not be longer than ~13 characters long' ),
+                'no_media_selected'          => __( 'No image selected', 'clean50' ),
+                'add_media'                  => _x( 'Add Image', 'label for button in the image widget', 'clean50' ),
+                'replace_media'              => _x( 'Replace Image', 'label for button in the image widget; should preferably not be longer than ~13 characters long', 'clean50' ),
+                'edit_media'                 => _x( 'Edit Image', 'label for button in the image widget; should preferably not be longer than ~13 characters long', 'clean50' ),
                 'missing_attachment'         => sprintf(
                 /* translators: %s: URL to media library */
-                    __( 'We can&#8217;t find that image. Check your <a href="%s">media library</a> and make sure it wasn&#8217;t deleted.' ),
+                    __( 'We can&#8217;t find that image. Check your <a href="%s">media library</a> and make sure it wasn&#8217;t deleted.', 'clean50' ),
                     esc_url( admin_url( 'upload.php' ) )
                 ),
                 /* translators: %d: widget count */
-                'media_library_state_multi'  => _n_noop( 'Image Widget (%d)', 'Image Widget (%d)' ),
-                'media_library_state_single' => __( 'Image Widget' ),
+                'media_library_state_multi'  => _n_noop( 'Image Widget (%d)', 'Image Widget (%d)', 'clean50' ),
+                'media_library_state_single' => __( 'Image Widget', 'clean50' ),
             )
         );
     }
@@ -105,40 +105,40 @@ class House_Ad_Widget extends \WP_Widget_Media {
                     'type'        => 'string',
                     'enum'        => array_merge( get_intermediate_image_sizes(), array( 'full', 'custom' ) ),
                     'default'     => 'medium',
-                    'description' => __( 'Size' ),
+                    'description' => __( 'Size', 'clean50' ),
                 ),
                 'width'  => array( // Via 'customWidth', only when size=custom; otherwise via 'width'.
                     'type'        => 'integer',
                     'minimum'     => 0,
                     'default'     => 0,
-                    'description' => __( 'Width' ),
+                    'description' => __( 'Width', 'clean50' ),
                 ),
                 'height' => array( // Via 'customHeight', only when size=custom; otherwise via 'height'.
                     'type'        => 'integer',
                     'minimum'     => 0,
                     'default'     => 0,
-                    'description' => __( 'Height' ),
+                    'description' => __( 'Height', 'clean50' ),
                 ),
 
                 'caption'           => array(
                     'type'                  => 'string',
                     'default'               => '',
                     'sanitize_callback'     => 'wp_kses_post',
-                    'description'           => __( 'Caption' ),
+                    'description'           => __( 'Caption', 'clean50' ),
                     'should_preview_update' => false,
                 ),
                 'alt'               => array(
                     'type'              => 'string',
                     'default'           => '',
                     'sanitize_callback' => 'sanitize_text_field',
-                    'description'       => __( 'Alternative Text' ),
+                    'description'       => __( 'Alternative Text', 'clean50' ),
                 ),
                 'link_type'         => array(
                     'type'                  => 'string',
                     'enum'                  => array( 'none', 'file', 'post', 'custom' ),
                     'default'               => 'custom',
                     'media_prop'            => 'link',
-                    'description'           => __( 'Link To' ),
+                    'description'           => __( 'Link To', 'clean50' ),
                     'should_preview_update' => true,
                 ),
                 'link_url'          => array(
@@ -146,7 +146,7 @@ class House_Ad_Widget extends \WP_Widget_Media {
                     'default'               => '',
                     'format'                => 'uri',
                     'media_prop'            => 'linkUrl',
-                    'description'           => __( 'URL' ),
+                    'description'           => __( 'URL', 'clean50' ),
                     'should_preview_update' => true,
                 ),
                 'image_classes'     => array(
@@ -154,7 +154,7 @@ class House_Ad_Widget extends \WP_Widget_Media {
                     'default'               => '',
                     'sanitize_callback'     => array( $this, 'sanitize_token_list' ),
                     'media_prop'            => 'extraClasses',
-                    'description'           => __( 'Image CSS Class' ),
+                    'description'           => __( 'Image CSS Class', 'clean50' ),
                     'should_preview_update' => false,
                 ),
                 'link_classes'      => array(
@@ -163,21 +163,21 @@ class House_Ad_Widget extends \WP_Widget_Media {
                     'sanitize_callback'     => array( $this, 'sanitize_token_list' ),
                     'media_prop'            => 'linkClassName',
                     'should_preview_update' => false,
-                    'description'           => __( 'Link CSS Class' ),
+                    'description'           => __( 'Link CSS Class', 'clean50' ),
                 ),
                 'link_rel'          => array(
                     'type'                  => 'string',
                     'default'               => '',
                     'sanitize_callback'     => array( $this, 'sanitize_token_list' ),
                     'media_prop'            => 'linkRel',
-                    'description'           => __( 'Link Rel' ),
+                    'description'           => __( 'Link Rel', 'clean50' ),
                     'should_preview_update' => false,
                 ),
                 'link_target_blank' => array(
                     'type'                  => 'boolean',
                     'default'               => false,
                     'media_prop'            => 'linkTargetBlank',
-                    'description'           => __( 'Open link in a new tab' ),
+                    'description'           => __( 'Open link in a new tab', 'clean50' ),
                     'should_preview_update' => false,
                 ),
                 'image_title'       => array(
@@ -185,7 +185,7 @@ class House_Ad_Widget extends \WP_Widget_Media {
                     'default'               => '',
                     'sanitize_callback'     => 'sanitize_text_field',
                     'media_prop'            => 'title',
-                    'description'           => __( 'Image Title Attribute' ),
+                    'description'           => __( 'Image Title Attribute', 'clean50' ),
                     'should_preview_update' => false,
                 ),
 
@@ -372,7 +372,7 @@ class House_Ad_Widget extends \WP_Widget_Media {
             <# var elementIdPrefix = 'el' + String( Math.random() ) + '_'; #>
             <# if ( data.url ) { #>
             <p class="media-widget-image-link">
-                <label for="{{ elementIdPrefix }}linkUrl"><?php esc_html_e( 'Link to:' ); ?></label>
+                <label for="{{ elementIdPrefix }}linkUrl"><?php esc_html_e( 'Link to:', 'clean50' ); ?></label>
                 <input id="{{ elementIdPrefix }}linkUrl" type="text" class="widefat link" value="{{ data.link_url }}" placeholder="http://" pattern="((\w+:)?\/\/\w.*|\w+:(?!\/\/$)|\/|\?|#).*">
             </p>
             <# } #>
@@ -384,7 +384,7 @@ class House_Ad_Widget extends \WP_Widget_Media {
             </div>
             <# } else if ( data.error ) { #>
             <div class="notice notice-error notice-alt">
-                <p><?php _e( 'Unable to preview media due to an unknown error.' ); ?></p>
+                <p><?php _e( 'Unable to preview media due to an unknown error.', 'clean50' ); ?></p>
             </div>
             <# } else if ( data.url ) { #>
             <img class="attachment-thumb" src="{{ data.url }}" draggable="false" alt="{{ data.alt }}"
@@ -394,7 +394,7 @@ class House_Ad_Widget extends \WP_Widget_Media {
             echo esc_attr(
                 sprintf(
                 /* translators: %s: the image file name. */
-                    __( 'The current image has no alternative text. The file name is: %s' ),
+                    __( 'The current image has no alternative text. The file name is: %s', 'clean50' ),
                     '{{ data.currentFilename }}'
                 )
             );
