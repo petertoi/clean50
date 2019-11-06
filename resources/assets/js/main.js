@@ -29,5 +29,12 @@ $( document ).ready( () => {
 		$form.submit();
 	} );
 
-	// new SmoothScroll( 'a[href*="#"]' );
+	const $navSectionItems = $( '.js-nav-section a' );
+	$navSectionItems.on( 'click', function() {
+		const target = '#' + this.href.split( '#' )[ 1 ];
+		$( target ).collapse( 'show' );
+		$( 'html, body' ).animate( {
+			scrollTop: $( $.attr( this, 'href' ) ).offset().top - 100,
+		}, 500 );
+	} );
 } );

@@ -16,7 +16,7 @@
         <div class="col-lg-2">
           <?php if ( has_blocks( $post->post_content ) ) : ?>
             <?php $blocks = parse_blocks( $post->post_content ); ?>
-            <nav class="nav-section sticky-top" aria-label="<?php _ex( 'Section navigation', '', '' ); ?>">
+            <nav class="nav-section sticky-top js-nav-section" aria-label="<?php _ex( 'Section navigation', '', '' ); ?>">
               <ol class="nav flex-column text-right">
                 <?php
                 foreach ( $blocks as $block ) {
