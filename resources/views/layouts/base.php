@@ -20,20 +20,21 @@ do_action( 'get_header' );
 get_template_part( 'views/partials/header' );
 ?>
 <div class="site-content" role="document">
-  <div class="container-fluid">
-    <?php if ( ! is_archive() ) : ?>
+  <?php if ( ! is_archive() ) : ?>
+    <div class="container-fluid">
       <div class="row">
         <div class="col-auto">
           <?php breadcrumbs(); ?>
         </div>
       </div>
-    <?php endif; ?>
+    </div>
+  <?php endif; ?>
 
-    <main class="main">
-      <?php include Templates\get_main(); ?>
-    </main>
+  <main class="main">
+    <?php include Templates\get_main(); ?>
+  </main>
 
-  </div>
+</div>
 </div>
 <?php
 get_template_part( 'views/partials/footer-sponsor' );

@@ -93,6 +93,25 @@ function get_award_category( $honouree_id = null ) {
  *
  * @return bool|\WP_Term
  */
+function get_individual_award( $honouree_id = null ) {
+    if ( is_null( $honouree_id ) ) {
+        $honouree_id = get_the_ID();
+    }
+
+    $individual_award = get_the_terms( $honouree_id, 'individual-award' );
+
+    if ( empty( $individual_award ) ) {
+        return false;
+    }
+
+    return $individual_award[0];
+}
+
+/**
+ * @param int|null $honouree_id
+ *
+ * @return bool|\WP_Term
+ */
 function get_honouree_type( $honouree_id = null ) {
     if ( is_null( $honouree_id ) ) {
         $honouree_id = get_the_ID();
