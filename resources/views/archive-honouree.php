@@ -11,6 +11,7 @@ use function Toi\ToiBox\Snippets\bootstrap_pagination;
 use function Toi\ToiBox\Snippets\get_award;
 use function Toi\ToiBox\Snippets\get_award_category;
 use function Toi\ToiBox\Snippets\get_award_year;
+use function Toi\ToiBox\Snippets\get_individual_award;
 use function Toi\ToiBox\Snippets\get_sponsor_carousel;
 
 global $wp_query;
@@ -128,10 +129,11 @@ $selected_cat   = filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_STRING ) ?: ''
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
           <?php
           the_post();
-          $award          = get_award();
-          $award_year     = get_award_year();
-          $award_category = get_award_category();
-          $organization   = get_field( 'organization' );
+          $award            = get_award();
+          $award_year       = get_award_year();
+          $award_category   = get_award_category();
+          $individual_award = get_individual_award();
+          $organization     = get_field( 'organization' );
           ?>
           <article class="honouree-grid-item">
             <div class="thumb text-center">
@@ -157,6 +159,9 @@ $selected_cat   = filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_STRING ) ?: ''
               <?php endif; ?>
               <?php if ( $award_category ) : ?>
                 <div class="category h6"><?php echo $award_category->name ?: ''; ?></div>
+              <?php endif; ?>
+              <?php if ( $individual_award ) : ?>
+                <div class="badge badge-pill badge-individual"><?php echo $individual_award->name; ?></div>
               <?php endif; ?>
             </div>
           </article>
