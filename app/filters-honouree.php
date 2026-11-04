@@ -409,11 +409,11 @@ add_filter( 'pre_get_posts', function ( $query ) {
 add_filter( 'the_content', function ( $content ) {
     global $post;
 
-    if ( ! $post instanceof \WP_Post ) {
+    if ( ! is_singular( 'honouree' ) || ! in_the_loop() || ! is_main_query() ) {
         return $content;
     }
 
-    if ( 'honouree' !== $post->post_type ) {
+    if ( ! $post instanceof \WP_Post ) {
         return $content;
     }
 
