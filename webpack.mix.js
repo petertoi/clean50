@@ -51,19 +51,19 @@ mix
 	.sourceMaps( false )
 	.sass( `${ assetsDir }/scss/main.scss`, `${ outputDir }/css/main.css` )
 	.sass( `${ assetsDir }/scss/admin.scss`, `${ outputDir }/css/admin.css` )
-	.criticalCss(
-		{
-			enabled: mix.inProduction(),
-			paths: {
-				base: config.devUrl,
-				templates: `./${ outputDir }/css/critical/`,
-			},
-			urls: config.criticalCss.urls,
-			options: {
-				minify: true,
-			},
-		},
-	)
+	// .criticalCss(
+	// 	{
+	// 		enabled: mix.inProduction(),
+	// 		paths: {
+	// 			base: config.devUrl,
+	// 			templates: `./${ outputDir }/css/critical/`,
+	// 		},
+	// 		urls: config.criticalCss.urls || [],
+	// 		options: {
+	// 			minify: true,
+	// 		},
+	// 	},
+	// )
 	.autoload( {
 		jquery: [ '$', 'window.jQuery' ],
 	} )
