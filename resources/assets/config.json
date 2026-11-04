@@ -1,5 +1,5 @@
 {
-  "devUrl": "https://clean50.test/",
+  "devUrl": "http://clean50.test/",
   "watch": [
     "app/**/*.php",
     "public/**/*",
