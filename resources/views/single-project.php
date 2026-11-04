@@ -11,6 +11,7 @@ use function Toi\ToiBox\Snippets\get_project_award;
 use function Toi\ToiBox\Snippets\get_sponsor_carousel;
 
 $sponsor = get_theme_mod( '_toibox_project_sponsor' );
+$proponents   = get_field( 'proponents' ) ?: [];
 $leads   = get_field( 'leads' ) ?: [];
 $links   = get_field( 'links' ) ?: [];
 $award   = get_project_award();
@@ -67,6 +68,17 @@ $award   = get_project_award();
             </div>
           <?php endif; ?>
 
+          <?php if ( $proponents ) : ?>
+            <div class="leads sidebar-links">
+              <h4 class="sidebar-links-title"><?php _ex( 'Project Proponents', '', '' ); ?></h4>
+              <ul class="sidebar-links-list">
+                <?php foreach ( $proponents as $proponent ) : ?>
+                  <li class="sidebar-links-item"><?php printf( '%s', $proponent['name'] ); ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endif; ?>
+
           <?php if ( $leads ) : ?>
             <div class="leads sidebar-links">
               <h4 class="sidebar-links-title"><?php _ex( 'Project Leads', '', '' ); ?></h4>
@@ -78,16 +90,20 @@ $award   = get_project_award();
             </div>
           <?php endif; ?>
 
-          <?php if ( $links ) : ?>
-            <div class="links sidebar-links">
-              <h4 class="sidebar-links-title"><?php _ex( 'Project Links', '', '' ); ?></h4>
-              <ul class="sidebar-links-list">
-                <?php foreach ( $links as $link ) : ?>
-                  <li class="sidebar-links-item">link</li>
-                <?php endforeach; ?>
-              </ul>
-            </div>
-          <?php endif; ?>
+            <?php if ( is_array( $links ) && array_filter( $links, function ( $link ) {
+                return ! empty( $link['link']['target'] );
+              } ) ) : ?>
+              <div class="links sidebar-links">
+                <h4 class="sidebar-links-title"><?php _ex( 'Learn More', '', '' ); ?></h4>
+                <ul class="sidebar-links-list">
+                  <?php foreach ( $links as $link ) : ?>
+                    <?php if ( ! empty( $link['link']['target'] ) ) : ?>
+                      <?php printf( '<li class="sidebar-links-item"><a target="_blank" href="%1$s" title="%2$s">%2$s</a></li>', $link['link']['target'], $link['label'] ); ?>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            <?php endif; ?>
         </div>
         <div class="col-lg-8">
           <?php the_content(); ?>
@@ -96,4 +112,5 @@ $award   = get_project_award();
     </div>
   <?php endwhile; ?>
 <?php endif; ?>
+
 

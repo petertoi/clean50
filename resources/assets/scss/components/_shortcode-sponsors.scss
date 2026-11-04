@@ -1,0 +1,21 @@
+.shortcode-sponsors {
+	margin-bottom: 3rem;
+}
+
+.shortcode-sponsors-item {
+	padding-bottom: 2rem;
+	border-bottom: solid 1px $gray-300;
+	margin-bottom: 2rem;
+
+	.sponsor-logo {
+		margin-bottom: 1rem;
+	}
+
+	.sponsor-description {
+		margin-bottom: 1rem;
+	}
+
+	.sponsor-link {
+		font-weight: $font-weight-bold;
+	}
+}

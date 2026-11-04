@@ -98,13 +98,17 @@ $selected_cat   = filter_input( INPUT_GET, 'cat', FILTER_SANITIZE_STRING ) ?: ''
         </select>
       </div>
     </div>
-    <noscript>
-      <div class="form-row">
-        <div class="form-group col-auto">
-          <button type="submit" class="btn btn-primary"><?php _ex( 'Apply Filters', '', '' ); ?></button>
+    <div class="row">
+      <div class="form-group col-auto">
+        <label for="s"><?php _ex( 'Search', '', '' ); ?></label>
+        <div class="input-group">
+          <input class="form-control" type="search" id="s" name="s" value="<?php echo get_search_query(); ?>">
+          <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-secondary" type="submit"><?php _ex( 'Apply Filters', '', '' ) ?></button>
+          </div>
         </div>
       </div>
-    </noscript>
+    </div>
   </form>
 
   <?php if ( $selected_cat ) : ?>

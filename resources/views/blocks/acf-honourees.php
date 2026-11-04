@@ -40,15 +40,15 @@ $tabs = get_field( 'tabs' );
                   'award-year'     => $year->slug,
                 ] );
 
-                $name = sprintf( '%s-%s', $award->slug, $year->slug );
+                // $name = sprintf( '%s-%s', $award->slug, $year->slug );
 
-                $sprite = new Sprite( $name, $honouree_query->posts, $size );
+                // $sprite = new Sprite( $name, $honouree_query->posts, $size );
 
-                if ( ! $sprite->is_loaded() ) {
-                  $sprite->create( $name, $honouree_query->posts, $size );
-                }
+                // if ( ! $sprite->is_loaded() ) {
+                //   $sprite->create( $name, $honouree_query->posts, $size );
+                // }
 
-                $sprite->render_style();
+                // $sprite->render_style();
 
                 ?>
                 <div class="sprite">
@@ -56,7 +56,7 @@ $tabs = get_field( 'tabs' );
                     <?php foreach ( $honouree_query->posts as $honouree_id ) : ?>
                       <div class="sprite-col">
                         <?php $display_name = get_display_name( $honouree_id ); ?>
-                        <div class="<?php echo $sprite->get_class(); ?> rounded" style="<?php $sprite->sprite_style( $honouree_id ); ?>" data-toggle="tooltip" data-placement="top" title="<?php echo esc_attr( $display_name ); ?>">
+                        <div class="rounded" style="background-image: url(<?php echo get_the_post_thumbnail_url( $honouree_id, 'sprite-sm' ); ?>); padding-bottom: 100%; background-size: contain; background-position: center; background-repeat: no-repeat;" data-toggle="tooltip" data-placement="top" title="<?php echo esc_attr( $display_name ); ?>">
                           <a href="<?php echo get_the_permalink( $honouree_id ); ?>" alt="<?php echo esc_attr( $display_name ); ?>" class="stretched-link">
                             <span class="sr-only"><?php echo $display_name; ?></span>
                           </a>

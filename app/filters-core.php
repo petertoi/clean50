@@ -100,3 +100,57 @@ add_filter( 'hybrid/breadcrumbs/trail', function ( $html, $crumbs, $breadcrumb )
 
     return $modified;
 }, 10, 3 );
+
+/**
+ * Add Post ID to order_by to fix issue where posts with same datetime are displayed unpredictably across pages
+ */
+add_filter( 'pre_get_posts', function ( $query ) {
+    /** @var \WP_Query $query */
+    if ( $query->is_admin() ) {
+        return $query;
+    }
+
+    if ( ! $query->is_main_query() ) {
+        return $query;
+    }
+
+    if ( ! $query->is_home() ) {
+        return $query;
+    }
+
+    $query->set( 'orderby', [ 'post_date' => 'DESC', 'ID' => 'ASC' ] );
+
+    return $query;
+
+}, 10, 1 );
+
+/**
+ * Disable large image scaling
+ */
+ add_filter( 'big_image_size_threshold', '__return_false' );
+
+
+
+/**
+ * Filter to exclude sticky posts from search results.
+ *
+ * @param \WP_Query $query WordPress query object.
+ */
+add_action( 'pre_get_posts', function ( $query ) {
+    $s = $query->get('s');
+    if ( '' !== $s && $query->is_main_query() ) {
+        $query->set( 'ignore_sticky_posts', true );
+    }
+}, 10, 1);
+
+/**
+ * Filter to exclude sticky posts from year filtered results.
+ *
+ * @param \WP_Query $query WordPress query object.
+ */
+add_action( 'pre_get_posts', function ( $query ) {
+    $year = $query->get('year');
+    if ( '' !== $year && $query->is_main_query() ) {
+        $query->set( 'ignore_sticky_posts', true );
+    }
+}, 10, 1);

@@ -8,7 +8,7 @@
 
 namespace Toi\ToiBox\Blocks;
 
-add_filter( 'block_categories', function ( $categories, $post ) {
+add_filter( 'block_categories_all', function ( $categories, $post ) {
     return array_merge(
         $categories,
         array(
@@ -24,9 +24,9 @@ add_filter( 'block_categories', function ( $categories, $post ) {
 /**
  * Control which blocks appear where.
  */
-add_filter( 'allowed_block_types', function ( $allowed_block_types, $post ) {
+add_filter( 'allowed_block_types_all', function ( $allowed_block_types, $block_editor_context ) {
 
-    if ( (int) get_option( 'page_on_front' ) === (int) $post->ID ) {
+    if ( (int) get_option( 'page_on_front' ) === (int) $block_editor_context->post->ID ) {
         $allowed_block_types = [
             'acf/hero',
             'acf/honourees',
@@ -36,12 +36,40 @@ add_filter( 'allowed_block_types', function ( $allowed_block_types, $post ) {
             'acf/articles',
             'acf/tweets',
         ];
-    } else if ( 'page' === $post->post_type ) {
+    } else if ( 'page' === $block_editor_context->post->post_type ) {
         $allowed_block_types = [
             'acf/page-section',
         ];
     } else {
-//        $allowed_block_types = [];
+        $allowed_block_types = [
+            'core/paragraph',
+            'core/image',
+            'core/heading',
+            'core/gallery',
+            'core/list',
+            'core/quote',
+            'core/file',
+            'core/audio',
+            'core/video',
+            'core/preformatted',
+            'core/code',
+            'core/freeform',
+            'core/html',
+            'core/pullquote',
+            'core/table',
+            'core/shortcode',
+            'core/embed',
+            'core-embed/twitter',
+            'core-embed/youtube',
+            'core-embed/facebook',
+            'core-embed/instagram',
+            'core-embed/soundcloud',
+            'core-embed/vimeo',
+            'core-embed/issuu',
+            'core-embed/scribd',
+            'core-embed/slideshare',
+            'core-embed/ted',
+        ];
     }
 
     return $allowed_block_types;
@@ -62,7 +90,7 @@ add_action( 'acf/init', function () {
             'render_callback' => __NAMESPACE__ . '\\acf_block_render_callback',
         ];
 
-        // Hero
+        // Page Section
         acf_register_block(
             [
                 'name'        => 'page-section',
@@ -178,7 +206,7 @@ add_action( 'acf/init', function () {
 
 function acf_block_render_callback( $block ) {
 
-    $slug = str_replace( 'acf/', '', $block['name'] );
+    $slug = str_replace( '/', '-', $block['name'] );
 
     if ( is_admin() ) {
         $template = get_theme_file_path( "/views/blocks/admin/{$slug}.php" );
@@ -230,6 +258,61 @@ add_filter( 'render_block', function ( $block_content, $block ) {
         esc_attr( implode( ' ', $classes ) ),
         $block_content
     );
+
+    return $block_content;
+}, 10, 2 );
+
+/** Dequeue Block Styles */
+add_action( 'wp_enqueue_scripts', function () {
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+}, 99 );
+
+/** Add lightbox to wp-block-image */
+add_filter( 'render_block', function ( $block_content, $block ) {
+
+    if( is_admin() ) {
+        return $block_content;
+    }
+
+    if ( empty( $block['blockName'] ) ) {
+        return $block_content;
+    }
+
+    if ( 'core/image' !== $block['blockName'] ) {
+        return $block_content;
+    }
+
+    $id = uniqid();
+
+    $block_content = str_replace( "a href", "a data-lightbox='$id' href", $block_content );
+
+    return $block_content;
+}, 10, 2 );
+
+/** Add slick carousel to wp-block-gallery */
+add_filter( 'render_block', function ( $block_content, $block ) {
+
+    if( is_admin() ) {
+        return $block_content;
+    }
+
+    if ( empty( $block['blockName'] ) ) {
+        return $block_content;
+    }
+
+    if ( 'core/gallery' !== $block['blockName'] ) {
+        return $block_content;
+    }
+
+    $slug = str_replace( '/', '-', $block['blockName'] );
+
+    $template = get_theme_file_path( "/views/blocks/{$slug}.php" );
+    if ( file_exists( $template ) ) {
+        ob_start();
+        include( $template );
+        $block_content = ob_get_clean();
+    }
 
     return $block_content;
 }, 10, 2 );

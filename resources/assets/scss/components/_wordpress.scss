@@ -3,6 +3,14 @@
 .wp-block-image {
 	img {
 		border-radius: $border-radius;
+		@extend .img-fluid;
+	}
+
+	figcaption {
+		margin-top: $spacer / 2;
+		font-style: italic;
+		font-size: 0.75rem; // 12px
+		line-height: 0.9444rem; // 17px;
 	}
 }
 
@@ -22,6 +30,7 @@
 
 .alignleft,
 .alignright {
+	text-align: center;
 	margin-bottom: ($spacer / 2);
 	height: auto;
 }
@@ -29,12 +38,12 @@
 @include media-breakpoint-up(sm) {
 	.alignleft {
 		float: left;
-		margin-right: ($spacer / 2);
+		margin-right: ($spacer);
 	}
 
 	.alignright {
 		float: right;
-		margin-left: ($spacer / 2);
+		margin-left: ($spacer);
 	}
 }
 
@@ -56,4 +65,42 @@
 .screen-reader-text {
 	@extend .sr-only;
 	@extend .sr-only-focusable;
+}
+
+blockquote {
+	@extend .blockquote;
+
+	border-left: solid $green 4px;
+	padding-left: $spacer;
+
+	cite {
+		font-size: 1rem;
+
+		&:before {
+			content: "\2014";
+			margin-right: $spacer / 2;
+		}
+	}
+}
+
+.wp-block-table {
+	table {
+		@extend .table;
+	}
+}
+
+.wp-block-gallery {
+	@include media-breakpoint-up(lg) {
+		margin-left: -255px;
+		margin-right: -90px;
+	}
+
+	.gallery__image {
+		padding-left: $grid-gutter-width/2;
+		padding-right: $grid-gutter-width/2;
+
+		img {
+			border-radius: $border-radius;
+		}
+	}
 }

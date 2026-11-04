@@ -15,7 +15,7 @@ const mergeConfig = {
 };
 
 module.exports = merge( mergeConfig )( {
-		devUrl: 'https://dev.test/',
+		devUrl: 'https://clean50.test/',
 		watch: [
 			'app/**/*.php',
 			'public/**/*',
@@ -24,14 +24,6 @@ module.exports = merge( mergeConfig )( {
 		paths: {
 			assets: 'resources/assets',
 			output: 'public',
-		},
-		criticalCss: {
-			urls: [
-				{
-					url: '',
-					template: 'home',
-				},
-			],
 		},
 	},
 	userConfig,

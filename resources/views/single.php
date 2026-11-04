@@ -22,7 +22,7 @@ use function Toi\ToiBox\Snippets\get_post_byline;
       </div>
       <?php if ( has_post_thumbnail() ) : ?>
         <div class="row">
-          <div class="col">
+          <div class="col text-center">
             <figure class="figure feature-image">
               <?php the_post_thumbnail( 'banner-lg-12', [ 'class' => 'img-fluid rounded' ] ); ?>
               <?php if ( get_the_post_thumbnail_caption() ) : ?>
@@ -34,9 +34,9 @@ use function Toi\ToiBox\Snippets\get_post_byline;
       <?php endif; ?>
 
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3 d-none d-lg-block">
           <?php if ( is_active_sidebar( 'sidebar-single' ) ) : ?>
-            <?php dynamic_sidebar( 'sidebar-single' ); ?>
+              <?php dynamic_sidebar( 'sidebar-single' ); ?>
           <?php endif; ?>
         </div>
         <div class="col-lg-8">

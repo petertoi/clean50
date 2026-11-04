@@ -1,8 +1,17 @@
 @import "common/variables";
 @import "lib/bootstrap";
 @import "~select2";
-@import "~select2-bootstrap4-theme";
+@import "~select2-theme-bootstrap4/dist/select2-bootstrap.css";
+$slick-dot-size: 1.5rem;
+$slick-prev-character: '<';
+$slick-next-character: '>';
+@import "~slick-carousel/slick/slick";
+@import "~slick-carousel/slick/slick-theme";
+@import "~lightbox2/src/css/lightbox";
 @import "lib/hamburgers";
+@import "lib/lightbox2";
+@import "lib/slick";
+@import "lib/woocommerce";
 /**
  * Import npm dependencies
  *
@@ -26,6 +35,7 @@
 @import "components/nav";
 @import "components/navbar";
 @import "components/sidebar-links";
+@import "components/shortcode-sponsors";
 @import "components/tables";
 @import "components/type";
 @import "components/wordpress";

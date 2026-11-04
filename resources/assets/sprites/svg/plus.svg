@@ -1,14 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-  <defs>
-    <polygon id="plus-a" points="21 11 13 11 13 3 11 3 11 11 3 11 3 13 11 13 11 21 13 21 13 13 21 13"/>
-  </defs>
-  <g fill="none" fill-rule="evenodd">
-    <polygon points="0 0 24 0 24 24 0 24"/>
-    <mask id="plus-b" fill="#fff">
-      <use xlink:href="#plus-a"/>
-    </mask>
-    <g fill="#343639" mask="url(#plus-b)">
-      <rect width="24" height="24"/>
-    </g>
-  </g>
-</svg>
+<svg height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m16 10c0 .553-.048 1-.601 1h-4.399v4.399c0 .552-.447.601-1 .601s-1-.049-1-.601v-4.399h-4.399c-.552 0-.601-.447-.601-1s.049-1 .601-1h4.399v-4.399c0-.553.447-.601 1-.601s1 .048 1 .601v4.399h4.399c.553 0 .601.447.601 1z"/></svg>

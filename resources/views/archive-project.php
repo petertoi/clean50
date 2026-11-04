@@ -35,7 +35,7 @@ $selected_year = filter_input( INPUT_GET, 'year', FILTER_SANITIZE_STRING ) ?: ''
 
   <form class="filters" method="get">
     <div class="row">
-      <div class="form-group col-auto">
+      <div class="form-group col-2">
         <label for="award-year"><?php _ex( 'Select a year', '', '' ); ?></label>
         <select class="form-control" id="award-year" name="year">
           <option value=""><?php _ex( 'All years', '', '' ); ?></option>

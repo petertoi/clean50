@@ -16,10 +16,15 @@ add_action( 'after_setup_theme', function () {
 //    add_theme_support( 'soil-disable-rest-api' );
     add_theme_support( 'soil-disable-trackbacks' );
 //    add_theme_support( 'soil-google-analytics' );
-    add_theme_support( 'soil-js-to-footer' );
+//    add_theme_support( 'soil-js-to-footer' );
 //    add_theme_support( 'soil-nav-walker' );
     add_theme_support( 'soil-nice-search' );
     add_theme_support( 'soil-relative-urls' );
+
+    /**
+     * Disable image scaling
+     */
+    add_filter( 'big_image_size_threshold', '__return_false' );
 
     /**
      * Enable plugins to manage the document title
@@ -58,6 +63,9 @@ add_action( 'after_setup_theme', function () {
      * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
      */
     add_theme_support( 'customize-selective-refresh-widgets' );
+
+    add_theme_support( 'editor-color-palette' );
+    add_theme_support( 'disable-custom-colors' );
 
     /**
      * Use main stylesheet for visual editor
@@ -130,7 +138,7 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'toibox/main', Assets\get_url( 'css/main.css' ), false, null );
 
     // Enqueue Scripts
-    wp_register_script( 'toibox/vendor', Assets\get_url( 'js/vendor.js' ), [ 'jquery' ], null, true );
+    wp_register_script( 'toibox/vendor', Assets\get_url( 'js/vendor.js' ), [ 'jquery' ], null, false );
     wp_add_inline_script( 'toibox/vendor', file_get_contents( Assets\get_path( 'js/manifest.js' ) ), 'before' );
     wp_enqueue_script( 'toibox/main', Assets\get_url( 'js/main.js' ), [ 'jquery', 'toibox/vendor' ], null, true );
 
@@ -140,36 +148,6 @@ add_action( 'wp_enqueue_scripts', function () {
 
 }, 100 );
 
-/**
- * Critical CSS
- */
-add_action( 'wp_head', function () {
-    $classes  = get_body_class();
-    $fallback = true;
-    /**
-     * Check for template specific Critical CSS
-     */
-    foreach ( $classes as $class ) {
-        if ( file_exists( Assets\get_path( "css/critical/{$class}_critical.min.css" ) ) ) {
-            printf(
-                '<style>%s</style>',
-                file_get_contents( Assets\get_path( "css/critical/{$class}_critical.min.css" ) )
-            );
-            $fallback = false;
-            break;
-        }
-    }
-
-    /**
-     * Fallback: Load Home Critical CSS
-     */
-    if ( $fallback && file_exists( Assets\get_path( "css/critical/home_critical.min.css" ) ) ) {
-        printf(
-            '<style>%s</style>',
-            file_get_contents( Assets\get_path( "css/critical/home_critical.min.css" ) )
-        );
-    }
-}, 7 );
 
 /**
  * Web Font Loader
@@ -177,16 +155,16 @@ add_action( 'wp_head', function () {
 add_action( 'wp_head', function () {
     ?>
     <script>
-		WebFontConfig = {
-			google: { families: [ 'Poppins:700,600,500,400,400i' ] },
-		};
+        WebFontConfig = {
+            google: { families: ['Poppins:700,600,500,400,400i'] },
+        };
 
-		( function( d ) {
-			var wf = d.createElement( 'script' ), s = d.scripts[ 0 ];
-			wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
-			wf.async = true;
-			s.parentNode.insertBefore( wf, s );
-		} )( document );
+        ( function (d) {
+            var wf = d.createElement('script'), s = d.scripts[ 0 ]
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+            wf.async = true
+            s.parentNode.insertBefore(wf, s)
+        } )(document)
     </script>
     <?php
 }, 7 );
@@ -219,4 +197,16 @@ add_action( 'acf/input/admin_enqueue_scripts', function () {
     ] );
     wp_enqueue_script( 'toibox/admin-acf' );
 
+} );
+
+/**
+ * Enqueue Block Assets in Admin
+ */
+add_action( 'enqueue_block_assets', function () {
+    // Enqueue Scripts
+    wp_register_script( 'toibox/vendor', Assets\get_url( 'js/vendor.js' ), [ 'jquery' ], null, false );
+    wp_add_inline_script( 'toibox/vendor', file_get_contents( Assets\get_path( 'js/manifest.js' ) ), 'before' );
+    wp_enqueue_script( 'toibox/main', Assets\get_url( 'js/main.js' ), [ 'jquery', 'toibox/vendor' ], null, true );
+
+    wp_enqueue_style( 'toibox/main', Assets\get_url( 'css/main.css' ), false, null );
 } );

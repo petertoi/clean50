@@ -8,18 +8,20 @@
 
 use IndigoTree\BootstrapNavWalker\Four\WalkerNavMenu;
 use Toi\ToiBox\Assets;
-use function Toi\ToiBox\Snippets\cached_menu;
 
 ?>
 <header class="site-header">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light pl-0">
       <a class="navbar-brand" href="<?php echo home_url( '/' ); ?>">
-        <img src="<?php echo Assets\get_url( 'svg/logo/clean50.svg' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
+        <img src="<?php echo Assets\get_url( 'img/clean50-logo.png' ); ?>" alt="<?php bloginfo( 'name' ); ?>"
+             style="width: 244px;">
         <span class="sr-only"><?php bloginfo( 'name' ); ?></span>
       </a>
 
-      <button class="navbar-toggler hamburger hamburger--spin" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler hamburger hamburger--spin" type="button" data-toggle="collapse"
+              data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
@@ -27,7 +29,8 @@ use function Toi\ToiBox\Snippets\cached_menu;
 
       <div class="collapse navbar-collapse justify-content-end text-right" id="navbar-primary">
         <?php
-        cached_menu( 'primary', [
+        wp_nav_menu( [
+          'location'   => 'primary',
           'container'  => '',
           'menu_class' => 'menu navbar-nav',
           'walker'     => new WalkerNavMenu(),

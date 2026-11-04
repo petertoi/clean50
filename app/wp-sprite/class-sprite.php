@@ -78,6 +78,10 @@ class Sprite {
 
     const SPRITE_DIR = 'sprites';
 
+    public $id;
+
+    public $post;
+
     public $name;
 
     public $post_ids;
@@ -127,12 +131,12 @@ class Sprite {
         $this->post_ids = $post_ids;
         $this->size     = $size;
 
-        $this->create( $name, $post_ids, $size );
+        $this->id = $this->create( $name, $post_ids, $size );
 
         return $this;
     }
 
-    /**
+    /**a
      * Load a Sprite from the Database
      *
      * @param $name string Sprite name
@@ -149,6 +153,7 @@ class Sprite {
             return false;
         }
 
+        $this->id   = $query->posts[0]->ID;
         $this->name = $query->posts[0]->post_title;
 
         $data = json_decode( $query->posts[0]->post_content, true );
@@ -289,7 +294,7 @@ class Sprite {
     }
 
     /**
-     * @param string $name
+     * @param  string  $name
      *
      * @return false|int
      */
@@ -347,6 +352,10 @@ class Sprite {
 
         $sprite_dir = trailingslashit( $upload_dir['basedir'] ) . self::SPRITE_DIR;
 
+        //$upload_dir = WP_CONTENT_DIR . '/uploads/';
+
+        //$sprite_dir = trailingslashit( $upload_dir ) . self::SPRITE_DIR;
+
         $image_path = sprintf( '%s/%s-%s.jpg',
             untrailingslashit( $sprite_dir ),
             $name,
@@ -372,7 +381,11 @@ class Sprite {
         $image_path = $this->get_image_path( $name, $size );
 
         // @TODO make sure this is multisite compatible
-        $image_url = wp_make_link_relative( home_url( str_replace( ABSPATH, '', $image_path ) ) );
+        $image_url = add_query_arg(
+            'v',
+            strtotime( get_post_modified_time( 'U', true, $this->id ) ),
+            wp_make_link_relative( home_url( str_replace( ABSPATH, '', $image_path ) ) )
+        );
 
         return $image_url;
     }

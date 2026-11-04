@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+// Default Variables
+
+// Slick icon entity codes outputs the following
+// "\2190" outputs ascii character "←"
+// "\2192" outputs ascii character "→"
+// "\2022" outputs ascii character "•"
+
+.slick-prev,
+.slick-next {
+	background-color: $gray-400;
+	z-index: $zindex-tooltip;
+	padding: 5px;
+	border-radius: $border-radius;
+	&:hover {
+		background-color: $gray-400;
+	}
+}
+
+.slick-prev {
+	left: 25px;
+}
+
+.slick-next {
+	right: 25px;
+}

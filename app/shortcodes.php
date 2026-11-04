@@ -22,3 +22,10 @@ add_shortcode( 'year_from_to', function ( $atts ) {
 
     return esc_html( Snippets\year_from_to( $args['from'], $args['separator'] ) );
 } );
+
+add_shortcode( 'clean50_sponsors', function ( $atts ) {
+    ob_start();
+    get_template_part( 'views/partials/shortcode-sponsors' );
+
+    return ob_get_clean();
+} );

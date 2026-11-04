@@ -8,13 +8,5 @@
   "paths": {
     "assets": "resources/assets",
     "output": "public"
-  },
-  "criticalCss": {
-    "urls": [
-      {
-        "url": "/",
-        "template": "home"
-      }
-    ]
   }
 }

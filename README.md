@@ -2,6 +2,8 @@
 
 ToiBox is a WordPress Starter Theme. Like Automattic's own __s_ it is intended to be hacked rather than child-themed.
 
+Node: 12
+
 The motivation behind this theme came from the desire to build something that:
 
  - Utilises modern build tools, namely Laravel Mix's Webpack wrapper and extensions
@@ -15,8 +17,8 @@ The motivation behind this theme came from the desire to build something that:
  - Clean folder and template organization
  - Wrapper templates rather than `get_header` and `get_footer`
  - Lints and formats all code against WordPress Coding Standards
- 
-    
+
+
 ## Acknowledgements
 
 This theme was inspired by the following great themes:

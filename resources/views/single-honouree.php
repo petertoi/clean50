@@ -18,6 +18,7 @@ use function Toi\ToiBox\Snippets\get_sponsor_carousel;
 use function Toi\ToiBox\Snippets\get_team;
 use function Toi\ToiBox\Snippets\get_team_members;
 
+$title            = get_field( 'title' );
 $organization     = get_field( 'organization' );
 $award            = get_award();
 $year             = get_award_year();
@@ -62,6 +63,9 @@ if ( isset( $category->term_id ) ) {
                   case 'emerging-leader':
                     printf( '<img class="award award-emerging-leader" src="%s" alt="%s">', get_url( 'svg/logo/emerging-leader.svg' ), _x( 'Clean50 Emerging Leader Award Logo', '', '' ) );
                     break;
+                  case 'lifetime-achievement':
+                    printf( '<img class="award award-lifetime-achievement" src="%s" alt="%s">', get_url( 'img/lifetime-achievement.png' ), _x( 'Clean50 Lifetime Achievement Award Logo', '', '' ) );
+                    break;
                   case 'clean16':
                     printf( '<img class="award award-clean16" src="%s" alt="%s">', get_url( 'svg/logo/clean16.svg' ), _x( 'Clean16 Award Logo', '', '' ) );
                     break;
@@ -75,14 +79,14 @@ if ( isset( $category->term_id ) ) {
             </div>
           </div>
           <?php if ( is_array( $links ) && array_filter( $links, function ( $link ) {
-              return ! empty( $link['target'] );
+              return ! empty( $link['link']['target'] );
             } ) ) : ?>
             <div class="links sidebar-links">
               <h4 class="sidebar-links-title"><?php _ex( 'Learn More', '', '' ); ?></h4>
               <ul class="sidebar-links-list">
                 <?php foreach ( $links as $link ) : ?>
-                  <?php if ( ! empty( $link['target'] ) ) : ?>
-                    <?php printf( '<li class="sidebar-links-item"><a target="_blank" href="%1$s" title="%2$s">%2$s</a></li>', $link['target'], $link['label'] ); ?>
+                  <?php if ( ! empty( $link['link']['target'] ) ) : ?>
+                    <?php printf( '<li class="sidebar-links-item"><a target="_blank" href="%1$s" title="%2$s">%2$s</a></li>', $link['link']['target'], $link['label'] ); ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </ul>
@@ -93,8 +97,8 @@ if ( isset( $category->term_id ) ) {
         <div class="col-lg-6">
           <header class="header">
             <?php the_title( '<h1 class="h2 title">', '</h1>' ); ?>
-            <?php if ( $organization ) : ?>
-              <div class="organization h3"><?php echo $organization; ?></div>
+            <?php if ( $title || $organization ) : ?>
+              <div class="organization h3"><?php echo join( ', ', array_filter( [ $title, $organization ] ) ); ?></div>
             <?php endif; ?>
             <?php if ( is_array( $social ) && array_filter( $social, function ( $profile ) {
                 return ! empty( $profile['target'] );
@@ -133,18 +137,18 @@ if ( isset( $category->term_id ) ) {
               $team_members    = get_team_members( $team );
               $team_member_ids = wp_list_pluck( $team_members, 'ID' );
 
-              $sprite = new Sprite(
-                sprintf( 'team-%s', $team->post_name ),
-                $team_member_ids,
-                'sprite-lg'
-              );
+              // $sprite = new Sprite(
+              //   sprintf( 'team-%s', $team->post_name ),
+              //   $team_member_ids,
+              //   'sprite-lg'
+              // );
 
-              $sprite->render_style();
+              // $sprite->render_style();
               ?>
               <div class="sprite-row related-team-members">
                 <?php foreach ( $team_member_ids as $team_member ) : ?>
                   <div class="sprite-col">
-                    <div class="<?php echo $sprite->get_class(); ?> rounded" style="<?php $sprite->sprite_style( $team_member ); ?>">
+                    <div class="rounded" style="background-image: url(<?php echo get_the_post_thumbnail_url( $team_member, 'sprite-lg' ); ?>); padding-bottom: 100%; background-size: contain; background-position: center; background-repeat: no-repeat;" data-toggle="tooltip" data-placement="top" title="<?php echo esc_attr( get_the_title( $team_member ) ); ?>">
                       <a href="<?php echo get_the_permalink( $team_member ); ?>" alt="<?php echo esc_attr( get_the_title( $team_member ) ); ?>" class="stretched-link">
                         <span class="sr-only"><?php echo get_the_title( $team_member ); ?></span>
                       </a>
@@ -159,7 +163,7 @@ if ( isset( $category->term_id ) ) {
           <?php endif; ?>
 
 
-          <?php if ( is_active_sidebar( 'sidebar-single-honouree' ) ) : ?>
+          <?php if ( ! $sponsors && is_active_sidebar( 'sidebar-single-honouree' ) ) : ?>
             <?php dynamic_sidebar( 'sidebar-single-honouree' ); ?>
           <?php endif; ?>
         </div>
@@ -171,7 +175,7 @@ if ( isset( $category->term_id ) ) {
           <div class="row">
             <div class="col-sm-12 col-md-8 col-lg-7">
               <h2><?php echo esc_html( $individual_award->name ); ?></h2>
-              <?php echo apply_filters( 'the_content', $individual_award->description ); ?>
+              <?php echo esc_html( $individual_award->description ); ?>
             </div>
             <div class="col-sm-12 col-md-4 col-lg-3 offset-lg-2">
               <?php

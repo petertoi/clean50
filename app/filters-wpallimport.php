@@ -8,6 +8,49 @@
 
 namespace Toi\ToiBox\Filters_WPAllImport;
 
+add_action( 'pmxi_saved_post', function ( $pid, $xml_node, $is_update ) {
+    $post_type = get_post_type( $pid );
+    if ( 'honouree' !== $post_type ) {
+        return false;
+    }
+
+    $record = json_decode( json_encode( ( array ) $xml_node ), 1 );
+
+    // Check for social meta and set repeater
+    if ( array_key_exists( 'social', $record ) && ! empty( $record['social'] ) ) {
+        $social = [];
+        $tokens = explode( '||', $record['social'] );
+        foreach ( $tokens as $token ) {
+            $service_target = explode( '|', $token );
+            $social[]       = [
+                'service' => $service_target[0],
+                'target'  => $service_target[1]
+            ];
+        }
+
+        update_field( 'social', $social, $pid );
+    }
+
+    // Check for links meta and set repeater
+    if ( array_key_exists( 'links', $record ) && ! empty( $record['links'] ) ) {
+        $links  = [];
+        $tokens = explode( '||', $record['links'] );
+        foreach ( $tokens as $token ) {
+            $label_target = explode( '|', $token );
+            $links[]      = [
+                'link'  => [
+                    'service' => 'custom',
+                    'target'  => $label_target[1]
+                ],
+                'label' => $label_target[0],
+            ];
+        }
+
+        update_field( 'links', $links, $pid );
+    }
+
+}, 10, 3 );
+
 //add_action( 'pmxi_saved_post', function ( $id ) {
 //    $type             = get_field( 'type', $id, false );
 //    $team_member_term = get_term( $type, 'honouree-type' );
@@ -51,7 +94,7 @@ namespace Toi\ToiBox\Filters_WPAllImport;
 add_action( 'pmxi_after_xml_import', function ( $import_id ) {
 
 //    update_team_links_legacy();
-    update_team_links_2020();
+//    update_team_links_2020();
 
 }, 10, 1 );
 

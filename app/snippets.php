@@ -415,6 +415,14 @@ function to_array( $value ) {
 }
 
 function get_sponsor_carousel( $sponsors ) {
+    if ( ! is_array( $sponsors ) || empty( $sponsors ) ) {
+        return '';
+    }
+
+    if ( ! is_array( $sponsors['sponsors'] ) || empty( $sponsors['sponsors'] ) ) {
+        return '';
+    }
+
     $id    = uniqid( 'sponsors-' );
     $title = ( ! empty( $sponsors['title'] ) )
         ? sprintf( '<h5 class="carousel__title">%s</h5>', $sponsors['title'] )

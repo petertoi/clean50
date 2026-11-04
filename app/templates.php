@@ -118,7 +118,7 @@ array_map( function ( $type ) {
     'single',
     'embed',
     'singular',
-    'attachment',
+    'attachment'
 ] );
 
 add_filter( 'get_search_form', function ( $html ) {
@@ -131,3 +131,12 @@ add_filter( 'get_search_form', function ( $html ) {
 
     return $html;
 } );
+
+
+add_filter( 'tribe_template_file', function ( $file, $name, $template ) {
+    if ( stripos( $file, 'default-template' ) !== false ) {
+        $file = get_stylesheet_directory() . '/views/layouts/base.php';
+    }
+
+    return $file;
+}, 10, 3 );

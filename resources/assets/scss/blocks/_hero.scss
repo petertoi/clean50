@@ -29,4 +29,29 @@
 			transform: translateX(-50%);
 		}
 	}
+
+	.honouree__image {
+	}
+
+	.honouree__caption {
+		position: absolute;
+		top: 450px;
+		left: 950px;
+		width: 100px;
+	}
+
+	.caption__title,
+	.caption__subtitle {
+		display: block;
+		font-size: 0.75rem; //12px;
+		line-height: 0.8889rem; //16px;
+	}
+
+	.caption__title {
+		font-weight: bold;
+	}
+
+	.caption__subtitle {
+
+	}
 }

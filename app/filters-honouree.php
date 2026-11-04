@@ -107,6 +107,9 @@ add_filter( 'acf/update_value/name=related_team_members', function ( $new_team_m
     if ( ! is_array( $old_team_member_ids ) ) {
         $old_team_member_ids = [];
     }
+    if ( ! is_array( $new_team_member_ids ) ) {
+        $new_team_member_ids = [];
+    }
 
     // loop over the new team members and add the $post_id for this team
     $team_members_ids_to_add = array_diff( $new_team_member_ids, $old_team_member_ids );
@@ -207,7 +210,7 @@ add_filter( 'request', function ( $query_vars ) {
 }, 10, 1 );
 
 /**
- * Use 'category' query string to filter by 'award-category' instead of default 'category'
+ * Use 'cat' query string to filter by 'award-category' instead of default 'category'
  */
 add_filter( 'request', function ( $query_vars ) {
 
@@ -480,3 +483,43 @@ add_filter( 'term_link', function ( $termlink, $term, $taxonomy ) {
 
 }, 10, 3 );
 
+/**
+ * HONOUREE SEARCH
+ */
+
+/**
+ * Add meta fields to search query
+ */
+//add_filter( 'posts_search', function ( $sql, $query ) {
+//    /** @var \WP_Query $query */
+//    if ( is_admin() ) {
+//        return $query;
+//    }
+//
+//    if ( ! $query->is_main_query() ) {
+//        return $query;
+//    }
+//
+////    if ( ! is_post_type_archive( 'honouree' ) ) {
+////        return $query;
+////    }
+////
+////    if ( ! $query->is_search ) {
+////        return $query;
+////    }
+//
+//    return $sql;
+//}, 10, 2 );
+
+/**
+ * Use Honouree Archive template for honouree search results
+ */
+add_filter( 'template_include', function ( $template ) {
+    global $wp_query;
+    $post_type = get_query_var( 'post_type' );
+    if ( $wp_query->is_search && $post_type == 'honouree' ) {
+        $template = locate_template( 'views/archive-honouree.php' );
+    }
+
+    return $template;
+}, 10, 1 );
