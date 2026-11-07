@@ -1,0 +1,65 @@
+name: Deploy Theme to WP Engine (Production)
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    # Only ever deploy the master branch, even when triggered manually
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      # Front-end assets (public/ is gitignored, so it must be built here)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build production assets
+        run: npm run production
+
+      # PHP dependencies (vendor/ is gitignored, loaded by resources/functions.php)
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer:v2
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --no-interaction --no-progress --optimize-autoloader
+
+      - name: WP Engine Site Deploy
+        uses: wpengine/github-action-wpe-site-deploy@v3
+        with:
+          WPE_ENV: 'clean50'
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+          # Destination path relative to the WP root directory
+          REMOTE_PATH: 'wp-content/themes/clean50/'
+          PHP_LINT: true
+          # Excludes keep build tooling and asset sources off the server
+          FLAGS: >-
+            -azvr --delete --inplace --dry-run
+            --exclude=.*
+            --exclude=/node_modules/
+            --exclude=/resources/assets/
+            --exclude=/composer.json
+            --exclude=/composer.lock
+            --exclude=/package.json
+            --exclude=/package-lock.json
+            --exclude=/webpack.mix.js
+            --exclude=/README.md
