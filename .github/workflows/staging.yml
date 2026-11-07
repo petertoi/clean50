@@ -6,12 +6,19 @@ on:
       - staging
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
+    # Only ever deploy the staging branch, even when triggered manually
+    if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       # Front-end assets (public/ is gitignored, so it must be built here)
       - name: Setup Node
@@ -44,4 +51,15 @@ jobs:
           # Destination path relative to the WP root directory
           REMOTE_PATH: 'wp-content/themes/clean50/'
           PHP_LINT: true
-          FLAGS: -azvr --delete --inplace --exclude=.* --exclude=node_modules/
+          # Excludes keep build tooling and asset sources off the server
+          FLAGS: >-
+            -azvr --delete --inplace
+            --exclude=.*
+            --exclude=/node_modules/
+            --exclude=/resources/assets/
+            --exclude=/composer.json
+            --exclude=/composer.lock
+            --exclude=/package.json
+            --exclude=/package-lock.json
+            --exclude=/webpack.mix.js
+            --exclude=/README.md
