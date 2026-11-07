@@ -53,7 +53,7 @@ jobs:
           PHP_LINT: true
           # Excludes keep build tooling and asset sources off the server
           FLAGS: >-
-            -azvr --delete --inplace --dry-run
+            -azvr --delete --inplace
             --exclude=.*
             --exclude=/node_modules/
             --exclude=/resources/assets/
