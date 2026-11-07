@@ -54,7 +54,7 @@ jobs:
           # Excludes keep build tooling and asset sources off the server
           FLAGS: >-
             -azvr --delete --inplace
-            --delete-excluded --filter=P_.* --dry-run
+            --delete-excluded --filter=P_.*
             --exclude=.*
             --exclude=/node_modules/
             --exclude=/resources/assets/
